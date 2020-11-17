@@ -1,0 +1,25 @@
+.title {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.userAction {
+    margin-top: 3px;
+    display: flex;
+}
+
+.action {
+    display: block;
+}
+
+.dropDown {
+    margin-top: 3px;
+    margin-left: auto;
+}
+
+.dropDown img {
+
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}

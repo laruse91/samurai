@@ -1,0 +1,17 @@
+
+.navItem {
+    padding: 15px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns:1fr 3fr;
+
+}
+.navItem img {
+    height: 16px;
+}
+
+.active {
+    display: block;
+    background-color: #50b5ff;
+    border-radius: 5px;
+}

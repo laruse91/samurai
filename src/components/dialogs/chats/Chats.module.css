@@ -1,0 +1,31 @@
+.chats {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.titleBlock {
+    margin: 10px 0;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+}
+
+.search {
+    margin: 10px 0;
+}
+
+.searchInput {
+    border: none;
+    outline: #50b5ff;
+    padding: 0 10px;
+    border-radius: 2px;
+}
+
+.chatsList {
+    display: grid;
+    grid-auto-rows: 70px;
+    row-gap: 1px;
+}

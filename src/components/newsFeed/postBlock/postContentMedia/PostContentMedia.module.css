@@ -1,0 +1,32 @@
+.contentMedia {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "img1 img2"
+                         "img1 img3";
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.img1 {
+    grid-area: img1;
+    height: 390px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.img2 {
+    grid-area: img2;
+    height: 190px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.img3 {
+    grid-area: img3;
+    height: 190px;
+    border-radius: 10px;
+    cursor: pointer;
+}
