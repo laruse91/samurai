@@ -6,7 +6,8 @@ import TypeMessage from "./typeMessage/TypeMessage";
 const Messages = (props) => {
 
     const messages = props.messages
-        .map(message => (<MessageCard id={message.id}
+        .map(message => (<MessageCard key={message.id}
+                                      id={message.id}
                                       message={message.content}/>))
 
     return (

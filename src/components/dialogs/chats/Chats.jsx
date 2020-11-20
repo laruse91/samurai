@@ -5,7 +5,8 @@ import style from './Chats.module.css'
 const Chats = (props) => {
 
     const chats = props.users
-        .map(user => (<DialogCard name={user.name}
+        .map(user => (<DialogCard key={user.id}
+                                  name={user.name}
                                   lastName={user.lastName}
                                   id={user.id}
                                   photo={user.photo}/>))

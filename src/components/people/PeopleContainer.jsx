@@ -1,12 +1,20 @@
 import React from 'react';
-import './People.css';
+import './People.module.css';
 import People from "./People";
 import {connect} from "react-redux";
-import {followActionCreator,unfollowActionCreator, setUsersActionCreator} from "../../redux/people-reducer";
+import {
+    followActionCreator,
+    unfollowActionCreator,
+    setUsersActionCreator,
+    setCurrentPage
+} from "../../redux/people-reducer";
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users,
+        users: state.peoplePage.users,
+        currentPage: state.peoplePage.currentPage,
+        totalPages: state.peoplePage.totalPages,
+        numberOfUsersOnPage: state.peoplePage.numberOfUsersOnPage
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -17,9 +25,13 @@ const mapDispatchToProps = (dispatch) => {
         unfollow: (userId) => {
             dispatch(unfollowActionCreator(userId))
         },
-        setUsers: (users)=> {
+        setUsers: (users) => {
             dispatch(setUsersActionCreator(users))
         },
+        setCurrentPage: (currentPage) => {
+            dispatch(setCurrentPage(currentPage))
+        }
+
     };
 }
 

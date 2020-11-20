@@ -6,7 +6,8 @@ import NewPostBlock from "./newPostBlock/NewPostBlock";
 const newsFeed = (props) => {
 
     const posts = props.posts
-        .map(post => <PostBlock user={post.user}
+        .map(post => <PostBlock key = {post.id}
+                                user={post.user}
                                 content={post.content}
                                 contentMedia={post.contentMedia}
                                 likesCount={post.likesCount}

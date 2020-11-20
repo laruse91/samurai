@@ -5,7 +5,8 @@ import NavItem from "./navItem/NavItem"
 const Navbar = (props) => {
 
     const navItems = props.navItems
-        .map(navItem => (<NavItem item={navItem.item}
+        .map(navItem => (<NavItem key ={navItem.id}
+                                  item={navItem.item}
                                   img={navItem.img}
                                   path={navItem.path}/>))
 

@@ -25,7 +25,7 @@ hr {
   border: none;
   color: #50b5ff;
   background-color: #cecece;
-  height: 0.5px;
+  height: 1px;
   width: 95%;
   margin: auto;
 }
@@ -50,5 +50,4 @@ img {
 }
 .content {
   grid-area: main;
-  margin: auto;
 }
