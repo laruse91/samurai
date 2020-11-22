@@ -5,6 +5,7 @@ import dialogsReducer from "./dialogs-reducer";
 import navbarReducer from "./navbar-reducer"
 import sidebarReducer from "./sidebar-reducer"
 import peopleReducer from "./people-reducer";
+import profileReducer from "./profile-reducer";
 
 
 const reducers = combineReducers(
@@ -15,9 +16,10 @@ const reducers = combineReducers(
         newsFeedPage: newsFeedReducer,
         dialogsPage: dialogsReducer,
         peoplePage: peopleReducer,
+        profilePage: profileReducer,
     }
 );
 
 let store = createStore(reducers);
-
+window.store = store;
 export default store

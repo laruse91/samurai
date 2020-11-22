@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import NewsFeedContainer from "./components/newsFeed/NewsFeedContainer";
 import PeopleContainer from "./components/people/PeopleContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 import {Route} from "react-router-dom";
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     render() {
 
         const newsFeed = () => <NewsFeedContainer />
+        const profile =() => <ProfileContainer />
         const dialogs = () => <DialogsContainer />
         const people = () => <PeopleContainer />
 
@@ -24,6 +26,7 @@ class App extends React.Component {
                 <NavbarContainer/>
                 <main className="content">
                     <Route path="/newsfeed" render={newsFeed}/>
+                    <Route path="/profile" render={profile}/>
                     <Route path="/dialogs" render={dialogs}/>
                     <Route path="/people" render={people}/>
                 </main>
