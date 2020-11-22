@@ -2,13 +2,15 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const SET_TOTAL_USERS = 'SET-TOTAL-USERS';
 
 let initialState = {
     users: [],
     currentPage: 1,
-    totalPages: 10,
+    totalUsers: 10,
     numberOfUsersOnPage: 6,
+    isFetching: true,
 }
 
 const peopleReducer = (state = initialState, action) => {
@@ -23,7 +25,6 @@ const peopleReducer = (state = initialState, action) => {
                     return user;
                 })
             };
-
         case UNFOLLOW:
             return {
                 ...state,
@@ -34,40 +35,55 @@ const peopleReducer = (state = initialState, action) => {
                     return user;
                 })
             };
-
         case SET_USERS:
             return {
                 ...state,
                 users: action.users
             }
-
         case SET_CURRENT_PAGE:
             return {
                 ...state,
-                currentPage: action.currentPage,
+                currentPage: action.newPageNumber,
             }
-
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching,
+            }
+        case SET_TOTAL_USERS:
+            return {
+                ...state,
+                totalUsers: action.totalUsersNum,
+            }
         default:
             return state;
     }
 };
 
-export const followActionCreator = (userId) => ({
+// ActionCreators
+export const follow = (userId) => ({
     type: FOLLOW,
     userId
 });
-export const unfollowActionCreator = (userId) => ({
+export const unfollow = (userId) => ({
     type: UNFOLLOW,
     userId
 });
-export const setUsersActionCreator = (users) => ({
+export const setUsers = (users) => ({
     type: SET_USERS,
     users
 });
-export const setCurrentPage = (currentPage) => ({
+export const setCurrentPage = (newPageNumber) => ({
     type: SET_CURRENT_PAGE,
-    currentPage
+    newPageNumber
 });
-
+export const toggleIsFetching = (isFetching)=>({
+    type: TOGGLE_IS_FETCHING,
+    isFetching
+});
+export const setTotalUsers = (totalUsersNum)=>({
+    type: SET_TOTAL_USERS,
+    totalUsersNum
+})
 
 export default peopleReducer;
