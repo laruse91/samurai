@@ -3,12 +3,14 @@
   align-self: start;
   background-color: white;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
   padding: 15px;
   box-shadow: 0px 10px 15px -10px #c6c6c6;
 }
 .title-container {
+  justify-self: left;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +28,7 @@
   height: 20px;
 }
 .search {
-  width: 30%;
+  justify-self: center;
   padding: 5px 0px;
 }
 .search-form {
@@ -41,31 +43,4 @@
   outline: none;
   background: #f5fbff;
   padding: 10px 15px;
-}
-.user-container {
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-}
-.user-name {
-  color: #3f414d;
-  font-size: 20px;
-  margin: 10px;
-  cursor: pointer;
-}
-.user-photo {
-  height: 50px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-.notifications {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.notifications-ico {
-  height: 20px;
-  margin: 10px;
-  cursor: pointer;
 }

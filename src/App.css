@@ -46,8 +46,37 @@ img {
     "nav footer sidebar";
   grid-template-rows: 80px 1fr 40px;
   grid-template-columns: 250px 1fr 250px;
-  /* grid-gap: 10px; */
 }
 .content {
   grid-area: main;
+}
+
+/* Responsive */
+
+/* 992px - 1200px */
+@media screen and (max-width: 1200px) {
+  .app {
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+    "header header header"
+    "nav main sidebar"
+    "nav footer sidebar";
+    grid-template-rows: 80px 1fr 40px;
+    grid-template-columns: 80px 1fr 80px;
+  }
+}
+
+/* 768x - 992px */
+@media screen and (max-width: 992px) {
+
+}
+/* 576px - 768px */
+@media screen and (max-width: 768px) {
+
+}
+
+/* 0px - 576px */
+@media screen and (max-width: 576px) {
+
 }

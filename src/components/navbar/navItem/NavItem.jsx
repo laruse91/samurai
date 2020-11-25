@@ -14,7 +14,7 @@ class NavItem extends React.Component {
             <NavLink to={path} activeClassName={style.active}>
                 <div className={style.navItem}>
                     <img src={img} alt="ico"/>
-                    <span>{item}</span>
+                    <span className={style.title}>{item}</span>
                 </div>
             </NavLink>
 

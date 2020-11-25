@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/header/Header";
 import NavbarContainer from "./components/navbar/NavbarContainer";
 import SidebarContainer from "./components/sidebar/SidebarContainer";
 import Footer from "./components/footer/Footer";
@@ -10,6 +9,7 @@ import PeopleContainer from "./components/people/PeopleContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 
 import {Route} from "react-router-dom";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 class App extends React.Component {
 
@@ -22,11 +22,11 @@ class App extends React.Component {
 
         return (
             <div className="app">
-                <Header/>
+                <HeaderContainer/>
                 <NavbarContainer/>
                 <main className="content">
                     <Route path="/newsfeed" render={newsFeed}/>
-                    <Route path="/profile" render={profile}/>
+                    <Route path="/profile/:userId" render={profile}/>
                     <Route path="/dialogs" render={dialogs}/>
                     <Route path="/people" render={people}/>
                 </main>

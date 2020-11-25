@@ -1,25 +1,53 @@
 .userCard {
-  display: flex;
-  align-content: center;
-  justify-items: center;
-  height: 50px;
-  cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    height: 50px;
+    cursor: pointer;
 }
+
 .userCard img {
-  height: 50px;
-  border-radius: 25px;
-  cursor: pointer;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
 }
+
 .userDesc {
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
 }
+
 .userName {
-  font-size: 14px;
-  margin: 2px 0;
-  cursor: pointer;
+    font-size: 14px;
+    margin: 2px 0;
+    cursor: pointer;
 }
+
 .actionTime {
-  color: #777d74;
+    color: #777d74;
+}
+
+/* Responsive */
+
+/* 992px - 1200px */
+@media screen and (max-width: 1200px) {
+    .userDesc {
+        display: none;
+    }
+}
+
+/* 768x - 992px */
+@media screen and (max-width: 992px) {
+
+}
+
+/* 576px - 768px */
+@media screen and (max-width: 768px) {
+
+}
+
+/* 0px - 576px */
+@media screen and (max-width: 576px) {
+
 }

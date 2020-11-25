@@ -22,7 +22,9 @@ const Profile = (props) => {
                     <div className={style.links}>
                         {props.profile.links.map((link, i) => {
                             return (
-                                <img key={i + 1} src={link.ico} alt="ico"/>
+                                <a key={i + 1} href={link.path}>
+                                    <img src={link.ico} alt="ico"/>
+                                </a>
                             )
                         })}
                     </div>

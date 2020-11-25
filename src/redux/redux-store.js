@@ -6,6 +6,7 @@ import navbarReducer from "./navbar-reducer"
 import sidebarReducer from "./sidebar-reducer"
 import peopleReducer from "./people-reducer";
 import profileReducer from "./profile-reducer";
+import authReducer from "./auth-reducer";
 
 
 const reducers = combineReducers(
@@ -17,6 +18,7 @@ const reducers = combineReducers(
         dialogsPage: dialogsReducer,
         peoplePage: peopleReducer,
         profilePage: profileReducer,
+        auth: authReducer,
     }
 );
 

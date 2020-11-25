@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Header.module.css";
+import Auth from "../common/auth/Auth";
 
 class Header extends React.Component {
  render() {
@@ -17,15 +18,7 @@ class Header extends React.Component {
             <input type="search" placeholder="Type here to search" className={style[`search-input`]}/>
           </form>
         </div>
-        <div className={style[`user-container`]}>
-        <img src="https://4.downloader.disk.yandex.ru/preview/094ccd40c9e4557a4a914ce119e1ee0aa3aa143f71ad52057be44a6583e9c0ed/inf/vCI1taciqDdxl-O7FW4UcoFhjPhj2ysFi_ybQPJ7XLLJ2r-S6PkGbMrRHnOvczSZn-XsSTp_AtE_aQtoO5lctA%3D%3D?uid=81903395&filename=user-profile.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1263x520" alt="ico" className={style[`user-photo`]}/>
-          <h3 className={style[`user-name`]}>Helena Jackly</h3>
-          <div className={style.notifications}>
-            <img src="https://2.downloader.disk.yandex.ru/preview/b7d86c92043fa44debebfaee432c8a8a74fae20d882e251447c642dc93c673ab/inf/KkmhsvGCHdjV3lAnGzTQ52J4Imw0DFeONjYMxkfQ_5zk7GlOkZWipEH5q3AkYjTLGwW1m-8qdBKKYY_ABTSzgQ%3D%3D?uid=81903395&filename=notification.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510" alt="ico" className={style[`notifications-ico`]}/>
-            <img src="https://3.downloader.disk.yandex.ru/preview/5595eae009965b06c1708ceba3ba694872738bad8c39b1b394de5581fe193a13/inf/6tjzYEKgjL5IQbugMvQu7-34X5PFwn5JNXdKHJPp3HAspSnjlAhWXmwsenpPs6RbRKfzonTpTNvEUcyPL9-PXg%3D%3D?uid=81903395&filename=messages.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510" alt="ico" className={style[`notifications-ico`]}/>
-            <img src="https://3.downloader.disk.yandex.ru/preview/ec118e9e9529907fb4d7ba08b11aa3bc51c4b9b2d22f0df409013dca2158a170/inf/svHeM24Y-uY3FdllcP-kjYFhjPhj2ysFi_ybQPJ7XLLXCn3B9ZYzHfD_WUZRPc1JLxsfuEkczNpaCrl8SzFw-Q%3D%3D?uid=81903395&filename=down-arrow.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510" alt="ico" className={style[`notifications-ico`]}/>
-          </div>
-        </div>
+        <Auth />
       </header>
     );
   }

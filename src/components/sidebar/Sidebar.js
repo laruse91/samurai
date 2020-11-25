@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Sidebar.module.css'
+import './Sidebar.css'
 import UserCard from './UserCard'
 
 const Sidebar = (props) => {
@@ -10,7 +10,7 @@ const Sidebar = (props) => {
                                                      id={user.id}
                                                      photo={user.photo}/>))
     return (
-        <aside className={style.sidebar}>
+        <aside className="sidebar">
             {users}
         </aside>
     )
