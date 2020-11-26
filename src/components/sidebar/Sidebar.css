@@ -6,4 +6,6 @@
   background-color: white;
   padding: 15px;
   box-shadow: -10px 0px 15px -10px #c6c6c6;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

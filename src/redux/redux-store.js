@@ -7,6 +7,7 @@ import sidebarReducer from "./sidebar-reducer"
 import peopleReducer from "./people-reducer";
 import profileReducer from "./profile-reducer";
 import authReducer from "./auth-reducer";
+import graphicsReducer from "./graphics-reducer";
 
 
 const reducers = combineReducers(
@@ -19,6 +20,7 @@ const reducers = combineReducers(
         peoplePage: peopleReducer,
         profilePage: profileReducer,
         auth: authReducer,
+        graphics: graphicsReducer,
     }
 );
 

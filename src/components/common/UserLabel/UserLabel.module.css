@@ -1,0 +1,24 @@
+
+.userCard {
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    height: 50px;
+    cursor: pointer;
+}
+
+.userDesc {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.userName {
+    font-size: 14px;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
+.info {
+    color: #777d74;
+}

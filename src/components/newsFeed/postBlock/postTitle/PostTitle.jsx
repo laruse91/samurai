@@ -1,15 +1,15 @@
 import React from 'react';
 import style from './PostTitle.module.css';
-import UserCard from "../../../sidebar/UserCard";
+import UserLabel from "../../../common/UserLabel/UserLabel";
 
 
 const PostTitle = (props) => {
 
     return (
         <div className={style.title}>
-            <UserCard name={props.user.name}
-                      lastName={props.user.lastName}
-                      photo={props.user.photo}/>
+            <UserLabel name={props.user.name}
+                       lastName={props.user.lastName}
+                       photo={props.user.photo}/>
             <div className={style.userAction}>
                 <span className={style.action}>Added new post</span>
             </div>

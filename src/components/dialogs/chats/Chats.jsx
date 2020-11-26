@@ -1,11 +1,11 @@
-import React from 'react'
-import DialogCard from './dialogCard/DialogCard'
-import style from './Chats.module.css'
+import React from 'react';
+import style from './Chats.module.css';
+import UserLabel from "../../common/UserLabel/UserLabel";
 
 const Chats = (props) => {
 
     const chats = props.users
-        .map(user => (<DialogCard key={user.id}
+        .map(user => (<UserLabel key={user.id}
                                   name={user.name}
                                   lastName={user.lastName}
                                   id={user.id}

@@ -1,14 +1,17 @@
 import React from 'react';
 import './Sidebar.css'
-import UserCard from './UserCard'
+import UserLabel from '../common/UserLabel/UserLabel'
+import Preloader from "../common/preloader/Preloader";
 
 const Sidebar = (props) => {
-
-    const users = props.users.map(user => (<UserCard key={user.id}
-                                                     name={user.name}
-                                                     lastName={user.lastName}
-                                                     id={user.id}
-                                                     photo={user.photo}/>))
+    if (!props.users) {
+        return <Preloader/>
+    }
+    const users = props.users.map(user => (<UserLabel key={user.id}
+                                                      name={user.name}
+                                                      // lastName={user.lastName}
+                                                      id={user.id}
+                                                      photo={user.photos.large}/>))
     return (
         <aside className="sidebar">
             {users}
