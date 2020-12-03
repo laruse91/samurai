@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './PostTitle.module.css';
-import UserLabel from "../../../common/UserLabel/UserLabel";
+import UserLabel from "../../../common/userLabel/UserLabel";
 
 
 const PostTitle = (props) => {

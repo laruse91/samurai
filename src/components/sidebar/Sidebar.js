@@ -1,6 +1,6 @@
 import React from 'react';
 import './Sidebar.css'
-import UserLabel from '../common/UserLabel/UserLabel'
+import UserLabel from '../common/userLabel/UserLabel'
 import Preloader from "../common/preloader/Preloader";
 
 const Sidebar = (props) => {

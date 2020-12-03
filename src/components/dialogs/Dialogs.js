@@ -1,20 +1,21 @@
 import React from 'react';
 import './Dialogs.css';
-import Chats from "./chats/Chats";
-import Messages from "./messages/Messages";
+import Chats from './chats/Chats'
+import Messages from './messages/Messages'
+import {Redirect} from 'react-router-dom'
 
 const Dialogs = (props) => {
 
+    if (!props.isAuth) return <Redirect to='/login'/>
+
     return (
-        <div className="dialogs">
+        <div className='dialogs'>
             <Chats users={props.users}/>
+
             <Messages messages={props.messages}
-                      newMessage={props.newMessage}
-                      textUpdate={props.textUpdate}
-                      sendMessage={props.sendMessage}/>
+                      sendNewMessage={props.sendNewMessage}/>
         </div>
     )
-
 }
 
 export default Dialogs

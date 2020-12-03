@@ -3,6 +3,10 @@ justify-self: right;
     align-content: center;
     display: flex;
 }
+.user {
+    display: flex;
+    align-items: center;
+}
 .login {
     display: flex;
     margin: auto 20px;
@@ -16,4 +20,10 @@ justify-self: right;
     margin: 0 10px;
     height: 20px;
     width: 20px;
+}
+.user img {
+    margin: 0 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
 }

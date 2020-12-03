@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './UserLabel.module.css'
-import UserPhoto from "../UserPhoto/UserPhoto";
+import UserPhoto from "../userPhoto/UserPhoto";
 import {NavLink} from "react-router-dom";
 
 const UserLabel = (props) => {

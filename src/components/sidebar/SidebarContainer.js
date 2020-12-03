@@ -1,27 +1,17 @@
 import React from 'react';
 import Sidebar from "./Sidebar";
 import {connect} from "react-redux";
-
-import {setTotalUsers, setUsers} from "../../redux/sidebar-reducer";
-import {usersAPI} from "../../api/api";
-
+import {getUsersSB} from "../../redux/sidebar-reducer";
 
 class SidebarContainer extends React.Component {
     componentDidMount() {
         const totalPages = Math.ceil(this.props.totalUsers / this.props.numberOfUsersAtSidebar);
         const randomPage = Math.round(1 + Math.random() * (totalPages - 1));
 
-        usersAPI.getUsers(randomPage, this.props.numberOfUsersAtSidebar)
-            .then(data => {
-                this.props.setTotalUsers(data.totalCount);
-                this.props.setUsers(data.items);
-            })
+        this.props.getUsersSB(randomPage, this.props.numberOfUsersAtSidebar)
     }
-
-    render() {
-        return (
-            <Sidebar users={this.props.users}/>
-        )
+    render () {
+        return <Sidebar users={this.props.users}/>
     }
 }
 
@@ -32,4 +22,4 @@ const mapStateToProps = (state) => {
         totalUsers: state.sidebar.totalUsers
     }
 };
-export default connect(mapStateToProps, {setTotalUsers, setUsers})(SidebarContainer)
+export default connect(mapStateToProps, {getUsersSB})(SidebarContainer)

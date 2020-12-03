@@ -18,7 +18,9 @@ const Header = (props) => {
             <Auth isAuth={props.isAuth}
                   login={props.login}
                   userPhoto={props.userPhoto}
-                  userId={props.userId}/>
+                  userId={props.userId}
+                  logout={props.logout}
+            />
         </header>
     );
 }

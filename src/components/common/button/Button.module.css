@@ -1,0 +1,23 @@
+.btnBlock {
+    text-align: center;
+}
+
+.button {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 6px 12px;
+    background-color: #50b5ff;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.button:hover {
+    background: #1295ee;
+}
+
+.button:disabled {
+    background: gray;
+}

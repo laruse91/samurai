@@ -1,9 +1,13 @@
 import React from 'react';
 import style from './Messages.module.css';
 import MessageCard from './messageCard/MessageCard';
-import TypeMessage from "./typeMessage/TypeMessage";
+import NewMessageForm from "./messageCard/NewMessageForm";
 
 const Messages = (props) => {
+
+    const sendNewMessage =(values)=> {
+        props.sendNewMessage(values.newMessageBody)
+    }
 
     const messages = props.messages
         .map(message => (<MessageCard key={message.id}
@@ -21,9 +25,7 @@ const Messages = (props) => {
             </div>
 
             <div className={style.newMessage}>
-                <TypeMessage newMessage={props.newMessage}
-                             textUpdate={props.textUpdate}
-                             sendMessage={props.sendMessage}/>
+                <NewMessageForm onSubmit={sendNewMessage}/>
             </div>
         </div>
     )

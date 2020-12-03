@@ -1,7 +1,4 @@
-const ADD_POST_TEXT = 'ADD-POST-TEXT';
-const PUBLIC_POST = 'PUBLIC-POST';
-const ADD_COMMENT_TEXT = 'ADD-COMMENT-TEXT';
-const ADD_COMMENT = 'ADD-COMMENT';
+const PUBLIC_NEW_POST = 'PUBLIC-POST';
 
 const initialState = {
     posts: [
@@ -24,14 +21,12 @@ const initialState = {
 
         },
     ],
-    newPost: '',
     currentUser: {
         name: 'Helena',
         lastName: 'Jackly',
         id: '001',
         photo: 'https://4.downloader.disk.yandex.ru/preview/094ccd40c9e4557a4a914ce119e1ee0aa3aa143f71ad52057be44a6583e9c0ed/inf/vCI1taciqDdxl-O7FW4UcoFhjPhj2ysFi_ybQPJ7XLLJ2r-S6PkGbMrRHnOvczSZn-XsSTp_AtE_aQtoO5lctA%3D%3D?uid=81903395&filename=user-profile.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625'
     },
-
     postComments: [
         {
             name: 'Lars',
@@ -46,12 +41,7 @@ const initialState = {
 
 const newsFeedReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST_TEXT:
-            return {
-                ...state,
-                newPost: action.newPostText,
-            };
-        case PUBLIC_POST:
+        case PUBLIC_NEW_POST:
             const newPost = {
                 id: '002',
                 user: {
@@ -60,7 +50,7 @@ const newsFeedReducer = (state = initialState, action) => {
                     photo: state.currentUser.photo,
                 },
                 time: '15:22',
-                content: state.newPost,
+                content: action.newPostBody,
                 contentMedia: '',
                 contentMedia1: '',
                 contentMedia2: '',
@@ -73,38 +63,15 @@ const newsFeedReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
                 newPost: '',
             };
-        // case ADD_COMMENT_TEXT:
-        //
-        //     stateCopy.newComment = action.newCommentText;
-        //     return stateCopy;
-        //
-        // case ADD_COMMENT:
-        //     const newComment = {
-        //         name: state.comments.currentUser.name,
-        //         lastName: state.comments.currentUser.lastName,
-        //         id: '002',
-        //         photo: state.comments.currentUser.photo,
-        //         content: state.newComment,
-        //     };
-        //     stateCopy.messages.push(newComment);
-        //     stateCopy.newComment = '';
-        //     return stateCopy;
+
         default:
             return state;
     }
 };
-
-export const postTextUpdateActionCreator = (text) => ({
-    type: ADD_POST_TEXT,
-    newPostText: text,
+// ActionCreators
+export const publicNewPost = (newPostBody) => ({
+    type: PUBLIC_NEW_POST,
+    newPostBody
 });
-export const publicPostActionCreator = () => ({type: PUBLIC_POST});
-
-export const commentTextUpdateActionCreator = (text) => ({
-    type: ADD_COMMENT_TEXT,
-    newCommentText: text,
-});
-export const addCommentActionCreator = () => ({type: ADD_COMMENT});
-
 
 export default newsFeedReducer;

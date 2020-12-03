@@ -1,0 +1,28 @@
+.formControl {
+    display: flex;
+    position: relative;
+}
+
+.input {
+    border: solid 1px #a09e9e;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    padding: 5px 0 5px 10px;
+    align-content: center;
+}
+.attention {
+    width: 380px;
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 3px;
+}
+.attention span {
+    color: red;
+    font-size: 12px;
+}
+.wrong {
+    border: solid 2px red;
+    border-radius: 5px;
+}

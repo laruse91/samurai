@@ -3,7 +3,7 @@ import data from '../db.json'
 const backgrounds = data.users.map(user => user.background);
 
 let initialState={
-    profileBackgrounds: backgrounds
+    backgrounds: backgrounds
 };
 
 const graphicsReducer = (state = initialState, action) => {

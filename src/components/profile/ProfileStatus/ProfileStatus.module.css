@@ -15,28 +15,27 @@
   width: 100%;
   border-radius: 5px;
 }
-
+.user {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  justify-items: center;
+}
 .userName {
   font-size: 20px;
+  cursor: pointer;
   text-align: center;
 }
-
 .userPhoto {
-  position: absolute;
-  bottom: 20%;
-  left: calc(50% - 60px);
-  justify-items: center;
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   height: 120px;
   width: 120px;
   border-radius: 60px;
+  cursor: pointer;
 }
 .bottomSection {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   padding: 15px 0;
 }
 .links {
@@ -49,9 +48,20 @@
   border-radius: 5px;
   margin: 0 5px;
 }
-.userStatus {
+.activityInfo {
   display: flex;
   align-items: center;
+}
+.info {
+  margin: 0 5px;
+}
+.infoTitle {
+  font-size: 12px;
+  text-align: center;
+}
+.infoCount {
+  font-size: 12px;
+  text-align: center;
 }
 
 /* Responsive */

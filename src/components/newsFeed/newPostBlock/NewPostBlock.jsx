@@ -1,17 +1,12 @@
 import React from 'react';
 import style from './NewPostBlock.module.css';
+import NewPostForm from "./NewPostForm";
 
 
 const NewPostBlock = (props) => {
 
-    const newText = React.createRef()
-
-    const textUpdate = () => {
-        const text = newText.current.value;
-        props.textUpdate(text);
-    };
-    const publicPost = () => {
-        props.publicPost();
+    const publicNewPost = (values) => {
+        props.publicNewPost(values.newPostBody)
     };
 
     return (
@@ -24,17 +19,7 @@ const NewPostBlock = (props) => {
             <div className={style.post}>
                 <img src={props.currentUser.photo}
                      alt="ico"/>
-                <form action="#" className={style.postForm}>
-                        <textarea ref={newText}
-                                  className={style.postInput}
-                                  placeholder="Write something here"
-                                  value={props.newPost}
-                                  onChange={textUpdate}/>
-                </form>
-                <div className={style.send}>
-                    <img src="#" alt="ico"/>
-                    <button onClick={publicPost}>Public</button>
-                </div>
+                <NewPostForm onSubmit={publicNewPost}/>
             </div>
 
             <hr/>

@@ -9,15 +9,13 @@ const People = (props) => {
                                 follow={props.follow}
                                 unfollow={props.unfollow}
                                 followingInProgress={props.followingInProgress}
-                                toggleIsFollowing = {props.toggleIsFollowing}
         />)
 
-    const pagesCount = Math.ceil(props.totalUsers / props.numberOfUsersOnPage)
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-
-    }
+    // const pagesCount = Math.ceil(props.totalUsers / props.numberOfUsersOnPage)
+    // let pages = [];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    // }
 
     return (
         <div className={style.people}>

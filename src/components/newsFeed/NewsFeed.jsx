@@ -18,9 +18,7 @@ const newsFeed = (props) => {
         <div>
             <div className="news-feed">
                 <NewPostBlock currentUser={props.currentUser}
-                              newPost={props.newPost}
-                              textUpdate={props.textUpdate}
-                              publicPost={props.publicPost}/>
+                              publicNewPost={props.publicNewPost}/>
                 {posts}
             </div>
         </div>

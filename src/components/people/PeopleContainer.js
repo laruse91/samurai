@@ -3,33 +3,24 @@ import './People.module.css';
 import People from "./People";
 import {connect} from "react-redux";
 import {
-    follow, setCurrentPage, setTotalUsers,
+    follow, getUsers, setCurrentPage, setTotalUsers,
     setUsers, toggleIsFetching, toggleIsFollowing, unfollow
 } from "../../redux/people-reducer";
-import {usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class PeopleContainer extends React.Component {
 
-    componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.numberOfUsersOnPage)
-            .then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setTotalUsers(data.totalCount);
-                this.props.setUsers(data.items);
-            });
+    componentDidMount=() =>{
+        this.props.getUsers(this.props.currentPage, this.props.numberOfUsersOnPage);
     }
 
-    changePage(newPageNumber) {
+    changePage = (newPageNumber) => {
         this.props.setCurrentPage(newPageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(newPageNumber, this.props.numberOfUsersOnPage)
-            .then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsers(newPageNumber, this.props.numberOfUsersOnPage);
     }
+
 
     render() {
 
@@ -42,9 +33,8 @@ class PeopleContainer extends React.Component {
                     unfollow={this.props.unfollow}
                     changePage={this.changePage}
                     isFetching={this.props.isFetching}
-                    setCurrentPage = {this.props.setCurrentPage}
-                    toggleIsFollowing = {this.props.toggleIsFollowing}
-                    followingInProgress = {this.props.followingInProgress}
+                    toggleIsFollowing={this.props.toggleIsFollowing}
+                    followingInProgress={this.props.followingInProgress}
             />
         )
     }
@@ -61,12 +51,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    toggleIsFetching,
-    setTotalUsers,
-    toggleIsFollowing
-})(PeopleContainer);
+export default compose(connect(mapStateToProps, {
+    follow, unfollow, setUsers, setCurrentPage, getUsers,
+    toggleIsFetching, setTotalUsers, toggleIsFollowing,
+}),withAuthRedirect)(PeopleContainer);
