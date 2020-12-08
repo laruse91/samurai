@@ -1,17 +1,17 @@
 import React from 'react';
 import style from './FormControl.module.css'
 
-const FormControl = ({input, meta, ...props}) => {
+const FormControl = ({input, meta: {touched, error}, ...props}) => {
 
-    const hasError = meta.touched && meta.error
-
+    const hasError = touched && error
     return (
         <div className={style.formControl}>
-            <input className={style.input + ' ' + (hasError ? style.wrong : '')} {...input} {...props} autoComplete="current-password"/>
+            <input className={style.input + ' ' + (hasError || props.error ? style.wrong : '')} {...input} {...props}
+                   autoComplete="current-password"/>
 
             {hasError &&
             <div className={style.attention}>
-                <span>{meta.error}</span>
+                <span>{error}</span>
             </div>
             }
         </div>

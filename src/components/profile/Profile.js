@@ -3,6 +3,7 @@ import style from './Profile.module.css'
 import Preloader from "../common/preloader/Preloader";
 import defaultUserPhoto from "../../assets/img/defaultUserPhoto.jpg";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileStatusClass from "./ProfileStatus/ProfileStatusClass";
 
 
 const Profile = (props) => {
@@ -38,7 +39,7 @@ const Profile = (props) => {
                         <h3 className={style.userName}>{props.profile.fullName} {props.profile.lastName}</h3>
                     </div>
                     <div className={style.userStatus}>
-                        <ProfileStatus status={props.status}
+                        <ProfileStatusClass status={props.status}
                                        updateUserStatus={props.updateUserStatus}/>
                     </div>
                 </div>

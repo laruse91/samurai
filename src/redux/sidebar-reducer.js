@@ -49,7 +49,7 @@ export const toggleIsFetching = (isFetching) => ({
 export const getUsersSB = (pageNumber, numberOfUsersAtSidebar) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(pageNumber, numberOfUsersAtSidebar)
+        usersAPI.requestUsers(pageNumber, numberOfUsersAtSidebar)
             .then(data => {
                 dispatch(setUsersSB(data.items));
                 dispatch(setTotalUsersSB(data.totalCount));

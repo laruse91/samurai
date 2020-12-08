@@ -1,0 +1,44 @@
+.paginator {
+    display: flex;
+    font-size: 14px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+}
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    margin: 0 1px;
+    border-radius: 5px;
+}
+.pageNum {
+    transition: all 0.2s ease;
+}
+.pageNum:hover {
+    color: #2d2d2c;
+
+}
+.currentPage {
+    padding: 2px;
+    margin: 0 1px;
+    font-size: 20px;
+    background-color:#f5fbff;
+    border-radius: 5px;
+
+}
+
+.arrow {
+    display: block;
+    padding-top: 2px;
+    margin: 0 3px;
+    transition: all 0.3s ease;
+}
+.arrow svg:hover {
+    fill: #2d2d2c;
+}
+
+

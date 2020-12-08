@@ -23,7 +23,6 @@ a {
 
 .active {
     display: block;
-
     background-color: #f5fbff;
     border-radius: 5px;
 }

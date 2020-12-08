@@ -1,23 +1,30 @@
 import React from 'react';
 import style from './ProfileStatus.module.css'
 
-class ProfileStatus extends React.Component {
+class ProfileStatusClass extends React.Component {
     state = {
         editMode: false,
-        status: this.props.status,
+        status: this.props.status
     }
+
     activateEditMode = () => {
-        this.setState({editMode: true})
+        this.setState({
+            editMode: true
+        })
     };
     deactivateEditMode = () => {
-        this.setState({editMode: false});
-        this.props.updateUserStatus(this.state.status)
+        this.setState({
+            editMode: false
+        })
+        this.props.updateUserStatus(this.state.status);
     };
     onStatusChange = (event) => {
-        this.setState({status: event.currentTarget.value})
+        this.setState({
+            status: event.currentTarget.value
+        })
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status
@@ -25,16 +32,15 @@ class ProfileStatus extends React.Component {
         }
     }
 
-
     render() {
 
         return (
             <div className={style.profileStatus}>
                 {!this.state.editMode
                     ? <div className={style.myStatus}>
-                        <p onDoubleClick={this.activateEditMode}>
-                            {this.props.status ? this.props.status : 'Type your status'}
-                        </p>
+                        <span onDoubleClick={this.activateEditMode}>
+                            {this.state.status ? this.state.status : 'Type your status'}
+                        </span>
                     </div>
                     : <div className={style.myStatus}>
                         <input autoFocus={true}
@@ -49,4 +55,4 @@ class ProfileStatus extends React.Component {
     }
 }
 
-export default ProfileStatus;
+export default ProfileStatusClass;

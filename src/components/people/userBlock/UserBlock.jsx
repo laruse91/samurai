@@ -5,9 +5,9 @@ import defaultUserPhoto from "../../../assets/img/defaultUserPhoto.jpg";
 import Button from "../../common/button/Button";
 
 const UserBlock = (props) => {
-const followingInProgress = props.followingInProgress.some(id => id === props.user.id)
+    const followingInProgress = props.followingInProgress.some(id => id === props.user.id)
     const follow = () => props.follow(props.user.id)
-        const unfollow = () => props.unfollow(props.user.id)
+    const unfollow = () => props.unfollow(props.user.id)
     const path = `/profile/${props.user.id}`
     return (
         <div className={style.userBlock}>
@@ -22,18 +22,12 @@ const followingInProgress = props.followingInProgress.some(id => id === props.us
                             button={'Follow'}
                             disabled={followingInProgress}
                             onClick={unfollow}
-                                />
+                        />
                         : <Button
                             button={'Unfollow'}
                             disabled={followingInProgress}
                             onClick={follow}
                         />
-                        // <button className={style.btn}
-                        //           disabled={props.followingInProgress.some(id => id === props.user.id)}
-                        //           onClick={() => props.unfollow(props.user.id)}>Follow</button>
-                        // <button className={style.btn}
-                        //           disabled={props.followingInProgress.some(id => id === props.user.id)}
-                        //           onClick={() => props.follow(props.user.id)}>Unfollow</button>
                     }
                 </div>
             </div>

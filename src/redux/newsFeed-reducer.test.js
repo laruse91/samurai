@@ -1,10 +1,10 @@
-const PUBLIC_NEW_POST = 'PUBLIC-NEW-POST';
-const DELETE_POST = 'DELETE-POST'
+import newsFeedReducer, {deletePost, publicNewPost} from "./newsFeed-reducer";
 
-const initialState = {
+
+const state = {
     posts: [
         {
-            id: '001',
+            id: 1,
             user: {
                 name: 'Anna',
                 lastName: 'Stephany',
@@ -40,47 +40,20 @@ const initialState = {
     newComment: '',
 }
 
-const newsFeedReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case PUBLIC_NEW_POST:
-            const newPost = {
-                id: '002',
-                user: {
-                    name: state.currentUser.name,
-                    lastName: state.currentUser.lastName,
-                    photo: state.currentUser.photo,
-                },
-                time: '15:22',
-                content: action.newPostBody,
-                contentMedia: '',
-                contentMedia1: '',
-                contentMedia2: '',
-                likesCount: 0,
-                shareCount: 0,
-                commentsCount: 0,
-            };
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-                newPost: '',
-            };
-        case DELETE_POST:
-            return{
-                ...state,
-                posts: state.posts.filter(id=>id !== action.postId)
-            }
-        default:
-            return state;
-    }
-};
-// ActionCreators
-export const publicNewPost = (newPostBody) => ({
-    type: PUBLIC_NEW_POST,
-    newPostBody
+test(`after adding new post, posts length should be increment`, () => {
+    // start data
+    let action = publicNewPost('Hello gays')
+    // action
+    let newState = newsFeedReducer(state, action)
+    // expectations
+    expect (newState.length = state.length + 1)
 });
 
-export const deletePost = (postId) => ({
-    type: DELETE_POST,
-    postId
+test(`after deleting post, posts length should be decrement`, () => {
+    // start data
+    let action = deletePost(1)
+    // action
+    let newState = newsFeedReducer(state, action)
+    // expectations
+    expect (newState.length = state.length - 1)
 });
-export default newsFeedReducer;

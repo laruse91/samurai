@@ -8,9 +8,9 @@ import {Redirect} from 'react-router-dom'
 import {login} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 
+const maxLength50 = maxLength(50)
 
 const LoginForm = (props) => {
-    const maxLength50 = maxLength(50)
     return (
         <form className={style.loginForm} onSubmit={props.handleSubmit}>
             <div className={style.input}>
@@ -18,6 +18,7 @@ const LoginForm = (props) => {
                        name="email"
                        type="text"
                        placeholder="email"
+                       error={props.error}
                        validate={[required, maxLength50]}
                 />
             </div>
@@ -26,14 +27,21 @@ const LoginForm = (props) => {
                        name="password"
                        type="password"
                        placeholder="Password"
+                       error={props.error}
                        validate={[required]}
                 />
+                {props.error &&
+                <div className={style.attention}>
+                    <span>{props.error}</span>
+                </div>
+                }
             </div>
             <div className={style.input}>
                 <Field component="input"
                        name="rememberMe"
                        type="checkBox"/> Remember me
             </div>
+
             <div className={style.input}>
                 <Button button={'Login'}/>
             </div>

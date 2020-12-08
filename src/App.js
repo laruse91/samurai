@@ -9,11 +9,16 @@ import PeopleContainer from './components/people/PeopleContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import HeaderContainer from './components/header/HeaderContainer';
 import Login from './components/login/Login';
-
 import {Route} from 'react-router-dom';
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/app-reducer";
+import Preloader from "./components/common/preloader/Preloader";
+
 
 class App extends React.Component {
-
+    componentDidMount() {
+        this.props.initializeApp()
+    }
     render() {
 
         const newsFeed = () => <NewsFeedContainer />
@@ -21,7 +26,9 @@ class App extends React.Component {
         const dialogs = () => <DialogsContainer />
         const people = () => <PeopleContainer />
         const login = () => <Login />
-
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
         return (
             <div className='app'>
                 <HeaderContainer/>
@@ -40,4 +47,10 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        initialized: state.app.initialized,
+    }
+}
+
+export default connect (mapStateToProps,{initializeApp})(App);

@@ -3,7 +3,7 @@ import style from './Auth.module.css'
 import {NavLink} from 'react-router-dom'
 
 const Auth = (props) => {
-    const authPath = '/auth';
+    const authPath = '/login';
     const profilePath = `/profile/${props.userId}`
     return (
         <div className={style.auth}>
