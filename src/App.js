@@ -3,17 +3,20 @@ import './App.css';
 import NavbarContainer from './components/navbar/NavbarContainer';
 import SidebarContainer from './components/sidebar/SidebarContainer';
 import Footer from './components/footer/Footer';
-import DialogsContainer from './components/dialogs/DialogsContainer';
 import NewsFeedContainer from './components/newsFeed/NewsFeedContainer';
 import PeopleContainer from './components/people/PeopleContainer';
-import ProfileContainer from './components/profile/ProfileContainer';
+
 import HeaderContainer from './components/header/HeaderContainer';
-import Login from './components/login/Login';
 import {Route} from 'react-router-dom';
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
+import {withReactSuspense} from "./components/hoc/withReactSuspense";
 
+// React.lazy vs Suspense
+const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContainer'));
+const Login = React.lazy(() => import('./components/login/Login'));
+const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -22,10 +25,10 @@ class App extends React.Component {
     render() {
 
         const newsFeed = () => <NewsFeedContainer />
-        const profile =() => <ProfileContainer />
-        const dialogs = () => <DialogsContainer />
+        const profile =withReactSuspense(() => <ProfileContainer />)
+        const dialogs = withReactSuspense(() => <DialogsContainer />)
         const people = () => <PeopleContainer />
-        const login = () => <Login />
+        const login = withReactSuspense(() => <Login />)
         if (!this.props.initialized) {
             return <Preloader/>
         }
