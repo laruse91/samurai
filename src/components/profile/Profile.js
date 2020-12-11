@@ -7,11 +7,16 @@ import ProfileStatusClass from "./ProfileStatus/ProfileStatusClass";
 
 
 const Profile = (props) => {
-
+const saveUserPhoto = (event)=>{
+    event.target.files[0] &&
+    props.saveUserPhoto(event.target.files[0])
+}
     const
         random = Math.round(1 + Math.random() * (props.backgrounds.length - 1));
 
-   if (!props.profile) {return <Preloader/>}
+    if (!props.profile) {
+        return <Preloader/>
+    }
     return (
 
         <div className={style.profile}>
@@ -19,10 +24,15 @@ const Profile = (props) => {
                 <div className={style.topSection}>
                     <img className={style.background} src={props.backgrounds[random]} alt="ico"/>
                     <img className={style.userPhoto}
-                         src={props.profile.photos.large != null
-                             ? props.profile.photos.large
-                             : defaultUserPhoto}
+                         src={props.profile.photos.large || defaultUserPhoto}
                          alt="ico"/>
+                    {props.isOwner &&
+                    <div>
+                        <input type="file" onChange={saveUserPhoto}
+                               placeholder={props.profile.photos.large ? "Update photo" : "Download photo"}
+                        />
+                    </div>
+                    }
                 </div>
                 <div className={style.bottomSection}>
                     <div className={style.links}>
@@ -40,7 +50,7 @@ const Profile = (props) => {
                     </div>
                     <div className={style.userStatus}>
                         <ProfileStatusClass status={props.status}
-                                       updateUserStatus={props.updateUserStatus}/>
+                                            updateUserStatus={props.updateUserStatus}/>
                     </div>
                 </div>
             </div>

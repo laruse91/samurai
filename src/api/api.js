@@ -7,7 +7,7 @@ const instance = axios.create({
         "API-KEY": "452f03fa-c17c-49a8-a8a0-108d6767e331"
     }
 })
-export const usersAPI =  {
+export const usersAPI = {
     requestUsers(currentPage, numberOfUsersOnPage) {
         return instance.get(`users?page=${currentPage}&count=${numberOfUsersOnPage}`)
             .then(response => response.data)
@@ -25,11 +25,11 @@ export const authAPI = {
     me() {
         return instance.get(`auth/me`).then(response => response.data)
     },
-    login(email,password,rememberMe=false){
-        return instance.post(`auth/login`, {email,password,rememberMe})
+    login(email, password, rememberMe = false) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
             .then(response => response.data)
     },
-    logout(){
+    logout() {
         return instance.delete(`auth/login`)
             .then(response => response.data)
     }
@@ -39,12 +39,22 @@ export const profileAPI = {
         return instance.get(`profile/${userId}`)
             .then(response => response.data);
     },
-    getStatus(userId){
+    getStatus(userId) {
         return instance.get(`profile/status/${userId}`)
             .then(response => response.data);
     },
-    updateStatus(status){
+    updateStatus(status) {
         return instance.put(`profile/status`, {status: status})
+            .then(response => response.data);
+    },
+    savePhoto(photo) {
+        const formData = new FormData();
+        formData.append("image", photo)
+        return instance.put(`profile/photo`,formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => response.data);
     },
 }

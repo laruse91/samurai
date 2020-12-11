@@ -1,8 +1,9 @@
 import {profileAPI} from "../api/api";
 
-const SET_USER_PROFILE = 'SET-USER-PROFILE';
-const SET_USER_STATUS = 'GET-USER-STATUS';
-const UPDATE_USER_STATUS = 'UPDATE-USER-STATUS'
+const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
+const SET_USER_STATUS = 'profile/GET-USER-STATUS';
+const UPDATE_USER_STATUS = 'profile/UPDATE-USER-STATUS';
+const SET_USER_PHOTO = 'profile/SET-USER-PHOTO'
 
 const initialState = {
     profile: null,
@@ -27,6 +28,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case SET_USER_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photo}
+            }
 
         default:
             return state;
@@ -43,6 +49,11 @@ const setUserStatus = (status) => ({
     type: SET_USER_STATUS,
     status
 });
+const setUserPhoto = (photo) => ({
+    type: SET_USER_PHOTO,
+    photo
+});
+
 
 //thunks
 export const getUserProfile = (userId) => async (dispatch) => {
@@ -58,6 +69,13 @@ export const updateUserStatus = (status) => async (dispatch) => {
     if (response.resultCode === 0) {
         dispatch(setUserStatus(status));
     }
+};
+export const saveUserPhoto = (photo) => async (dispatch) => {
+    const response = await profileAPI.savePhoto(photo)
+    if (response.resultCode === 0) {
+        dispatch(setUserPhoto(response.data.photos));
+    }
 }
+
 
 export default profileReducer;
