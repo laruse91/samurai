@@ -8,9 +8,10 @@ import {Redirect} from 'react-router-dom'
 import {login} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 
-const maxLength50 = maxLength(50)
+const maxLength50 = maxLength(50);
+const maxLength6 = maxLength(6);
 
-const LoginForm = (props) => {
+let LoginForm = (props) => {
     return (
         <form className={style.loginForm} onSubmit={props.handleSubmit}>
             <div className={style.input}>
@@ -41,19 +42,34 @@ const LoginForm = (props) => {
                        name="rememberMe"
                        type="checkBox"/> Remember me
             </div>
+            {props.captchaURL &&
+                <div className={style.captcha}>
+                    <img src={props.captchaURL} alt="ico"/>
+                    <div className={style.input}>
+                        <Field component={FormControl}
+                               name="captcha"
+                               type="text"
+                               placeholder="Type captcha here"
+                               error={props.error}
+                               validate={[required, maxLength6]}
+                        />
+                    </div>
+                </div>
 
+            }
             <div className={style.input}>
                 <Button button={'Login'}/>
             </div>
         </form>
     )
 }
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+
+LoginForm = reduxForm({form: 'login'})(LoginForm)
 
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
         return <Redirect to="/profile"/>
@@ -63,15 +79,14 @@ const Login = (props) => {
             <div className={style.login}>
                 <h2 className={style.title}>Authorization</h2>
                 <hr/>
-                <LoginReduxForm onSubmit={onSubmit}/>
+                <LoginForm onSubmit={onSubmit} captchaURL={props.captchaURL}/>
             </div>
         </div>
-
-
     )
 }
 
 const mapStateToProps = (state) => ({
+    captchaURL: state.auth.captchaURL,
     isAuth: state.auth.isAuth
 })
 export default connect(mapStateToProps, {login})(Login)

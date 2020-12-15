@@ -7,7 +7,7 @@ const FormControl = ({input, meta: {touched, error}, ...props}) => {
     return (
         <div className={style.formControl}>
             <input className={style.input + ' ' + (hasError || props.error ? style.wrong : '')} {...input} {...props}
-                   autoComplete="current-password"/>
+                   autoComplete="yes"/>
 
             {hasError &&
             <div className={style.attention}>

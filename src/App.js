@@ -5,9 +5,8 @@ import SidebarContainer from './components/sidebar/SidebarContainer';
 import Footer from './components/footer/Footer';
 import NewsFeedContainer from './components/newsFeed/NewsFeedContainer';
 import PeopleContainer from './components/people/PeopleContainer';
-
 import HeaderContainer from './components/header/HeaderContainer';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
@@ -22,13 +21,14 @@ class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
 
-        const newsFeed = () => <NewsFeedContainer />
-        const profile =withReactSuspense(() => <ProfileContainer />)
-        const dialogs = withReactSuspense(() => <DialogsContainer />)
-        const people = () => <PeopleContainer />
-        const login = withReactSuspense(() => <Login />)
+        const newsFeed = () => <NewsFeedContainer/>
+        const profile = withReactSuspense(() => <ProfileContainer/>)
+        const dialogs = withReactSuspense(() => <DialogsContainer/>)
+        const people = () => <PeopleContainer/>
+        const login = withReactSuspense(() => <Login/>)
         if (!this.props.initialized) {
             return <Preloader/>
         }
@@ -37,6 +37,7 @@ class App extends React.Component {
                 <HeaderContainer/>
                 <NavbarContainer/>
                 <main className='content'>
+                    <Route path='/' render={() => <Redirect to={"/profile"}/>}/>
                     <Route path='/newsfeed' render={newsFeed}/>
                     <Route path='/profile/:userId?' render={profile}/>
                     <Route path='/dialogs' render={dialogs}/>
@@ -56,4 +57,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect (mapStateToProps,{initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp})(App);

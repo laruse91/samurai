@@ -1,12 +1,13 @@
 import {authMe} from "./auth-reducer";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS';
+const INITIALIZED_SUCCESS = 'app/INITIALIZED-SUCCESS';
 
-let initialState = {
+export type InitialStateType = { initialized: boolean }
+let initialState: InitialStateType = {
     initialized: false,
 }
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -20,9 +21,10 @@ const appReducer = (state = initialState, action) => {
 }
 
 // ActionCreators
-const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
+type InitializedSuccessActionType = { type: typeof INITIALIZED_SUCCESS };
+const initializedSuccess = (): InitializedSuccessActionType => ({type: INITIALIZED_SUCCESS});
 // Thunks
-export const initializeApp = () => (dispatch) => {
+export const initializeApp = () => (dispatch: any) => {
     const promise = dispatch(authMe());
     //dispatch(something)
     Promise.all([promise])
