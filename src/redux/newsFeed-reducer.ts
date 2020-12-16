@@ -1,6 +1,7 @@
 const PUBLIC_NEW_POST = 'PUBLIC-NEW-POST';
 const DELETE_POST = 'DELETE-POST'
 
+
 const initialState = {
     posts: [
         {
@@ -39,8 +40,9 @@ const initialState = {
     ],
     newComment: '',
 }
+type TInitialState = typeof initialState
 
-const newsFeedReducer = (state = initialState, action) => {
+const newsFeedReducer = (state = initialState, action: any): TInitialState  => {
     switch (action.type) {
         case PUBLIC_NEW_POST:
             const newPost = {
@@ -61,25 +63,31 @@ const newsFeedReducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                newPost: '',
+                posts: [...state.posts, newPost]
             };
         case DELETE_POST:
-            return{
+            return {
                 ...state,
-                posts: state.posts.filter(id=>id !== action.postId)
+                posts: state.posts.filter(id => id !== action.postId)
             }
         default:
             return state;
     }
 };
 // ActionCreators
-export const publicNewPost = (newPostBody) => ({
+type TPublicNewPost = {
+    type: typeof PUBLIC_NEW_POST,
+    newPostBody: string
+}
+export const publicNewPost = (newPostBody: string): TPublicNewPost => ({
     type: PUBLIC_NEW_POST,
     newPostBody
 });
-
-export const deletePost = (postId) => ({
+type TDeletePost = {
+    type: typeof DELETE_POST,
+    postId: number
+}
+export const deletePost = (postId: number): TDeletePost => ({
     type: DELETE_POST,
     postId
 });

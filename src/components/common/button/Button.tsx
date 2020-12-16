@@ -1,8 +1,12 @@
 import React from 'react';
 import style from './Button.module.css';
 
-
-const Button = (props) => {
+type TProps = {
+    disabled?: boolean
+    onClick?: ()=>void
+    button: string | null
+}
+const Button = (props: TProps) => {
 
     return (
         <div className={style.btnBlock}>

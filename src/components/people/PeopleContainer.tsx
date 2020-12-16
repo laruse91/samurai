@@ -3,8 +3,7 @@ import './People.module.css';
 import People from "./People";
 import {connect} from "react-redux";
 import {
-    follow, requestUsers, setCurrentPage,
-    toggleIsFollowing, unfollow
+    follow, requestUsers, setCurrentPage, unfollow
 } from "../../redux/people-reducer";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -13,8 +12,27 @@ import {
     isFetching, numberOfUsersOnPage, totalUsers
 } from "../../redux/selectors";
 
+import {TUser} from "../../redux/types/types";
+import {TGlobalState} from "../../redux/redux-store";
 
-class PeopleContainer extends React.Component {
+type TStateProps = {
+    users: Array<TUser>
+    currentPage: number
+    totalUsers: number
+    numberOfUsersOnPage: number
+    isFetching: boolean
+    followingInProgress: Array<number>
+}
+type TDispatchProps = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setCurrentPage: (newPageNumber: number) => void
+    requestUsers: (currentPage: number, numberOfUsersOnPage: number, requestType: string) => void
+}
+//  type TOwnProps = { }
+type TProps = TStateProps & TDispatchProps // & TOwnProps
+
+class PeopleContainer extends React.Component<TProps> {
 
     componentDidMount = () => {
 
@@ -22,7 +40,7 @@ class PeopleContainer extends React.Component {
         requestUsers(currentPage, numberOfUsersOnPage, "SET");
     }
 
-    getPeople = (newPageNumber, requestType) => {
+    getPeople = (newPageNumber: number, requestType: string) => {
         const {setCurrentPage, requestUsers, numberOfUsersOnPage} = this.props
         setCurrentPage(newPageNumber);
         requestUsers(newPageNumber, numberOfUsersOnPage, requestType);
@@ -39,14 +57,13 @@ class PeopleContainer extends React.Component {
                     unfollow={this.props.unfollow}
                     getPeople={this.getPeople}
                     isFetching={this.props.isFetching}
-                    toggleIsFollowing={this.props.toggleIsFollowing}
                     followingInProgress={this.props.followingInProgress}
             />
         )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: TGlobalState): TStateProps => {
     return {
         users: getUsers(state),
         currentPage: currentPage(state),
@@ -57,5 +74,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default compose(connect(mapStateToProps, {
-    follow, unfollow, setCurrentPage, requestUsers, toggleIsFollowing}), withAuthRedirect)(PeopleContainer);
+// @ts-ignore
+export default compose(connect<TStateProps, TDispatchProps, TGlobalState>( mapStateToProps,
+    {follow, unfollow, setCurrentPage, requestUsers,}),
+    withAuthRedirect)(PeopleContainer);

@@ -7,11 +7,29 @@ import Button from "../common/button/Button";
 import {Redirect} from 'react-router-dom'
 import {login} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
+import {TGlobalState} from "../../redux/redux-store";
 
 const maxLength50 = maxLength(50);
 const maxLength6 = maxLength(6);
 
-let LoginForm = (props) => {
+type TStateProps = {
+    captchaURL: string | null
+    isAuth: boolean
+}
+type TDispatchProps = {
+    login: (email: string, password: string, rememberMe: boolean, captcha: string | null)=> void
+}
+type TProps = TStateProps & TDispatchProps
+
+type TFormProps = {
+    onSubmit: any //()=>void
+    captchaURL: string | null
+    error?: string | null
+    handleSubmit?: any
+
+}
+
+let LoginForm = (props: TFormProps) => {
     return (
         <form className={style.loginForm} onSubmit={props.handleSubmit}>
             <div className={style.input}>
@@ -64,16 +82,19 @@ let LoginForm = (props) => {
     )
 }
 
+// @ts-ignore
 LoginForm = reduxForm({form: 'login'})(LoginForm)
 
 
-const Login = (props) => {
-    const onSubmit = (formData) => {
+
+const Login = (props: TProps) => {
+    const onSubmit = (formData: any) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
         return <Redirect to="/profile"/>
     }
+
     return (
         <div className={style.loginPage}>
             <div className={style.login}>
@@ -85,8 +106,9 @@ const Login = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: TGlobalState):TStateProps  => ({
     captchaURL: state.auth.captchaURL,
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps, {login})(Login)
+// @ts-ignore
+export default connect<TStateProps, TDispatchProps>(mapStateToProps, {login})(Login)

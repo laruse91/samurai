@@ -3,7 +3,15 @@ import style from './UserLabel.module.css'
 import UserPhoto from "../userPhoto/UserPhoto";
 import {NavLink} from "react-router-dom";
 
-const UserLabel = (props) => {
+type TProps = {
+    id: number
+    photo: string | null
+    name: string | null
+    lastName: string | null
+    info?: string | null
+}
+
+const UserLabel = (props: TProps) => {
     const path = `/profile/${props.id}`
     return (
         <div className={style.userCard}>

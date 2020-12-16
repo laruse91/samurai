@@ -1,15 +1,15 @@
-export type PhotosType = {
+export type TPhotos = {
     large: string | null
     small: string | null
 }
-export type UserType= {
+export type TUser = {
     id: number
     name: string
     status: string | null
-    photos: PhotosType
+    photos: TPhotos
     followed: boolean
 }
-export type ContactsType = {
+export type TContacts = {
     github: string | null
     vk: string | null
     facebook: string | null
@@ -19,22 +19,29 @@ export type ContactsType = {
     youtube: string | null
     mainLink: string | null
 }
-export type ProfileType = {
+export type TProfile = {
     userId: number
     lookingForAJob: boolean | null
     lookingForAJobDescription: string | null
     fullName: string
-    contacts: ContactsType
-    photos: PhotosType
+    contacts: TContacts
+    photos: TPhotos
 }
 
-export type InitialStateMessageType = {
+export type TInitialStateMessage = {
     id: number
     content: string
 }
-export type InitialStateUserType = {
-    name: string
-    lastName: string
+export type TInitialStateUserType = {
+    name: string | null
+    lastName: string | null
     id: number
-    photo: string
+    photo: string | null
+    info: string | null
+}
+export type TNavItem = {
+    id: number
+    item: string
+    path: string
+    icon: string
 }

@@ -2,10 +2,15 @@ import React from 'react';
 import style from './Messages.module.css';
 import MessageCard from './messageCard/MessageCard';
 import NewMessageForm from "./messageCard/NewMessageForm";
+import {TInitialStateMessage} from "../../../redux/types/types";
 
-const Messages = (props) => {
+type TProps = {
+    messages: Array<TInitialStateMessage>
+    sendNewMessage: (newMessageBody: string) => void
+}
+const Messages = (props : TProps) => {
 
-    const sendNewMessage =(values)=> {
+    const sendNewMessage =(values: any)=> {
         props.sendNewMessage(values.newMessageBody)
     }
 

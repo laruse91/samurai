@@ -2,7 +2,11 @@ import React from 'react';
 import style from './UserPhoto.module.css'
 import defaultUserPhoto from '../../../assets/img/defaultUserPhoto.jpg'
 
-const UserPhoto = (props) => {
+type TProps = {
+    photo: string | null
+}
+
+const UserPhoto = (props: TProps) => {
     return (
         <div className={style.userPhoto}>
             <img src={props.photo != null ? props.photo : defaultUserPhoto }

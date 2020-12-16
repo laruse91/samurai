@@ -2,7 +2,15 @@ import React from "react";
 import style from "./Header.module.css";
 import Auth from "../common/auth/Auth";
 
-const Header = (props) => {
+type TProps = {
+    isAuth: boolean
+    login: string | null
+    userPhoto : string |null
+    userId: number | null
+    logout: ()=>void
+}
+
+const Header = (props: TProps) => {
 
     return (
         <header className={style.header}>

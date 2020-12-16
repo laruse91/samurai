@@ -12,8 +12,7 @@ import thunk from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form';
 import appReducer from "./app-reducer";
 
-
-const reducers = combineReducers(
+const rootReducer = combineReducers(
     {
         header: headerReducer,
         navbar: navbarReducer,
@@ -24,17 +23,21 @@ const reducers = combineReducers(
         profilePage: profileReducer,
         auth: authReducer,
         form: formReducer,
-            app: appReducer,
-
+        app: appReducer,
         graphics: graphicsReducer,
     }
 );
 
+type TRootReducer = typeof rootReducer // (globalState: GlobalStateType)=> globalState
+export type TGlobalState = ReturnType<TRootReducer>
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(
+const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
 ));
 
-// const store = createStore(reducers, applyMiddleware(thunk));
-window.store = store;
+// !! helper to see store in console
+// @ts-ignore
+window.__store__ = store;
 export default store

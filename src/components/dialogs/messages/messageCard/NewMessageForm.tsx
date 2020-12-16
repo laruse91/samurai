@@ -2,7 +2,12 @@ import React from 'react';
 import style from './NewMessageForm.module.css';
 import {Field, reduxForm} from "redux-form";
 
-let newMessageForm = (props) => {
+type TProps = {
+    onSubmit: any
+    handleSubmit?: any
+}
+
+let newMessageForm = (props: TProps) => {
 
     return (
         <div className={style.newMessageForm}>
@@ -25,5 +30,7 @@ let newMessageForm = (props) => {
     )
 }
 
+// @ts-ignore
 newMessageForm = reduxForm({form: 'newMessage'})(newMessageForm)
+
 export default newMessageForm;

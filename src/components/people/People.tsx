@@ -3,8 +3,21 @@ import style from './People.module.css';
 import UserBlock from './userBlock/UserBlock'
 import Preloader from "../common/preloader/Preloader";
 import Paginator from "../common/paginator/Paginator";
+import {TUser} from "../../redux/types/types";
 
-const People = (props) => {
+type PropsType = {
+    users: Array<TUser>
+    follow: (userId: number)=>void
+    unfollow: (userId: number)=>void
+    followingInProgress: Array<number>
+    isFetching: boolean
+    totalUsers: number
+    numberOfUsersOnPage: number
+    currentPage: number
+    getPeople: (pageNum: number, requestType: string)=> void
+}
+
+const People: React.FC<PropsType> = (props) => {
     const people = props.users
         .map(user => <UserBlock user={user} key={user.id}
                                 follow={props.follow}

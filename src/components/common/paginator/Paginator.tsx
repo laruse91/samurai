@@ -1,18 +1,27 @@
 import React, {useState} from 'react';
 import style from './Paginator.module.css';
 
-const Paginator = ({totalItemsNum, numberOfUsersOnPage, currentPage, getItems, pageBlockSize = 10}) => {
+
+type PropsType= {
+    totalItemsNum: number
+    numberOfUsersOnPage: number
+    currentPage: number
+    getItems: (pageNum: number, requestType: string)=> void
+    pageBlockSize?: number
+}
+const Paginator: React.FC<PropsType> = ({totalItemsNum, numberOfUsersOnPage, currentPage, getItems, pageBlockSize = 10}) => {
+    //hook
     const [pageBlockNum, setPageBlockNum] = useState(1);
 
-    const pagesTotalNum = Math.ceil(totalItemsNum / numberOfUsersOnPage);
-    let pages = [];
+    const pagesTotalNum: number = Math.ceil(totalItemsNum / numberOfUsersOnPage);
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesTotalNum; i++) {
         pages.push(i);
     }
 
-    const pageBlockTotalNum = Math.ceil(pagesTotalNum / pageBlockSize);
-    const firstItemOfPageBlock = (pageBlockNum - 1) * pageBlockSize + 1;
-    const lastItemOfPageBlock = pageBlockSize * pageBlockNum;
+    const pageBlockTotalNum: number = Math.ceil(pagesTotalNum / pageBlockSize);
+    const firstItemOfPageBlock: number = (pageBlockNum - 1) * pageBlockSize + 1;
+    const lastItemOfPageBlock: number = pageBlockSize * pageBlockNum;
 
     const prevPageBlock = () => setPageBlockNum(pageBlockNum - 1);
     const nextPageBlock = () => setPageBlockNum(pageBlockNum + 1);

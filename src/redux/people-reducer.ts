@@ -1,5 +1,5 @@
 import {usersAPI} from "../api/api";
-import {UserType} from "./types/types";
+import {TUser} from "./types/types";
 
 const FOLLOW = 'people/FOLLOW';
 const UNFOLLOW = 'people/UNFOLLOW';
@@ -11,9 +11,9 @@ const TOGGLE_IS_FOLLOWING = 'people/TOGGLE-IS-FOLLOWING';
 const ADD_USERS = 'people/ADD-USERS';
 
 let initialState = {
-    users: [] as Array<UserType>,
+    users: [] as Array<TUser>,
     currentPage: 1,
-    totalUsers: null as number | null,
+    totalUsers: 0,
     numberOfUsersOnPage: 6,
     isFetching: true,
     followingInProgress: [] as Array<number>, // Array of User's Ids
@@ -101,18 +101,18 @@ export const unfollowSuccess = (userId: number): UnfollowSuccessType => ({
 
 type SetUsersType ={
     type: typeof SET_USERS
-    users: Array<UserType>
+    users: Array<TUser>
 }
-export const setUsers = (users: Array<UserType>): SetUsersType => ({
+export const setUsers = (users: Array<TUser>): SetUsersType => ({
     type: SET_USERS,
     users
 })
 
 type AddUsersType ={
     type: typeof ADD_USERS
-    users: Array<UserType>
+    users: Array<TUser>
 }
-export const addUsers = (users: Array<UserType>): AddUsersType => ({
+export const addUsers = (users: Array<TUser>): AddUsersType => ({
     type: ADD_USERS,
     users
 })
@@ -139,7 +139,7 @@ type SetTotalUsersType = {
     type: typeof SET_TOTAL_USERS
     totalUsersNum: number
 }
-export const setTotalUsers = (totalUsersNum: number): SetTotalUsersType => ({
+const setTotalUsers = (totalUsersNum: number): SetTotalUsersType => ({
     type: SET_TOTAL_USERS,
     totalUsersNum
 })
@@ -150,7 +150,7 @@ type ToggleIsFollowingType = {
     userId: number
 
 }
-export const toggleIsFollowing = (inProgress: boolean, userId: number): ToggleIsFollowingType => ({
+const toggleIsFollowing = (inProgress: boolean, userId: number): ToggleIsFollowingType => ({
     type: TOGGLE_IS_FOLLOWING,
     inProgress, userId,
 })

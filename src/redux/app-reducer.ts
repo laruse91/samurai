@@ -2,12 +2,12 @@ import {authMe} from "./auth-reducer";
 
 const INITIALIZED_SUCCESS = 'app/INITIALIZED-SUCCESS';
 
-export type InitialStateType = { initialized: boolean }
-let initialState: InitialStateType = {
+export type TInitialState = { initialized: boolean }
+let initialState: TInitialState = {
     initialized: false,
 }
 
-const appReducer = (state = initialState, action: any): InitialStateType => {
+const appReducer = (state = initialState, action: any): TInitialState => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {

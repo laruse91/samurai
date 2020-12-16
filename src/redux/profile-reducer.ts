@@ -1,6 +1,6 @@
 import {profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
-import {ProfileType} from "./types/types";
+import {TProfile} from "./types/types";
 
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_USER_STATUS = 'profile/GET-USER-STATUS';
@@ -8,7 +8,7 @@ const UPDATE_USER_STATUS = 'profile/UPDATE-USER-STATUS';
 const SET_USER_PHOTO = 'profile/SET-USER-PHOTO'
 
 const initialState = {
-    profile: null as ProfileType | null,
+    profile: null as TProfile | null,
     status: '',
 }
 export type InitialStateType = typeof initialState
@@ -34,7 +34,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
         case SET_USER_PHOTO:
             return {
                 ...state,
-                profile: {...state.profile, photos: action.photo} as ProfileType
+                profile: {...state.profile, photos: action.photo} as TProfile
             }
 
         default:
@@ -45,9 +45,9 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
 //actionCreators
 type SetUserProfileType = {
     type: typeof SET_USER_PROFILE,
-    profile: ProfileType
+    profile: TProfile
 }
-const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
+const setUserProfile = (profile: TProfile): SetUserProfileType => ({
     type: SET_USER_PROFILE,
     profile
 });
@@ -90,7 +90,7 @@ export const saveUserPhoto = (photo: string) => async (dispatch: any) => {
         dispatch(setUserPhoto(response.data.photos));
     }
 };
-export const saveMyProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {
+export const saveMyProfile = (profile: TProfile) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
     if (response.resultCode === 0) {
