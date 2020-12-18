@@ -12,7 +12,6 @@ const Chats = (props: TProps) => {
     const chats: Array<any> = props.users
         .map(user => (<UserLabel key={user.id}
                                  name={user.name}
-                                 lastName={user.lastName}
                                  id={user.id}
                                  photo={user.photo}
                                  info={user.info}/>))

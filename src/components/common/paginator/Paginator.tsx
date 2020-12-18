@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import style from './Paginator.module.css';
 
-
 type PropsType= {
     totalItemsNum: number
     numberOfUsersOnPage: number

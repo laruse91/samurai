@@ -52,7 +52,7 @@ let initialState: TInitialState = {
     ],
 }
 
-const dialogsReducer = (state = initialState, action: any): TInitialState => {
+const dialogsReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
         case SEND_NEW_MESSAGE:
         type NewMessageType = null | {
@@ -71,6 +71,7 @@ const dialogsReducer = (state = initialState, action: any): TInitialState => {
             return state
     }
 }
+type TActions = SendNewMessageActionType // | other Action
 
 // ActionCreators
 type SendNewMessageActionType = {

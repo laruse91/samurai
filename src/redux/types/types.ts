@@ -1,3 +1,4 @@
+
 export type TPhotos = {
     large: string | null
     small: string | null
@@ -8,6 +9,7 @@ export type TUser = {
     status: string | null
     photos: TPhotos
     followed: boolean
+    location? : string
 }
 export type TContacts = {
     github: string | null
@@ -21,7 +23,7 @@ export type TContacts = {
 }
 export type TProfile = {
     userId: number
-    lookingForAJob: boolean | null
+    lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string
     contacts: TContacts
@@ -45,3 +47,4 @@ export type TNavItem = {
     path: string
     icon: string
 }
+

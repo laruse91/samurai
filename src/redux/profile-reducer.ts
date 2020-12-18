@@ -1,10 +1,11 @@
-import {profileAPI} from "../api/api";
+import {profileAPI, ResultCode} from "../api/api";
 import {stopSubmit} from "redux-form";
-import {TProfile} from "./types/types";
+import {TPhotos, TProfile} from "./types/types";
+import {ThunkAction} from "redux-thunk";
+import {TGlobalState} from "./redux-store";
 
 const SET_USER_PROFILE = 'profile/SET-USER-PROFILE';
 const SET_USER_STATUS = 'profile/GET-USER-STATUS';
-const UPDATE_USER_STATUS = 'profile/UPDATE-USER-STATUS';
 const SET_USER_PHOTO = 'profile/SET-USER-PHOTO'
 
 const initialState = {
@@ -13,9 +14,8 @@ const initialState = {
 }
 export type InitialStateType = typeof initialState
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (state = initialState, action: TActions): InitialStateType => {
     switch (action.type) {
-
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -26,15 +26,10 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
                 ...state,
                 status: action.status
             };
-        case UPDATE_USER_STATUS:
-            return {
-                ...state,
-                status: action.status
-            }
         case SET_USER_PHOTO:
             return {
                 ...state,
-                profile: {...state.profile, photos: action.photo} as TProfile
+                profile: {...state.profile, photos: action.photo}  as TProfile
             }
 
         default:
@@ -42,61 +37,63 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
     }
 };
 
+type TActions = TSetUserProfile | TSetUserStatus | TSetUserPhoto
 //actionCreators
-type SetUserProfileType = {
+type TSetUserProfile = {
     type: typeof SET_USER_PROFILE,
     profile: TProfile
 }
-const setUserProfile = (profile: TProfile): SetUserProfileType => ({
+const setUserProfile = (profile: TProfile): TSetUserProfile => ({
     type: SET_USER_PROFILE,
     profile
 });
-type SetUserStatusType = {
+type TSetUserStatus = {
     type: typeof SET_USER_STATUS,
     status: string
 }
-const setUserStatus = (status: string): SetUserStatusType => ({
+const setUserStatus = (status: string): TSetUserStatus => ({
     type: SET_USER_STATUS,
     status
 });
-type SetUserPhotoType = {
+type TSetUserPhoto = {
     type: typeof SET_USER_PHOTO,
-    photo: string
+    photo: TPhotos
 }
-const setUserPhoto = (photo: string): SetUserPhotoType => ({
+const setUserPhoto = (photo: TPhotos): TSetUserPhoto => ({
     type: SET_USER_PHOTO,
     photo
 });
 
-
 //thunks
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
+type TThunk = ThunkAction<void, TGlobalState, unknown, any>   //// Attention!!!!!!!!!
+
+export const getUserProfile = (userId: number): TThunk => async (dispatch) => {
     const response = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(response));
 };
-export const getUserStatus = (userId: number) => async (dispatch: any) => {
+export const getUserStatus = (userId: number): TThunk => async (dispatch) => {
     const response = await profileAPI.getStatus(userId)
     dispatch(setUserStatus(response));
 };
-export const updateUserStatus = (status: string) => async (dispatch: any) => {
+export const updateUserStatus = (status: string): TThunk => async (dispatch) => {
     const response = await profileAPI.updateStatus(status)
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCode.Success) {
         dispatch(setUserStatus(status));
     }
 };
-export const saveUserPhoto = (photo: string) => async (dispatch: any) => {
+export const saveUserPhoto = (photo: any): TThunk => async (dispatch) => {
     const response = await profileAPI.savePhoto(photo)
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCode.Success) {
         dispatch(setUserPhoto(response.data.photos));
     }
 };
-export const saveMyProfile = (profile: TProfile) => async (dispatch: any, getState: any) => {
+export const saveMyProfile = (profile: TProfile): TThunk => async (dispatch, getState) => {
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCode.Success && userId !== null) {  //// Attention!!!!!!!!!
         dispatch(getUserProfile(userId));
     } else {
-        const messages = response.messages.length > 0 && response.messages;
+        const messages: any = response.messages.length > 0 && response.messages;
         let errors: any = {}
         for (let i = 0; i < messages.length; i++) {
             let fieldName = messages[i].split("->")[1].slice(0, -1).toLowerCase();

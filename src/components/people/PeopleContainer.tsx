@@ -29,8 +29,8 @@ type TDispatchProps = {
     setCurrentPage: (newPageNumber: number) => void
     requestUsers: (currentPage: number, numberOfUsersOnPage: number, requestType: string) => void
 }
-//  type TOwnProps = { }
-type TProps = TStateProps & TDispatchProps // & TOwnProps
+// type TOwnProps = {}
+type TProps = TStateProps & TDispatchProps //& TOwnProps
 
 class PeopleContainer extends React.Component<TProps> {
 
@@ -74,7 +74,6 @@ const mapStateToProps = (state: TGlobalState): TStateProps => {
     }
 };
 
-// @ts-ignore
-export default compose(connect<TStateProps, TDispatchProps, TGlobalState>( mapStateToProps,
+export default compose(connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps,
     {follow, unfollow, setCurrentPage, requestUsers,}),
     withAuthRedirect)(PeopleContainer);

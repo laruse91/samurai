@@ -61,7 +61,7 @@ const initialState = {
 export type TInitialState = typeof initialState
 
 
-const navbarReducer = (state = initialState, action: any): TInitialState => {
+const navbarReducer = (state = initialState): TInitialState => {
     return state;
 };
 

@@ -1,5 +1,7 @@
 import {usersAPI} from "../api/api";
 import {TUser} from "./types/types";
+import {ThunkAction} from "redux-thunk";
+import {TGlobalState} from "./redux-store";
 
 const SET_USERS = 'sidebar/SET-USERS';
 const SET_TOTAL_USERS = 'sidebar/SET-TOTAL-USERS';
@@ -33,6 +35,10 @@ const sidebarReducer = (state = initialState, action: any): TInitialState => {
             return state;
     }
 }
+
+type TActions = TSetTotalUsers | TSetUsers | TToggleIsFetching
+
+//ActionCreators
 type TSetTotalUsers = {
     type: typeof SET_TOTAL_USERS,
     totalUsers: number
@@ -57,8 +63,11 @@ export const toggleIsFetching = (isFetching: boolean): TToggleIsFetching => ({
     type: TOGGLE_IS_FETCHING,
     isFetching
 });
+
 // thunk
-export const getUsersSB = (pageNumber: number, numberOfUsersAtSidebar: number) => async (dispatch: any) => {
+type TThunk = ThunkAction<void, TGlobalState, unknown, TActions>
+
+export const getUsers = (pageNumber: number, numberOfUsersAtSidebar: number): TThunk => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     const response = await usersAPI.requestUsers(pageNumber, numberOfUsersAtSidebar)
     dispatch(setUsers(response.items));

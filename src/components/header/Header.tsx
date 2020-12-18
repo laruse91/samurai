@@ -5,7 +5,7 @@ import Auth from "../common/auth/Auth";
 type TProps = {
     isAuth: boolean
     login: string | null
-    userPhoto : string |null
+    userPhoto : string | null
     userId: number | null
     logout: ()=>void
 }

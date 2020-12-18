@@ -3,10 +3,15 @@ import './NewsFeed.css'
 import PostBlock from './postBlock/PostBlock';
 import NewPostBlock from "./newPostBlock/NewPostBlock";
 
-const newsFeed = (props) => {
+type TProps = {
+    posts: any
+    currentUser: any
+    publicNewPost: (newPostBody: string)=>void
+}
+const newsFeed = (props: TProps) => {
 
     const posts = props.posts
-        .map(post => <PostBlock key = {post.id}
+        .map((post: { id: any; user: any; content: any; contentMedia: any; likesCount: any; shareCount: any; postComments: any; }) => <PostBlock key = {post.id}
                                 user={post.user}
                                 content={post.content}
                                 contentMedia={post.contentMedia}

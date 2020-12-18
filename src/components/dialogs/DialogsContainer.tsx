@@ -24,5 +24,4 @@ const mapStateToProps = (state: TGlobalState): TStateProps => {
     }
 };
 
-// @ts-ignore
-export default compose (withAuthRedirect, connect<TStateProps, TDispatchProps>(mapStateToProps, {sendNewMessage}))(Dialogs)
+export default compose (withAuthRedirect, connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {sendNewMessage}))(Dialogs)

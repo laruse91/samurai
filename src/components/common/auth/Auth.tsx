@@ -1,8 +1,17 @@
 import React from 'react'
 import style from './Auth.module.css'
 import {NavLink} from 'react-router-dom'
+import UserPhoto from "../userPhoto/UserPhoto";
 
-const Auth = (props) => {
+type TProps = {
+    userId: number | null
+    isAuth: boolean
+    userPhoto: string | null
+    login: string | null
+    logout: ()=>void
+
+}
+const Auth = (props: TProps) => {
     const authPath = '/login';
     const profilePath = `/profile/${props.userId}`
     return (
@@ -10,10 +19,13 @@ const Auth = (props) => {
             {props.isAuth ?
                 <div className={style.user}>
                     <NavLink to={profilePath} className={style.login}>
-                        <img src={props.userPhoto} alt="ico"/>
+                        <UserPhoto photo={props.userPhoto}/>
                         <span>{props.login}</span>
                     </NavLink>
-                    <img src="https://2.downloader.disk.yandex.ru/preview/6e3ad9f7df7458dd6ca827cd0ba3b99342c6d44f4dbb8c3670c80ca2e13cea25/inf/mPKvo4i81qvNO5LqxvFlMyjJBW7iTkJlFD6EINuWZ6f20la0ZaxDmIl_xMj8lO1KH26jHS3xEPZv14Gk-OxkXQ%3D%3D?uid=81903395&filename=logout.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1349x568" alt="ico" onClick={props.logout}/>
+                    <img src="https://2.downloader.disk.yandex.ru/preview/6e3ad9f7df7458dd6ca827cd0ba3b99342c6d44f4dbb8c3670c80ca2e13cea25/inf/mPKvo4i81qvNO5LqxvFlMyjJBW7iTkJlFD6EINuWZ6f20la0ZaxDmIl_xMj8lO1KH26jHS3xEPZv14Gk-OxkXQ%3D%3D?uid=81903395&filename=logout.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1349x568"
+                         className={style.exit}
+                         alt="ico"
+                         onClick={props.logout}/>
                 </div>
                 :
                 <NavLink to={authPath} className={style.login}>

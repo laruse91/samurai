@@ -3,10 +3,20 @@ import style from "../../login/Login.module.css";
 import {Field, reduxForm} from "redux-form";
 import FormControl from "../../common/formsControl/FormControl";
 import {maxLength, required} from "../../../utilites/validators";
+import {TProfile} from "../../../redux/types/types";
 
 const maxLength50 = maxLength(50)
 
-let AboutMeForm = (props) => {
+type TProps = {
+    profile: TProfile
+    initialValues: any
+    onSubmit: any
+    error?: string
+    handleSubmit?: any
+
+}
+
+let AboutMeForm: React.FC<TProps> = (props) => {
 
     return (
         <div>
@@ -82,6 +92,8 @@ let AboutMeForm = (props) => {
         </div>
     )
 }
+
+// @ts-ignore
 AboutMeForm = reduxForm({form: 'aboutMe'})(AboutMeForm);
 export default AboutMeForm
 

@@ -1,9 +1,16 @@
 import React from "react";
 import style from './AboutMe.module.css'
-import {Field} from "redux-form";
-import FormControl from "../../common/formsControl/FormControl";
 
-const AboutMe = (props) => {
+type TProps = {
+    fullName: string
+    lookingForAJob: boolean | null
+    lookingForAJobDescription: string | null
+    contacts: any
+    activateEditMode: () => void
+    isOwner: boolean
+}
+
+const AboutMe: React.FC<TProps> = (props) => {
 
     return (
         <div>
@@ -30,6 +37,7 @@ const AboutMe = (props) => {
                 }
                 <h5>Contacts :</h5> {Object.keys(props.contacts)
                 .map((key, index) => {
+
                     return (
                         <div key={index + 1}>
                             <img src="#" alt="ico"/>

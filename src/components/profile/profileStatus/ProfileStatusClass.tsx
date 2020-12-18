@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './ProfileStatus.module.css'
 
-class ProfileStatusClass extends React.Component {
+type TProps = {
+    status: string
+    updateUserStatus: (status: string)=> void
+}
+type TState = {
+    editMode: boolean
+    status: string
+}
+class ProfileStatusClass extends React.Component<TProps, TState> {
     state = {
         editMode: false,
         status: this.props.status
@@ -18,13 +26,13 @@ class ProfileStatusClass extends React.Component {
         })
         this.props.updateUserStatus(this.state.status);
     };
-    onStatusChange = (event) => {
+    onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             status: event.currentTarget.value
         })
     };
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: TProps, prevState: TState) {
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status

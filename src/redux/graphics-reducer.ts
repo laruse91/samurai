@@ -7,7 +7,7 @@ let initialState = {
 };
 export type TInitialState = typeof initialState
 
-const graphicsReducer = (state = initialState, action: any): TInitialState => {
+const graphicsReducer = (state = initialState): TInitialState => {
     return state
 }
 

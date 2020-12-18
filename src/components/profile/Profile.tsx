@@ -1,29 +1,38 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import style from './Profile.module.css'
 import Preloader from "../common/preloader/Preloader";
 import defaultUserPhoto from "../../assets/img/defaultUserPhoto.jpg";
 import ProfileStatus from "./profileStatus/ProfileStatus";
 import AboutMe from "./aboutMe/AboutMe";
 import AboutMeForm from "./aboutMe/AboutMeForm";
+import {TProfile} from "../../redux/types/types";
 
-const Profile = (props) => {
+type TProps = {
+    profile: TProfile | null
+    status: string
+    isOwner: boolean
+    backgrounds: Array<string>
+    updateUserStatus: (status: string) => void
+    saveUserPhoto: () => void
+    saveMyProfile: (formData: any) => void
+}
+const Profile: React.FC<TProps> = (props) => {
     const [editMode, setEditMode] = useState(false);
     const activateEditMode = () => setEditMode(true)
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: any) => {
+        // @ts-ignore
         props.saveMyProfile(formData).then(
             () => {
                 setEditMode(false)
             }
         )
     }
-
-    const saveUserPhoto = (event) => {
-        event.target.files[0] &&
-        props.saveUserPhoto(event.target.files[0])
+    const saveUserPhoto = (event: ChangeEvent<HTMLInputElement>) => {
+        // @ts-ignore
+        event.target.files[0] && props.saveUserPhoto(event.target.files[0])
     }
 
-    const
-        random = Math.round(1 + Math.random() * (props.backgrounds.length - 1));
+    const random = Math.round(1 + Math.random() * (props.backgrounds.length - 1));
 
     if (!props.profile) {
         return <Preloader/>
@@ -35,7 +44,7 @@ const Profile = (props) => {
                 <div className={style.topSection}>
                     <img className={style.background} src={props.backgrounds[random]} alt="ico"/>
                     <img className={style.userPhoto}
-                         src={props.profile.photos.large || defaultUserPhoto}
+                         src={ props.profile.photos.large || defaultUserPhoto}
                          alt="ico"/>
                     {props.isOwner &&
                     <div>
@@ -57,7 +66,7 @@ const Profile = (props) => {
                         {/*})}*/}
                     </div>
                     <div>
-                        <h3 className={style.userName}>{props.profile.fullName} {props.profile.lastName}</h3>
+                        <h3 className={style.userName}>{props.profile.fullName}</h3>
                     </div>
                     <div className={style.userStatus}>
                         <ProfileStatus status={props.status}

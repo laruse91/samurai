@@ -24,7 +24,7 @@ class HeaderContainer extends React.Component<TProps> {
     }
 }
 
-const mapStateToProps = (state: TGlobalState) => {
+const mapStateToProps = (state: TGlobalState): TStateProps => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login,
@@ -33,5 +33,4 @@ const mapStateToProps = (state: TGlobalState) => {
     }
 }
 
-// @ts-ignore
-export default connect<TStateProps, TDispatchProps, TGlobalState>(mapStateToProps, {logout})(HeaderContainer);
+export default connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {logout})(HeaderContainer);

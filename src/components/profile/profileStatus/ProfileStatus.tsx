@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import style from './ProfileStatus.module.css'
 
-const ProfileStatus = (props) => {
+type TProps = {
+    status: string
+    updateUserStatus: (status: string) => void
+}
+
+const ProfileStatus: React.FC<TProps> = (props) => {
 
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status)
@@ -19,7 +24,7 @@ const ProfileStatus = (props) => {
         props.updateUserStatus(status);
     };
 
-    const onStatusChange = (event) => {
+    const onStatusChange = (event: { currentTarget: { value: React.SetStateAction<string>; }; }) => {
         setStatus(event.currentTarget.value)
     };
 

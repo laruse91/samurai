@@ -7,7 +7,6 @@ type TProps = {
     id: number
     photo: string | null
     name: string | null
-    lastName: string | null
     info?: string | null
 }
 
@@ -18,7 +17,7 @@ const UserLabel = (props: TProps) => {
             <NavLink to={path} className={style.userCard}>
                 <UserPhoto photo={props.photo}/>
                 <div className={style.userDesc}>
-                    <h4 className={style.userName}>{props.name} {props.lastName}</h4>
+                    <h4 className={style.userName}>{props.name}</h4>
                     <span className={style.info}>{props.info != null ? props.info : 'information'}</span>
                 </div>
             </NavLink>
