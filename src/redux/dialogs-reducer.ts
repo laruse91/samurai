@@ -1,4 +1,5 @@
-import {TInitialStateMessage, TInitialStateUserType} from "./types/types";
+import {TInitialStateMessage, TInitialStateUserType} from "../types/types";
+import {TCombineActions} from "./redux-store";
 
 const SEND_NEW_MESSAGE = 'dialogs/SEND-NEW-MESSAGE';
 
@@ -71,16 +72,15 @@ const dialogsReducer = (state = initialState, action: TActions): TInitialState =
             return state
     }
 }
-type TActions = SendNewMessageActionType // | other Action
 
 // ActionCreators
-type SendNewMessageActionType = {
-    type: typeof SEND_NEW_MESSAGE,
-    newMessageBody: string
+type TActions = TCombineActions<typeof actions>
+
+export const actions= {
+     sendNewMessage : (newMessageBody: string) => ({
+        type: SEND_NEW_MESSAGE,
+        newMessageBody
+    }as const)
 }
-export const sendNewMessage = (newMessageBody: string): SendNewMessageActionType => ({
-    type: SEND_NEW_MESSAGE,
-    newMessageBody
-});
 
 export default dialogsReducer;

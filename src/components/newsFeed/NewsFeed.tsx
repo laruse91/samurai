@@ -6,18 +6,17 @@ import NewPostBlock from "./newPostBlock/NewPostBlock";
 type TProps = {
     posts: any
     currentUser: any
-    publicNewPost: (newPostBody: string)=>void
+    publicNewPost: (newPostBody: string) => void
 }
 const newsFeed = (props: TProps) => {
 
     const posts = props.posts
-        .map((post: { id: any; user: any; content: any; contentMedia: any; likesCount: any; shareCount: any; postComments: any; }) => <PostBlock key = {post.id}
-                                user={post.user}
-                                content={post.content}
-                                contentMedia={post.contentMedia}
-                                likesCount={post.likesCount}
-                                shareCount={post.shareCount}
-                                postComments={post.postComments}/>)
+        .map((post: any) => <PostBlock key={post.id}
+                                       user={post.user}
+                                       content={post.content}
+                                       contentMedia={post.contentMedia}
+                                       likesCount={post.likesCount}
+                                       shareCount={post.shareCount}/>)
 
     return (
         <div>

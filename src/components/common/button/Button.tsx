@@ -6,7 +6,7 @@ type TProps = {
     onClick?: ()=>void
     button: string | null
 }
-const Button = (props: TProps) => {
+const Button: React.FC<TProps> = (props) => {
 
     return (
         <div className={style.btnBlock}>

@@ -23,6 +23,7 @@ export type TContacts = {
 }
 export type TProfile = {
     userId: number
+    aboutMe: string
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string

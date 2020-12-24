@@ -1,7 +1,12 @@
 import React from 'react';
 import style from './PostContentOptions.module.css'
 
-const PostContentOptions = (props) => {
+
+type TProps = {
+    likesCount: number
+    shareCount: number
+}
+const PostContentOptions:React.FC<TProps> = (props) => {
 
     return (
         <div className={style.options}>

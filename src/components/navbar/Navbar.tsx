@@ -1,7 +1,7 @@
 import React from 'react'
 import './Navbar.css'
 import NavItem from "./navItem/NavItem"
-import {TNavItem} from "../../redux/types/types";
+import {TNavItem} from "../../types/types";
 
 type TProps = {
     navItems: Array<TNavItem>

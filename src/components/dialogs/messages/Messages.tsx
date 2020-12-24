@@ -1,16 +1,19 @@
 import React from 'react';
 import style from './Messages.module.css';
 import MessageCard from './messageCard/MessageCard';
-import NewMessageForm from "./messageCard/NewMessageForm";
-import {TInitialStateMessage} from "../../../redux/types/types";
+import NewMessageReduxForm from "./messageCard/NewMessageForm";
+import {TInitialStateMessage} from "../../../types/types";
 
 type TProps = {
     messages: Array<TInitialStateMessage>
     sendNewMessage: (newMessageBody: string) => void
 }
-const Messages = (props : TProps) => {
+export type TNewMessageFormData = {
+    newMessageBody: string
+}
+const Messages: React.FC<TProps> = (props) => {
 
-    const sendNewMessage =(values: any)=> {
+    const sendNewMessage =(values:TNewMessageFormData)=> {
         props.sendNewMessage(values.newMessageBody)
     }
 
@@ -30,7 +33,7 @@ const Messages = (props : TProps) => {
             </div>
 
             <div className={style.newMessage}>
-                <NewMessageForm onSubmit={sendNewMessage}/>
+                <NewMessageReduxForm onSubmit={sendNewMessage}/>
             </div>
         </div>
     )

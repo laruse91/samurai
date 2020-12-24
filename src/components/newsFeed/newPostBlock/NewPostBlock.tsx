@@ -1,11 +1,18 @@
 import React from 'react';
 import style from './NewPostBlock.module.css';
-import NewPostForm from "./NewPostForm";
+import NewPostReduxForm from "./NewPostForm";
 
+export type TNewPostFormData = {
+    newPostBody: string
+}
+type TProps = {
+    publicNewPost: (newPostBody: string) => void
+    currentUser: any
+}
 
-const NewPostBlock = (props) => {
+const NewPostBlock: React.FC<TProps> = (props) => {
 
-    const publicNewPost = (values) => {
+    const publicNewPost = (values: TNewPostFormData) => {
         props.publicNewPost(values.newPostBody)
     };
 
@@ -19,7 +26,7 @@ const NewPostBlock = (props) => {
             <div className={style.post}>
                 <img src={props.currentUser.photo}
                      alt="ico"/>
-                <NewPostForm onSubmit={publicNewPost}/>
+                <NewPostReduxForm onSubmit={publicNewPost}/>
             </div>
 
             <hr/>

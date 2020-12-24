@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from "./Sidebar";
 import {connect} from "react-redux";
 import {getUsers} from "../../redux/sidebar-reducer";
-import {TUser} from "../../redux/types/types";
+import {TUser} from "../../types/types";
 import {TGlobalState} from "../../redux/redux-store";
 
 type TStateProps = {
@@ -10,10 +10,11 @@ type TStateProps = {
     numberOfUsersAtSidebar: number
     totalUsers: number
 }
-type  TDispatchProps = {
-    getUsers: (randomPage: number, numberOfUsersAtSidebar: number)=>void
+type TDispatchProps = {
+    getUsers: (randomPage: number, numberOfUsersAtSidebar: number) => void
 }
-type TProps = TStateProps & TDispatchProps
+type TOwnProps = {}
+type TProps = TStateProps & TDispatchProps & TOwnProps
 
 class SidebarContainer extends React.Component<TProps> {
     componentDidMount() {
@@ -22,7 +23,8 @@ class SidebarContainer extends React.Component<TProps> {
 
         this.props.getUsers(randomPage, this.props.numberOfUsersAtSidebar)
     }
-    render () {
+
+    render() {
         return <Sidebar users={this.props.users}/>
     }
 }
@@ -35,5 +37,4 @@ const mapStateToProps = (state: TGlobalState) => {
     }
 };
 
-// @ts-ignore
-export default connect<TStateProps, TDispatchProps, TGlobalState>(mapStateToProps, {getUsers})(SidebarContainer)
+export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {getUsers})(SidebarContainer)

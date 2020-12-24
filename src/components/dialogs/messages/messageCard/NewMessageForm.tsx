@@ -1,13 +1,9 @@
 import React from 'react';
 import style from './NewMessageForm.module.css';
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {TNewMessageFormData} from "../Messages";
 
-type TProps = {
-    onSubmit: any
-    handleSubmit?: any
-}
-
-let newMessageForm = (props: TProps) => {
+const NewMessageForm: React.FC<InjectedFormProps<TNewMessageFormData>> = (props) => {
 
     return (
         <div className={style.newMessageForm}>
@@ -30,7 +26,7 @@ let newMessageForm = (props: TProps) => {
     )
 }
 
-// @ts-ignore
-newMessageForm = reduxForm({form: 'newMessage'})(newMessageForm)
 
-export default newMessageForm;
+const NewMessageReduxForm = reduxForm<TNewMessageFormData>({form: 'newMessage'})(NewMessageForm)
+
+export default NewMessageReduxForm;

@@ -24,5 +24,9 @@ export const followingInProgress = (state: TGlobalState) => {
     return state.peoplePage.followingInProgress;
 }
 
+export const getFilter = (state: TGlobalState) => {
+    return state.peoplePage.filter;
+}
+
 
 

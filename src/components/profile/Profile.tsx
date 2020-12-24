@@ -4,8 +4,8 @@ import Preloader from "../common/preloader/Preloader";
 import defaultUserPhoto from "../../assets/img/defaultUserPhoto.jpg";
 import ProfileStatus from "./profileStatus/ProfileStatus";
 import AboutMe from "./aboutMe/AboutMe";
-import AboutMeForm from "./aboutMe/AboutMeForm";
-import {TProfile} from "../../redux/types/types";
+import AboutMeReduxForm from "./aboutMe/AboutMeForm";
+import {TContacts, TProfile} from "../../types/types";
 
 type TProps = {
     profile: TProfile | null
@@ -13,14 +13,22 @@ type TProps = {
     isOwner: boolean
     backgrounds: Array<string>
     updateUserStatus: (status: string) => void
-    saveUserPhoto: () => void
-    saveMyProfile: (formData: any) => void
+    saveUserPhoto: (file: File) => void
+    saveMyProfile: (formData: AboutMeFormData) => Promise<void>
 }
+export type AboutMeFormData = {
+    aboutMe: string
+    fullName: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    contacts: TContacts
+}
+
 const Profile: React.FC<TProps> = (props) => {
     const [editMode, setEditMode] = useState(false);
     const activateEditMode = () => setEditMode(true)
-    const onSubmit = (formData: any) => {
-        // @ts-ignore
+    const onSubmit = (formData: AboutMeFormData) => {
+        //todo: remove then
         props.saveMyProfile(formData).then(
             () => {
                 setEditMode(false)
@@ -28,8 +36,7 @@ const Profile: React.FC<TProps> = (props) => {
         )
     }
     const saveUserPhoto = (event: ChangeEvent<HTMLInputElement>) => {
-        // @ts-ignore
-        event.target.files[0] && props.saveUserPhoto(event.target.files[0])
+        event.target.files?.length && props.saveUserPhoto(event.target.files[0])
     }
 
     const random = Math.round(1 + Math.random() * (props.backgrounds.length - 1));
@@ -44,7 +51,7 @@ const Profile: React.FC<TProps> = (props) => {
                 <div className={style.topSection}>
                     <img className={style.background} src={props.backgrounds[random]} alt="ico"/>
                     <img className={style.userPhoto}
-                         src={ props.profile.photos.large || defaultUserPhoto}
+                         src={props.profile.photos.large || defaultUserPhoto}
                          alt="ico"/>
                     {props.isOwner &&
                     <div>
@@ -79,12 +86,12 @@ const Profile: React.FC<TProps> = (props) => {
                            lookingForAJob={props.profile.lookingForAJob}
                            lookingForAJobDescription={props.profile.lookingForAJobDescription}
                            contacts={props.profile.contacts}
+                           aboutMe ={props.profile.aboutMe}
                            activateEditMode={activateEditMode}
                            isOwner={props.isOwner}/>
 
-                : <AboutMeForm
+                : <AboutMeReduxForm
                     profile={props.profile}
-                    initialValues={props.profile}
                     onSubmit={onSubmit}
                 />
             }

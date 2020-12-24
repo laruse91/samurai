@@ -1,22 +1,18 @@
 import React from "react";
 import style from "../../login/Login.module.css";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import FormControl from "../../common/formsControl/FormControl";
 import {maxLength, required} from "../../../utilites/validators";
-import {TProfile} from "../../../redux/types/types";
+import {TProfile} from "../../../types/types";
+import {AboutMeFormData} from "../Profile";
 
 const maxLength50 = maxLength(50)
 
-type TProps = {
+type TFormOwnProps = {
     profile: TProfile
-    initialValues: any
-    onSubmit: any
-    error?: string
-    handleSubmit?: any
-
 }
 
-let AboutMeForm: React.FC<TProps> = (props) => {
+let AboutMeForm: React.FC<InjectedFormProps<AboutMeFormData, TFormOwnProps> & TFormOwnProps> = (props) => {
 
     return (
         <div>
@@ -93,7 +89,7 @@ let AboutMeForm: React.FC<TProps> = (props) => {
     )
 }
 
-// @ts-ignore
-AboutMeForm = reduxForm({form: 'aboutMe'})(AboutMeForm);
-export default AboutMeForm
+const AboutMeReduxForm = reduxForm<AboutMeFormData, TFormOwnProps>({form: 'aboutMe'})(AboutMeForm);
+
+export default AboutMeReduxForm
 

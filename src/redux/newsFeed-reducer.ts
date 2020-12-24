@@ -1,10 +1,12 @@
+import {TCombineActions} from "./redux-store";
+
 const PUBLIC_NEW_POST = 'PUBLIC-NEW-POST';
 const DELETE_POST = 'DELETE-POST'
 
 const initialState = {
     posts: [
         {
-            id: '001',
+            id: 1,
             user: {
                 name: 'Anna',
                 lastName: 'Stephany',
@@ -19,25 +21,14 @@ const initialState = {
             likesCount: 0,
             shareCount: 0,
             commentsCount: 0,
-
         },
     ] as Array<any> ,
     currentUser: {
         name: 'Helena',
         lastName: 'Jackly',
-        id: '001',
+        id: 1,
         photo: 'https://4.downloader.disk.yandex.ru/preview/094ccd40c9e4557a4a914ce119e1ee0aa3aa143f71ad52057be44a6583e9c0ed/inf/vCI1taciqDdxl-O7FW4UcoFhjPhj2ysFi_ybQPJ7XLLJ2r-S6PkGbMrRHnOvczSZn-XsSTp_AtE_aQtoO5lctA%3D%3D?uid=81903395&filename=user-profile.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625'
     },
-    postComments: [
-        {
-            name: 'Lars',
-            lastName: 'Nerland',
-            id: '004',
-            photo: 'https://3.downloader.disk.yandex.ru/preview/29759c02beafd0f9347a82334fcb14d35fc5d1035cba0d98f09841dd3d049e2d/inf/u6pAX_OKSZLUZ2qVOyoVVXSB7vNpiLj_HqcdkhAWlgjweJ22qil8v5xNOCaZSq3mxenTo_kjrRGqiqIFDmbfsw%3D%3D?uid=81903395&filename=user-lars-nerland.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            content: "It was the best party",
-        },
-    ],
-    newComment: '',
 }
 type TInitialState = typeof initialState
 
@@ -45,7 +36,7 @@ const newsFeedReducer = (state = initialState, action: TActions): TInitialState 
     switch (action.type) {
         case PUBLIC_NEW_POST:
             const newPost = {
-                id: '002',
+                id: state.posts.length + 1,
                 user: {
                     name: state.currentUser.name,
                     lastName: state.currentUser.lastName,
@@ -67,29 +58,25 @@ const newsFeedReducer = (state = initialState, action: TActions): TInitialState 
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(id => id !== action.postId)
+                posts: state.posts.filter(post => post.id !== action.postId)
             }
         default:
             return state;
     }
 };
-type TActions = TPublicNewPost | TDeletePost
+
 // ActionCreators
-type TPublicNewPost = {
-    type: typeof PUBLIC_NEW_POST,
-    newPostBody: string
+type TActions = TCombineActions<typeof actions>
+
+export const actions = {
+    publicNewPost : (newPostBody: string) => ({
+        type: PUBLIC_NEW_POST,
+        newPostBody
+    } as const),
+    deletePost : (postId: number) => ({
+        type: DELETE_POST,
+        postId
+    }as const)
 }
-export const publicNewPost = (newPostBody: string): TPublicNewPost => ({
-    type: PUBLIC_NEW_POST,
-    newPostBody
-});
-type TDeletePost = {
-    type: typeof DELETE_POST,
-    postId: number
-}
-export const deletePost = (postId: number): TDeletePost => ({
-    type: DELETE_POST,
-    postId
-});
 
 export default newsFeedReducer;

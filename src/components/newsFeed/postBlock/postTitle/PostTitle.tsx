@@ -2,13 +2,16 @@ import React from 'react';
 import style from './PostTitle.module.css';
 import UserLabel from "../../../common/userLabel/UserLabel";
 
+type TProps = {
+    user: any
+}
 
-const PostTitle = (props) => {
+const PostTitle: React.FC<TProps> = (props) => {
 
     return (
         <div className={style.title}>
-            <UserLabel name={props.user.name}
-                       lastName={props.user.lastName}
+            <UserLabel id={props.user.name}
+                       name={props.user.name}
                        photo={props.user.photo}/>
             <div className={style.userAction}>
                 <span className={style.action}>Added new post</span>

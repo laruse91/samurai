@@ -1,13 +1,13 @@
 import React from 'react';
 import style from './Chats.module.css';
 import UserLabel from "../../common/userLabel/UserLabel";
-import {TInitialStateUserType } from "../../../redux/types/types";
+import {TInitialStateUserType } from "../../../types/types";
 
 type TProps = {
     users: Array<TInitialStateUserType>
 }
 
-const Chats = (props: TProps) => {
+const Chats: React.FC<TProps> = (props) => {
 
     const chats: Array<any> = props.users
         .map(user => (<UserLabel key={user.id}

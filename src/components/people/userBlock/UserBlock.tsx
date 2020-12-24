@@ -3,7 +3,7 @@ import style from './UserBlock.module.css';
 import {NavLink} from 'react-router-dom';
 import defaultUserPhoto from "../../../assets/img/defaultUserPhoto.jpg";
 import Button from "../../common/button/Button";
-import {TUser} from "../../../redux/types/types";
+import {TUser} from "../../../types/types";
 
 type TProps = {
     user: TUser
@@ -13,7 +13,7 @@ type TProps = {
     location?: string
 }
 
-const UserBlock = (props: TProps) => {
+const UserBlock: React.FC<TProps> = (props) => {
     const followingInProgress = props.followingInProgress.some(id => id === props.user.id)
     const follow = () => props.follow(props.user.id)
     const unfollow = () => props.unfollow(props.user.id)
@@ -27,16 +27,16 @@ const UserBlock = (props: TProps) => {
                          alt="ico"/>
                 </NavLink>
                 <div className={style.btnBlock}>
-                    {props.user.followed
+                    {!props.user.followed
                         ? <Button
                             button={'Follow'}
                             disabled={followingInProgress}
-                            onClick={unfollow}
+                            onClick={follow}
                         />
                         : <Button
                             button={'Unfollow'}
                             disabled={followingInProgress}
-                            onClick={follow}
+                            onClick={unfollow}
                         />
                     }
                 </div>

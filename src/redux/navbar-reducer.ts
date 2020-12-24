@@ -1,4 +1,4 @@
-import {TNavItem} from "./types/types";
+import {TNavItem} from "../types/types";
 
 const initialState = {
     navItems: [

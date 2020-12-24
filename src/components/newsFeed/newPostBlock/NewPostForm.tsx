@@ -1,8 +1,9 @@
 import style from "./NewPostForm.module.css";
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {TNewPostFormData} from "./NewPostBlock";
 
-let NewPostForm = (props) => {
+const NewPostForm: React.FC<InjectedFormProps<TNewPostFormData>> = (props) => {
 
     return (
         <div className={style.newPostForm}>
@@ -21,5 +22,5 @@ let NewPostForm = (props) => {
     )
 }
 
-NewPostForm = reduxForm({form: "newPost"})(NewPostForm)
-export default NewPostForm
+const NewPostReduxForm = reduxForm<TNewPostFormData>({form: "newPost"})(NewPostForm)
+export default NewPostReduxForm

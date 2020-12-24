@@ -3,18 +3,21 @@ import style from './People.module.css';
 import UserBlock from './userBlock/UserBlock'
 import Preloader from "../common/preloader/Preloader";
 import Paginator from "../common/paginator/Paginator";
-import {TUser} from "../../redux/types/types";
+import {TUser} from "../../types/types";
+import SearchForm from "../common/searchForm/SearchForm";
+import {TFilter} from "../../redux/people-reducer";
 
 type PropsType = {
     users: Array<TUser>
-    follow: (userId: number)=>void
-    unfollow: (userId: number)=>void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     followingInProgress: Array<number>
     isFetching: boolean
     totalUsers: number
     numberOfUsersOnPage: number
     currentPage: number
-    getPeople: (pageNum: number, requestType: string)=> void
+    getPeople: (pageNum: number, requestType: string) => void
+    onFilterChange: (filter: TFilter)=>void
 }
 
 const People: React.FC<PropsType> = (props) => {
@@ -36,7 +39,7 @@ const People: React.FC<PropsType> = (props) => {
                        currentPage={props.currentPage}
                        getItems={props.getPeople}
             />
-
+            <SearchForm onFilterChange={props.onFilterChange}/>
             {props.isFetching ? <Preloader/> : null}
             <div className={style.users}>
                 {people}

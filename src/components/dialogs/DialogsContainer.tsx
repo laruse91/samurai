@@ -1,11 +1,13 @@
+import React from "react";
 import './Dialogs.css';
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {sendNewMessage} from "../../redux/dialogs-reducer";
+import {actions} from "../../redux/dialogs-reducer";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {TGlobalState} from "../../redux/redux-store";
-import {TInitialStateMessage, TInitialStateUserType} from "../../redux/types/types";
+import {TInitialStateMessage, TInitialStateUserType} from "../../types/types";
+
 
 type TStateProps = {
     messages: Array<TInitialStateMessage>
@@ -24,4 +26,4 @@ const mapStateToProps = (state: TGlobalState): TStateProps => {
     }
 };
 
-export default compose (withAuthRedirect, connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {sendNewMessage}))(Dialogs)
+export default compose<React.ComponentType> (withAuthRedirect, connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {sendNewMessage: actions.sendNewMessage}))(Dialogs)

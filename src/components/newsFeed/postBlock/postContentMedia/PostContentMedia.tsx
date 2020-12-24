@@ -1,8 +1,11 @@
 import React from 'react';
 import style from './PostContentMedia.module.css'
 
+type TProps = {
 
-const PostContentMedia = (props) => {
+}
+
+const PostContentMedia: React.FC<TProps> = (props) => {
 
     return (
 

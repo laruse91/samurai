@@ -1,7 +1,7 @@
-import {usersAPI} from "../api/api";
-import {TUser} from "./types/types";
+import {TUser} from "../types/types";
 import {ThunkAction} from "redux-thunk";
-import {TGlobalState} from "./redux-store";
+import {TCombineActions, TGlobalState} from "./redux-store";
+import {usersAPI} from "../api/usersApi";
 
 const SET_USERS = 'sidebar/SET-USERS';
 const SET_TOTAL_USERS = 'sidebar/SET-TOTAL-USERS';
@@ -36,43 +36,33 @@ const sidebarReducer = (state = initialState, action: any): TInitialState => {
     }
 }
 
-type TActions = TSetTotalUsers | TSetUsers | TToggleIsFetching
-
 //ActionCreators
-type TSetTotalUsers = {
-    type: typeof SET_TOTAL_USERS,
-    totalUsers: number
+type TActions =TCombineActions<typeof actions>
+
+const actions = {
+     setTotalUsers : (totalUsers: number) => ({
+        type: SET_TOTAL_USERS,
+        totalUsers
+    } as const),
+     setUsers : (users: Array<TUser>) => ({
+        type: SET_USERS,
+        users
+    }as const),
+     toggleIsFetching : (isFetching: boolean) => ({
+        type: TOGGLE_IS_FETCHING,
+        isFetching
+    }as const)
 }
-export const setTotalUsers = (totalUsers: number): TSetTotalUsers => ({
-    type: SET_TOTAL_USERS,
-    totalUsers
-});
-type TSetUsers = {
-    type: typeof SET_USERS,
-    users: Array<TUser>
-}
-export const setUsers = (users: Array<TUser>): TSetUsers => ({
-    type: SET_USERS,
-    users
-});
-type TToggleIsFetching = {
-    type: typeof TOGGLE_IS_FETCHING,
-    isFetching: boolean
-}
-export const toggleIsFetching = (isFetching: boolean): TToggleIsFetching => ({
-    type: TOGGLE_IS_FETCHING,
-    isFetching
-});
 
 // thunk
 type TThunk = ThunkAction<void, TGlobalState, unknown, TActions>
 
 export const getUsers = (pageNumber: number, numberOfUsersAtSidebar: number): TThunk => async (dispatch) => {
-    dispatch(toggleIsFetching(true));
+    dispatch(actions.toggleIsFetching(true));
     const response = await usersAPI.requestUsers(pageNumber, numberOfUsersAtSidebar)
-    dispatch(setUsers(response.items));
-    dispatch(setTotalUsers(response.totalCount));
-    dispatch(toggleIsFetching(false));
+    dispatch(actions.setUsers(response.items));
+    dispatch(actions.setTotalUsers(response.totalCount));
+    dispatch(actions.toggleIsFetching(false));
 
 
 }

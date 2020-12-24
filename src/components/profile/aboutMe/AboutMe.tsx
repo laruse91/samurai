@@ -8,6 +8,7 @@ type TProps = {
     contacts: any
     activateEditMode: () => void
     isOwner: boolean
+    aboutMe: string
 }
 
 const AboutMe: React.FC<TProps> = (props) => {
@@ -19,6 +20,7 @@ const AboutMe: React.FC<TProps> = (props) => {
             }
             <div>
                 <h4>About Me</h4>
+                <p>{props.aboutMe}</p>
                 <hr/>
                 <h5>{props.fullName}</h5>
                 <hr/>

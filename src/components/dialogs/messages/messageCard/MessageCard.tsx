@@ -6,19 +6,19 @@ type TProps = {
     message: string
 }
 
-const MessageCard =(props: TProps)=> {
+const MessageCard: React.FC<TProps> = (props) => {
 
-        return (
-            <div className={style.messageCard}>
-                <div className={style.user}>
-                    <img src="#" alt="ico"/>
-                    <span>6:52</span>
-                </div>
-                <div className={style.content}>
-                    <p className={style.message}>{props.message}</p>
-                </div>
+    return (
+        <div className={style.messageCard}>
+            <div className={style.user}>
+                <img src="#" alt="ico"/>
+                <span>6:52</span>
             </div>
-        )
+            <div className={style.content}>
+                <p className={style.message}>{props.message}</p>
+            </div>
+        </div>
+    )
 }
 
 export default MessageCard

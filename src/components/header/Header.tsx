@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Header.module.css";
 import Auth from "../common/auth/Auth";
+import SearchForm from "../common/searchForm/SearchForm";
 
 type TProps = {
     isAuth: boolean
@@ -10,7 +11,7 @@ type TProps = {
     logout: ()=>void
 }
 
-const Header = (props: TProps) => {
+const Header: React.FC<TProps> = (props) => {
 
     return (
         <header className={style.header}>

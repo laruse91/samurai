@@ -15,7 +15,7 @@ const maxLength6 = maxLength(6);
 type TFormOwnProps = {
     captchaURL: string | null
 }
-const LoginForm: React.FC<InjectedFormProps<TLoginFormData> & TFormOwnProps> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<TLoginFormData, TFormOwnProps> & TFormOwnProps> = (props) => {
     return (
         <form className={style.loginForm} onSubmit={props.handleSubmit}>
             <div className={style.input}>
@@ -68,7 +68,6 @@ const LoginForm: React.FC<InjectedFormProps<TLoginFormData> & TFormOwnProps> = (
     )
 }
 
-// @ts-ignore
 const LoginReduxForm = reduxForm<TLoginFormData, TFormOwnProps>({form: 'login'})(LoginForm);
 
 type TStateProps = {
@@ -78,7 +77,8 @@ type TStateProps = {
 type TDispatchProps = {
     login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
 }
-type TProps = TStateProps & TDispatchProps
+type TOwnProps = {}
+type TProps = TStateProps & TDispatchProps & TOwnProps
 
 type TLoginFormData = {
     email: string
@@ -111,4 +111,4 @@ const mapStateToProps = (state: TGlobalState): TStateProps => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {login})(Login)
+export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {login})(Login)

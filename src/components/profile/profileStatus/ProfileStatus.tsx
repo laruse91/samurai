@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, ChangeEvent} from 'react';
 import style from './ProfileStatus.module.css'
 
 type TProps = {
@@ -24,7 +24,7 @@ const ProfileStatus: React.FC<TProps> = (props) => {
         props.updateUserStatus(status);
     };
 
-    const onStatusChange = (event: { currentTarget: { value: React.SetStateAction<string>; }; }) => {
+    const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         setStatus(event.currentTarget.value)
     };
 

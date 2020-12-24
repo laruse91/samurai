@@ -10,7 +10,7 @@ type TProps = {
     info?: string | null
 }
 
-const UserLabel = (props: TProps) => {
+const UserLabel: React.FC<TProps> = (props) => {
     const path = `/profile/${props.id}`
     return (
         <div className={style.userCard}>

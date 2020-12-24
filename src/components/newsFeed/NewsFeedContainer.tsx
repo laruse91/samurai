@@ -1,7 +1,7 @@
 import './NewsFeed.css'
 import newsFeed from "./NewsFeed";
 import {connect} from "react-redux";
-import {publicNewPost} from "../../redux/newsFeed-reducer";
+import {actions} from "../../redux/newsFeed-reducer";
 import {TGlobalState} from "../../redux/redux-store";
 
 type TStateProps = {
@@ -11,6 +11,8 @@ type TStateProps = {
 type TDispatchProps = {
     publicNewPost: (newPostBody: string)=>void
 }
+type TOwnProps = {}
+
 const mapStateToProps = (state: TGlobalState): TStateProps => {
     return {
         posts: state.newsFeedPage.posts,
@@ -18,6 +20,6 @@ const mapStateToProps = (state: TGlobalState): TStateProps => {
     }
 };
 
-const newsFeedContainer = connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {publicNewPost})(newsFeed);
+const newsFeedContainer = connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {publicNewPost: actions.publicNewPost})(newsFeed);
 
 export default newsFeedContainer

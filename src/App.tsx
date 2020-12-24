@@ -11,13 +11,26 @@ import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
 import {withReactSuspense} from "./components/hoc/withReactSuspense";
+import {TGlobalState} from "./redux/redux-store";
 
-// React.lazy vs Suspense
+// React.lazy , Suspense
 const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContainer'));
+
 const Login = React.lazy(() => import('./components/login/Login'));
+
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
-class App extends React.Component {
+
+type TStateProps = {
+    initialized: boolean
+}
+type TDispatchProps = {
+    initializeApp: () => void
+}
+type TOwnProps = {}
+type TProps = TStateProps & TDispatchProps
+
+class App extends React.Component<TProps> {
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -29,8 +42,10 @@ class App extends React.Component {
         const dialogs = withReactSuspense(() => <DialogsContainer/>)
         const people = () => <PeopleContainer/>
         const login = withReactSuspense(() => <Login/>)
+
         if (!this.props.initialized) {
             return <Preloader/>
+
         }
         return (
             <div className='app'>
@@ -51,10 +66,10 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: TGlobalState) => {
     return {
         initialized: state.app.initialized,
     }
 }
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {initializeApp})(App);

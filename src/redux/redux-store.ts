@@ -31,6 +31,9 @@ const rootReducer = combineReducers(
 type TRootReducer = typeof rootReducer // (globalState: GlobalStateType)=> globalState
 export type TGlobalState = ReturnType<TRootReducer>
 
+// type for combine ActionCreators into one type
+export type TCombineActions<T> = T extends { [key: string]: (...args: Array<any>) => infer U } ? U : never
+
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(

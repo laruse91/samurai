@@ -13,7 +13,8 @@ type TStateProps = {
 type TDispatchProps = {
     logout: () => void
 }
-type TProps = TStateProps & TDispatchProps
+type TOwnProps = {}
+type TProps = TStateProps & TDispatchProps & TOwnProps
 
 class HeaderContainer extends React.Component<TProps> {
 
@@ -33,4 +34,4 @@ const mapStateToProps = (state: TGlobalState): TStateProps => {
     }
 }
 
-export default connect<TStateProps, TDispatchProps, null, TGlobalState>(mapStateToProps, {logout})(HeaderContainer);
+export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {logout})(HeaderContainer);

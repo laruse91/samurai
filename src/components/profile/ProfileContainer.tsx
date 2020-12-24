@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from "./Profile";
+import Profile, {AboutMeFormData} from "./Profile";
 import {connect} from "react-redux";
 import {
     getUserProfile,
@@ -8,9 +8,9 @@ import {
     updateUserStatus,
     saveMyProfile
 } from "../../redux/profile-reducer";
-import {withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {TProfile} from "../../redux/types/types";
+import {TProfile} from "../../types/types";
 import {TGlobalState} from "../../redux/redux-store";
 
 type TStateProps = {
@@ -22,37 +22,37 @@ type TStateProps = {
 }
 type TDispatchProps = {
     getUserProfile: (userId: number) => void
-    updateUserStatus: () => void
     getUserStatus: (userId: number) => void
-    saveUserPhoto: () => void
-    saveMyProfile: () => void
+    updateUserStatus: (status: string) => void
+    saveUserPhoto: (file: File) => void
+    saveMyProfile: (formData: AboutMeFormData) => Promise<void>
 }
-type TWithRouterProps = {
-    match: any
-    history: Array<string>
+// Type whatever you expect in 'this.props.match.params.*'
+type PathParamsType = {
+    userId: string,
 }
-type TProps = TStateProps & TDispatchProps & TWithRouterProps
+type TProps = TStateProps & TDispatchProps & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<TProps> {
 
     refreshProfile = () => {
         const {authorizedUserId, getUserStatus, getUserProfile} = this.props
-        let userId = this.props.match.params.userId
+        let userId: number | null = +this.props.match.params.userId
         if (!userId) {
             userId = authorizedUserId
             if (!userId) {
                 this.props.history.push("/login")
             }
         }
-        getUserStatus(userId)
-        getUserProfile(userId)
+            getUserStatus(userId as number)
+            getUserProfile(userId as number)
     }
 
     componentDidMount() {
         this.refreshProfile()
     }
 
-    componentDidUpdate(prevProps: any, prevState: any) {
+    componentDidUpdate(prevProps: TProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
             this.refreshProfile()
         }
@@ -81,8 +81,7 @@ const mapStateToProps = (state: TGlobalState): TStateProps => ({
 
 })
 
-// @ts-ignore
-export default compose(connect<TStateProps, TDispatchProps, TWithRouterProps >(mapStateToProps, {
-        getUserProfile, updateUserStatus, getUserStatus, saveUserPhoto, saveMyProfile
+export default compose<React.ComponentType>(connect(mapStateToProps, {
+        updateUserStatus, getUserStatus, saveUserPhoto, saveMyProfile, getUserProfile
     }),
     withRouter)(ProfileContainer)

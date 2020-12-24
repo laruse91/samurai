@@ -5,8 +5,14 @@ import PostContentText from "./postContentText/PostContentText";
 import PostContentMedia from "./postContentMedia/PostContentMedia";
 import PostContentOptions from "./postContentOptions/PostContentOptions";
 
-
-const PostBlock=(props)=> {
+type TProps = {
+    user: any
+    content: string
+    contentMedia: number
+    likesCount: number
+    shareCount: number
+}
+const PostBlock: React.FC<TProps>=(props)=> {
 
         return (
 
@@ -15,12 +21,12 @@ const PostBlock=(props)=> {
                 <PostTitle user={props.user}/>
                 <div className={style.content}>
                     <PostContentText content={props.content}/>
-                    <PostContentMedia contentMedia={props.contentMedia}/>
+                    <PostContentMedia/>
                     <PostContentOptions likesCount={props.likesCount}
-                                        shareCount={props.shareCount}/>
+                                        shareCount={props.shareCount}
+                    />
                 </div>
                 <hr/>
-
 
             </div>
         )
