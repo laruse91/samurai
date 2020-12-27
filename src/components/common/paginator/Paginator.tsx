@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
 import style from './Paginator.module.css';
 
-type PropsType= {
+type PropsType = {
     totalItemsNum: number
     numberOfUsersOnPage: number
     currentPage: number
-    getItems: (pageNum: number, requestType: string)=> void
+    getItems: (pageNum: number, requestType: string) => void
     pageBlockSize?: number
 }
-const Paginator: React.FC<PropsType> = ({totalItemsNum, numberOfUsersOnPage, currentPage, getItems, pageBlockSize = 10}) => {
+const Paginator: React.FC<PropsType> = ({
+                                            totalItemsNum,
+                                            numberOfUsersOnPage,
+                                            currentPage,
+                                            getItems,
+                                            pageBlockSize = 10
+                                        }) => {
     //hook
     const [pageBlockNum, setPageBlockNum] = useState(1);
 
@@ -45,15 +51,14 @@ const Paginator: React.FC<PropsType> = ({totalItemsNum, numberOfUsersOnPage, cur
                             <span key={page} onClick={() => {
                                 getItems(page, "SET")
                             }}
-                               className={currentPage === page ? style.currentPage : style.pageNum}
-                            >
+                                  className={currentPage === page ? style.currentPage : style.pageNum}>
                                 {page}
                             </span>
                         </div>
                     )
                 })}
 
-            {lastItemOfPageBlock < pageBlockTotalNum && <div onClick={nextPageBlock}
+            {pageBlockNum < pageBlockTotalNum && <div onClick={nextPageBlock}
                                                              className={style.arrow}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                      width="12pt" height="12pt"

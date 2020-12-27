@@ -5,16 +5,24 @@ import FormControl from "../common/formsControl/FormControl";
 import {maxLength, required} from "../../utilites/validators";
 import Button from "../common/button/Button";
 import {Redirect} from 'react-router-dom'
-import {login} from "../../redux/auth-reducer";
-import {connect} from "react-redux";
-import {TGlobalState} from "../../redux/redux-store";
+import {useDispatch, useSelector} from "react-redux";
+import {getCaptchaURL, getIsAuth} from "../../redux/selectors";
+import { login } from '../../redux/auth-reducer';
+
+//types
+type TLoginFormData = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
+}
+type TFormOwnProps = {
+    captchaURL: string | null
+}
 
 const maxLength50 = maxLength(50);
 const maxLength6 = maxLength(6);
 
-type TFormOwnProps = {
-    captchaURL: string | null
-}
 const LoginForm: React.FC<InjectedFormProps<TLoginFormData, TFormOwnProps> & TFormOwnProps> = (props) => {
     return (
         <form className={style.loginForm} onSubmit={props.handleSubmit}>
@@ -70,28 +78,17 @@ const LoginForm: React.FC<InjectedFormProps<TLoginFormData, TFormOwnProps> & TFo
 
 const LoginReduxForm = reduxForm<TLoginFormData, TFormOwnProps>({form: 'login'})(LoginForm);
 
-type TStateProps = {
-    captchaURL: string | null
-    isAuth: boolean
-}
-type TDispatchProps = {
-    login: (email: string, password: string, rememberMe: boolean, captcha: string) => void
-}
-type TOwnProps = {}
-type TProps = TStateProps & TDispatchProps & TOwnProps
+const Login: React.FC = () => {
+    //useSelectorHooks
+    const isAuth = useSelector(getIsAuth)
+    const captchaURL = useSelector(getCaptchaURL)
+    //useDispatchHook
+    const dispatch = useDispatch()
 
-type TLoginFormData = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: string
-}
-
-const Login: React.FC<TProps> = (props) => {
     const onSubmit = (formData: TLoginFormData) => {
-        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+        dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to="/profile"/>
     }
 
@@ -100,15 +97,9 @@ const Login: React.FC<TProps> = (props) => {
             <div className={style.login}>
                 <h2 className={style.title}>Authorization</h2>
                 <hr/>
-                <LoginReduxForm onSubmit={onSubmit} captchaURL={props.captchaURL}/>
+                <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
             </div>
         </div>
     )
 }
-
-const mapStateToProps = (state: TGlobalState): TStateProps => ({
-    captchaURL: state.auth.captchaURL,
-    isAuth: state.auth.isAuth
-})
-
-export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {login})(Login)
+export default Login

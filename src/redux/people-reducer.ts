@@ -21,9 +21,10 @@ let initialState = {
     numberOfUsersOnPage: 6,
     isFetching: true,
     followingInProgress: [] as Array<number>, // Array of User's Ids
-filter: {
-        term: ''
-}
+    filter: {
+        term: '',
+        friend: null as boolean | null
+    }
 }
 export type InitialStateType = typeof initialState
 export type TFilter = typeof initialState.filter
@@ -84,8 +85,8 @@ const peopleReducer = (state = initialState, action: TActions): InitialStateType
             }
         case SET_FILTER:
             return {
-            ...state, filter:action.payload
-        }
+                ...state, filter: action.payload
+            }
         default:
             return state;
     }
@@ -107,17 +108,17 @@ const actions = {
         inProgress,
         userId
     } as const),
-    setFilter: (termBody: string) => ({ type: SET_FILTER, payload: {term:termBody}}as const)
+    setFilter: (filter: TFilter) => ({type: SET_FILTER, payload: filter} as const)
 }
 
 // thunks
 type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
 
-export const requestUsers = (pageNumber: number, numberOfUsersOnPage: number, requestType: string, term: string): TThunk => async (dispatch) => {
+export const requestUsers = (pageNumber: number, numberOfUsersOnPage: number, requestType: string, filter: TFilter): TThunk => async (dispatch) => {
     dispatch(actions.toggleIsFetching(true));
     dispatch(actions.setCurrentPage(pageNumber));
-    dispatch(actions.setFilter(term));
-    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersOnPage, term);
+    dispatch(actions.setFilter(filter));
+    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersOnPage, filter.term, filter.friend);
     dispatch(actions.setTotalUsers(response.totalCount));
     requestType === "SET" && dispatch(actions.setUsers(response.items));
     requestType === "ADD" && dispatch(actions.addUsers(response.items));
