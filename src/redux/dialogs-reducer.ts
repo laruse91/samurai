@@ -1,18 +1,18 @@
-import {TInitialStateMessage, TInitialStateUserType} from "../types/types";
-import {TCombineActions} from "./redux-store";
+import {TInitialStateMessage, TInitialStateUserType} from '../types/types'
+import {TCombineActions} from './redux-store'
 
-const SEND_NEW_MESSAGE = 'dialogs/SEND-NEW-MESSAGE';
+const SEND_NEW_MESSAGE = 'dialogsPage/SEND-NEW-MESSAGE'
 
 export type TInitialState = {
     messages: Array<TInitialStateMessage>
     users: Array<TInitialStateUserType>
 }
-let initialState: TInitialState = {
+const initialState: TInitialState = {
     messages: [
 
-        {id: 1, content: 'Hi my friend',},
-        {id: 2, content: 'How are you',},
-        {id: 3, content: 'What\'s news',}
+        {userId: 1, message: 'Hi my friend', photo: null, userName: 'Anna Stephany'},
+        {userId: 2, message: 'How are you', photo: null, userName: 'Helena Jackly'},
+        {userId: 3, message: 'What\'s news', photo: null, userName: 'Ravi Shroff'}
     ],
     users: [
         {
@@ -53,17 +53,19 @@ let initialState: TInitialState = {
     ],
 }
 
+let newMessage: TInitialStateMessage
+
 const dialogsReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
         case SEND_NEW_MESSAGE:
-        type NewMessageType = null | {
-            id: number
-            content: string
-        }
-            const newMessage: NewMessageType = {
-                id: state.messages[state.messages.length - 1].id + 1,
-                content: action.newMessageBody
-            };
+
+            newMessage = {
+                userId: state.messages[state.messages.length - 1].userId + 1,
+                message: action.newMessageBody,
+                photo: null,
+                userName: 'me'
+
+            }
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
@@ -76,11 +78,11 @@ const dialogsReducer = (state = initialState, action: TActions): TInitialState =
 // ActionCreators
 type TActions = TCombineActions<typeof actions>
 
-export const actions= {
-     sendNewMessage : (newMessageBody: string) => ({
+export const actions = {
+    sendNewMessage: (newMessageBody: string) => ({
         type: SEND_NEW_MESSAGE,
         newMessageBody
-    }as const)
+    } as const)
 }
 
-export default dialogsReducer;
+export default dialogsReducer

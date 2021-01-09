@@ -4,10 +4,10 @@
 }
 
 .input {
-    border: solid 1px #a09e9e;
-    border-radius: 5px;
+    border: none;
+    border-bottom: solid 1px #a09e9e;
     width: 100%;
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
     padding: 5px 0 5px 10px;
     align-content: center;
@@ -23,6 +23,6 @@
     font-size: 12px;
 }
 .wrong {
-    border: solid 2px red;
-    border-radius: 5px;
+    border-bottom: solid 2px red;
+    /*border-radius: 5px;*/
 }

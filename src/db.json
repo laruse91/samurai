@@ -1,9 +1,66 @@
+
 {
+  "navItems": [
+    {
+      "id": 1,
+      "item": "NewsFeed",
+      "path": "/newsfeed",
+      "icon": "https://1.downloader.disk.yandex.ru/preview/4ad6c195b4b97fbaf16c6c5009dc29ebb1fef190ea82dc4ab13bb959b847d072/inf/_nIwz3yDgHVd9X-fAm-3pPRsxmgkPSPAc2pIRXeJEf-QcjhB3EWso4a34QzrXm-Bx_Ot4VNQM2NoRrcNedpFrg%3D%3D?uid=81903395&filename=user.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 2,
+      "item": "Profile",
+      "path": "/profile",
+      "icon": "https://1.downloader.disk.yandex.ru/preview/4ad6c195b4b97fbaf16c6c5009dc29ebb1fef190ea82dc4ab13bb959b847d072/inf/_nIwz3yDgHVd9X-fAm-3pPRsxmgkPSPAc2pIRXeJEf-QcjhB3EWso4a34QzrXm-Bx_Ot4VNQM2NoRrcNedpFrg%3D%3D?uid=81903395&filename=user.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 3,
+      "item": "Dialogs",
+      "path": "/dialogs",
+      "icon": "<svg height=\"512\" viewBox=\"0 0 512 512\" width=\"512\" fill=\"#46CEFF\"\n     xmlns=\"http://www.w3.org/2000/svg\">\n    <g>\n        <g>\n            <path d=\"m444.555 191.141h-238c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h238c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z\"/>\n            <path d=\"m444.555 248.474h-238c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h238c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z\"/>\n            <path d=\"m444.555 305.807h-238c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h238c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z\"/>\n            <path d=\"m468.378 125.549h-285.646c-24.053 0-43.622 19.568-43.622 43.622v179.617c0 24.053 19.568 43.622 43.622 43.622h200.211c2.141 0 4.13.963 5.458 2.644l64.655 81.853c2.548 3.226 6.266 4.984 10.159 4.984 1.447 0 2.919-.243 4.363-.745 5.327-1.85 8.769-6.689 8.769-12.328v-77.153c20.225-3.778 35.653-21.659 35.653-42.877v-179.618c0-24.053-19.568-43.621-43.622-43.621zm28.622 223.239c0 15.577-12.673 28.412-28.25 28.61-4.104.053-7.404 3.395-7.404 7.5v78.305l-61.174-77.447c-4.189-5.305-10.469-8.347-17.229-8.347h-200.211c-15.782 0-28.622-12.84-28.622-28.622v-179.617c0-15.782 12.839-28.622 28.622-28.622h285.646c15.782 0 28.622 12.84 28.622 28.622z\"/>\n            <path d=\"m110.494 249.561c-5.13.728-9.724 3.369-12.936 7.435l-51.521 65.226v-65.371c0-4.105-3.3-7.447-7.404-7.5-13.031-.166-23.633-10.903-23.633-23.935v-156.361c0-13.203 10.742-23.945 23.945-23.945h248.663c13.203 0 23.945 10.742 23.945 23.945v28.932c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-28.932c0-21.474-17.471-38.945-38.945-38.945h-248.663c-21.474 0-38.945 17.471-38.945 38.945v156.361c0 18.667 13.371 34.438 31.038 38.124v66.366c0 5.328 3.252 9.901 8.286 11.649 1.365.474 2.755.704 4.123.704 3.677 0 7.192-1.662 9.599-4.709l56.284-71.256c.812-1.029 1.975-1.697 3.273-1.882 4.101-.582 6.954-4.379 6.371-8.48-.582-4.101-4.373-6.956-8.48-6.371z\"/>\n        </g>\n    </g>\n</svg>"
+    },
+    {
+      "id": 4,
+      "item": "Friends",
+      "path": "/friends",
+      "icon": "https://1.downloader.disk.yandex.ru/preview/b36518a172fdb33d1323b16d7db3887a23f7afcaef04f4798b440c28a4abe2c8/inf/wHmwxoeDZ1EursM1j_mVtYFhjPhj2ysFi_ybQPJ7XLJCHXGbdoj9S0zC4EYOye1dOR1JJOkjqCT1d3L3713Dig%3D%3D?uid=81903395&filename=friends.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 5,
+      "item": "Group chat",
+      "path": "/chat",
+      "icon": "https://3.downloader.disk.yandex.ru/preview/2a644dae72209417e955453800aca87613c68f4a6fd2045afa8948090e1e48a7/inf/GJJZycv9mnnjhb7WDUbx-5-MW2hrCrZu2muvennxKZc_5-4Lb8UCc7afcDFQr3L2JxjqV9Segq5l5m-XC9c--A%3D%3D?uid=81903395&filename=group.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1263x577"
+    },
+    {
+      "id": 6,
+      "item": "Music",
+      "path": "/music",
+      "icon": "https://3.downloader.disk.yandex.ru/preview/00102055e62fb4fca11adbc3c0541f1d92b4bbe2b977ec379e7cf661e15ab636/inf/P2IxGmjJswHY_YhgPQPWbe34X5PFwn5JNXdKHJPp3HDvB_LXBFmukuNluinJStGaDf12Exu_tNUH6rLuzT9HrQ%3D%3D?uid=81903395&filename=rounded-headphones.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 7,
+      "item": "Videos",
+      "path": "/videos",
+      "icon": "https://1.downloader.disk.yandex.ru/preview/5f0431dd36d1b1387009405ad50cac96bbb9d795c01b00f63518db82af8e5ff1/inf/TjgLze1lPAHJwH8S5laVlfRsxmgkPSPAc2pIRXeJEf82IjwtATNFYvSthp59718qbmy2A3WTtn9YnI6tnjVs3A%3D%3D?uid=81903395&filename=video-player.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 8,
+      "item": "People",
+      "path": "/people",
+      "icon": "https://1.downloader.disk.yandex.ru/preview/bb491180647ec3a663fd43bb7540da8979b7ca552bd1a91505820bdff4ccc804/inf/-Z8m4L95CcRZeqDc99Pc9QolLid69i7r8hhjvKb3fPP4xZkLB2ThIdlPD82ZQGf2HF5q-R5vQ0fubgXqEqbLPQ%3D%3D?uid=81903395&filename=dossier.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    },
+    {
+      "id": 9,
+      "item": "Koronavirus",
+      "path": "/koronavirus",
+      "icon": "https://2.downloader.disk.yandex.ru/preview/562997694f10438c040f5270b6d744b69b5082d13f16cc05c398478dc24e74fd/inf/qy8k069zKvO4PXtGCuMnoWJ4Imw0DFeONjYMxkfQ_5w0xv-rHHfM7wFp6LkDtsvNCk01QW8juDNVpPOY78iuYQ%3D%3D?uid=81903395&filename=virus.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+    }
+  ],
   "users": [
     {
       "id": 1,
-      "login" : "helenajackly",
-      "email" : "helenajackly@info.com",
+      "login": "helenajackly",
+      "email": "helenajackly@info.com",
       "name": "Helena",
       "lastName": "Jackly",
       "status": "What is a beautiful day",
@@ -53,8 +110,8 @@
     },
     {
       "id": 2,
-      "login" : "ravishroff",
-      "email" : "ravishroff@info.com",
+      "login": "ravishroff",
+      "email": "ravishroff@info.com",
       "name": "Ravi",
       "lastName": "Shroff",
       "status": "Be happy - do not worry",
@@ -104,8 +161,8 @@
     },
     {
       "id": 3,
-      "login" : "redahamidi",
-      "email" : "redahamidi@info.com",
+      "login": "redahamidi",
+      "email": "redahamidi@info.com",
       "name": "Reda",
       "lastName": "Hamidi",
       "status": "I do not know who is who",
@@ -155,8 +212,8 @@
     },
     {
       "id": 4,
-      "login" : "annastephany",
-      "email" : "annastephany@info.com",
+      "login": "annastephany",
+      "email": "annastephany@info.com",
       "name": "Anna",
       "lastName": "Stephany",
       "status": "I like music",
@@ -206,8 +263,8 @@
     },
     {
       "id": 5,
-      "login" : "andrewdoet",
-      "email" : "andrewdoet@info.com",
+      "login": "andrewdoet",
+      "email": "andrewdoet@info.com",
       "name": "Andrew",
       "lastName": "Doet",
       "status": "I am a BigBoss",
@@ -257,8 +314,8 @@
     },
     {
       "id": 6,
-      "login" : "alexkozlov",
-      "email" : "alexkozlov@info.com",
+      "login": "alexkozlov",
+      "email": "alexkozlov@info.com",
       "name": "Alex",
       "lastName": "Kozlov",
       "status": "Hello world",
@@ -308,8 +365,8 @@
     },
     {
       "id": 7,
-      "login" : "johnwick",
-      "email" : "johnwick@info.com",
+      "login": "johnwick",
+      "email": "johnwick@info.com",
       "name": "John",
       "lastName": "Wick",
       "status": "Continental hotel",
@@ -359,8 +416,8 @@
     },
     {
       "id": 8,
-      "login" : "harrygrotter",
-      "email" : "harrygrotter@info.com",
+      "login": "harrygrotter",
+      "email": "harrygrotter@info.com",
       "name": "Harry",
       "lastName": "Grotter",
       "status": "Magic is my life",
@@ -410,8 +467,8 @@
     },
     {
       "id": 9,
-      "login" : "josianneallo",
-      "email" : "josianneallo@info.com",
+      "login": "josianneallo",
+      "email": "josianneallo@info.com",
       "name": "Josianne",
       "lastName": "Allo",
       "status": "I like movies",
@@ -457,13 +514,12 @@
         }
       ],
       "background": "https://1.downloader.disk.yandex.ru/preview/bf4fa978ea19819ccd38550f656b87fbcd3f9dc6d160f95e86f5f47c6b30dc5d/inf/XkHtEEh8TKIvY6zDW_w5qEOaSKg6paG7VIk4SzfFoEl3lI8JDklBnaTS2XWFFQlkIMAX8DLmiiBPwOFYLhIuvw%3D%3D?uid=81903395&filename=people-bg.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1903x880",
-
       "photo": "https://1.downloader.disk.yandex.ru/preview/1efd4fe2c9731488d68a8d1f75c96b289dc96fc70fbd63c3f4b045f329134fe1/inf/qCiI4TLAEuzipTxCWkjqgy_f4cq9rQPmCm-Pa-vrURFN-SZJ7gh9ErXnBSRty7O-09gNBWbtZNvWSsbRTi1viQ%3D%3D?uid=81903395&filename=user-josianne-allo.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=941x870"
     },
     {
       "id": 10,
-      "login" : "olivierrossi",
-      "email" : "olivierrossi@info.com",
+      "login": "olivierrossi",
+      "email": "olivierrossi@info.com",
       "name": "Olivier",
       "lastName": "Rossi",
       "status": "I am going to Moscow",
@@ -509,13 +565,12 @@
         }
       ],
       "background": "https://2.downloader.disk.yandex.ru/preview/8098f84f7cec9c12edc1afaeb0669c924b1382a72a79f4f5f8719430fb00ceab/inf/LUR_3qy4iTUOFJptNYYidaz2HV4XE5p1Gn7CL_36cwpzDrDMV_-6YaJUe6z_M91fU85Bfe_eri9IJ4QvjogtHQ%3D%3D?uid=81903395&filename=profile-bg5.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x568",
-
       "photo": "https://1.downloader.disk.yandex.ru/preview/5312edb289b89e584071eb2c01a84d78c4195b5b2397cea4e239213ce04873cf/inf/TouDFDddapVY9inxZUwUgD6oJ--vd6z3W4nSzpWq_MyLAdxMSIiVB_I8UKaVmIZSjydaNuApGhiBoPhm867z7Q%3D%3D?uid=81903395&filename=user-olivier-rossi.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=941x870"
     },
     {
       "id": 12740,
-      "login" : "laruse91",
-      "email" : "laruse91@gmail.com",
+      "login": "laruse91",
+      "email": "laruse91@gmail.com",
       "name": "Ruslan",
       "lastName": "Lazarev",
       "status": "Hello world!",
@@ -564,7 +619,14 @@
       "photo": "https://1.downloader.disk.yandex.ru/preview/a08d096ff3f6c4a5dcfe6e6a70127563511dd90174d9ff073ab901cd84d8084a/inf/HjzCupAY4X3k9iABVZWEQBydGaV-aKZCsDrbQEGO7ZEGXirz7UEQ4vDrmp00dE6RWwnOaBb6MJOLf0uuiouuow%3D%3D?uid=81903395&filename=user-ruslan-lazarev.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1903x880"
     }
   ],
-  "mainInf": {
-    "totalUsers": 11
+  "profileContacts": {
+    "facebook": "https://1.downloader.disk.yandex.ru/preview/227b15d65b141ec72ed174bfb51d654caa2c93c4fe0b479b0e46aaa31c148dc2/inf/XzM7aO8XcUeMkH0ufW-WQF9ywsZV24-nPK7B4fxWKnC35VDPMo_0jNtdWD12Xoqln-9FMNURCLbSi__wsc6luw%3D%3D?uid=81903395&filename=facebook.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "github": "https://2.downloader.disk.yandex.ru/preview/8ff32b9fa2d7ae22da9bb8c2fd12a06697dc6e113191dfcc5adfd117bd8a11ee/inf/xQS2PJr-BarEkpMhHQdck7rr1S_laeQpvC2xHyDhFrfvD9m5Tnxqzd7U94GeAaQSY5Z38M6r73tlPOV9aRZsKQ%3D%3D?uid=81903395&filename=github.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978",
+    "instagram": "https://3.downloader.disk.yandex.ru/preview/ffbfe2a217dda9d4f5953a49f6f541e5a2b5054541b171bcc2a410d1e3713dc2/inf/XzM7aO8XcUeMkH0ufW-WQK5tMhmaTAM0MQx7bw0gUxULnFRxeJuSbBtCT8csYOaI6avb3wqJLThD3kd9yVHdqw%3D%3D?uid=81903395&filename=instagram.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "vk": "https://3.downloader.disk.yandex.ru/preview/f7bf645ac25b5c264c1904ef2bd2978a9e3c7c96ef57d0bd1cd2616c775e21dd/inf/XzM7aO8XcUeMkH0ufW-WQNfHA0hZPbybPIlYP8Mem-JyOyOlIaGmN7ZZD15XPDP5kPSoDfd8IThVZGMkDV8mJQ%3D%3D?uid=81903395&filename=vk.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "youtube": "https://1.downloader.disk.yandex.ru/preview/3cac5106921ecc8d27906a2e728d45c072e6e1e872747a848c946ba96ded4af7/inf/FYOK0BDbfEpIow67tQbnp0ds_4U_r2E6V83Hx6kaFaPqrJ8uGlzCjyxn5TCaErpFFcm_Hv-_5LSKzmWF_8A9Mg%3D%3D?uid=81903395&filename=youtube.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "website": "https://4.downloader.disk.yandex.ru/preview/c4f145726e40dde2d4111314d8a65d72b5b57a1de88010dfe01e3400cfb28518/inf/yoqqSExFzECP3tjteURNK_3Ep-1BTE4lk588mzAB-VxyJRoFDqetmaJxKIJbSv8YkKpI-ggx9BV8x1663M6JwA%3D%3D?uid=81903395&filename=global.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "mainLink": "https://3.downloader.disk.yandex.ru/preview/9291416905e13a21e9778541ae6bc3b17f3acaae704fa14757cf0b3269c3987a/inf/_N2mlniuOjj_0Hm7EB6m4uykTcaDAxq1MqvfkEE5SXOIPn-V8VnuNPDHVygbq9D7vHtT_T4lPuMb7_qcilzTMQ%3D%3D?uid=81903395&filename=link.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
+    "twitter": "https://1.downloader.disk.yandex.ru/preview/be01fe4bec6599dcbf3312d8580a3fab86b002315b0765e02b7099462d3ec8e1/inf/knUK4E4C4240csIVxR0xr3QG2m9uUmcc4a0vRmb08veiIJXp6Lp9RZPfp4C_26Gq0_App4Xjf1Yaru5ZZByYlg%3D%3D?uid=81903395&filename=twitter.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977"
   }
 }

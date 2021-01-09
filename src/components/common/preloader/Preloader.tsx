@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './Preloader.module.css'
 
-const Preloader: React.FC = () => {
+export const Preloader: React.FC = () => {
     return (
         <div className={style.preloader}>
             <div className={style.ripple}>
@@ -11,4 +11,3 @@ const Preloader: React.FC = () => {
         </div>
     )
 }
-export default Preloader

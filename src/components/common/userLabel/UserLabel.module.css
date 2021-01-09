@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.userDesc {
+.description {
     display: flex;
     flex-direction: column;
     padding: 0 10px;

@@ -1,12 +1,12 @@
-import {CaptchaResCode, ResultCode} from "../api/api";
-import {FormAction, stopSubmit} from "redux-form";
-import {TCombineActions, TGlobalState} from "./redux-store";
-import {ThunkAction} from "redux-thunk";
-import {authAPI} from "../api/authApi";
-import {securityAPI} from "../api/securityApi";
+import {CaptchaResCode, ResultCode} from '../api/api'
+import {FormAction, stopSubmit} from 'redux-form'
+import {TCombineActions, TGlobalState} from './redux-store'
+import {ThunkAction} from 'redux-thunk'
+import {authAPI} from '../api/authApi'
+import {securityAPI} from '../api/securityApi'
 
-const SET_AUTH_USER_DATA = 'auth/SET-AUTH-USER-DATA';
-const SET_CAPTCHA_URL = 'auth/SET-CAPTCHA-URL';
+const SET_AUTH_USER_DATA = 'auth/SET-AUTH-USER-DATA'
+const SET_CAPTCHA_URL = 'auth/SET-CAPTCHA-URL'
 
 let initialState = {
     userId: null as number | null,
@@ -29,7 +29,7 @@ const authReducer = (state = initialState, action: TActions): TInitialState => {
             }
 
         default:
-            return state;
+            return state
     }
 }
 // ActionCreators
@@ -61,15 +61,15 @@ export const authMe = (): TThunk => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): TThunk => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
     if (response.resultCode === ResultCode.Success) {
-        dispatch(authMe());
-        dispatch(actions.setCaptchaURL(null));
+        dispatch(authMe())
+        dispatch(actions.setCaptchaURL(null))
 
     } else if (response.resultCode === CaptchaResCode.CaptchaIsRequired) {
         dispatch(getCaptcha())
     } else {
-        const message = response.messages.length > 0 ? response.messages[0] : "Unknown error, please try again" +
-            " later";
-        dispatch(stopSubmit("login", {_error: message}))
+        const message = response.messages.length > 0 ? response.messages[0] : 'Unknown error, please try again' +
+            ' later'
+        dispatch(stopSubmit('login', {_error: message}))
     }
 }
 export const logout = (): TThunk => async (dispatch) => {
@@ -83,4 +83,4 @@ export const getCaptcha = (): TThunk => async (dispatch) => {
     dispatch(actions.setCaptchaURL(response.url))
 }
 
-export default authReducer;
+export default authReducer

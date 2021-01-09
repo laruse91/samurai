@@ -1,0 +1,32 @@
+.userStatus {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding:  0 20px;
+}
+
+.title {
+    font-size: 16px;
+    margin: 0 10px 0 0;
+
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.status p {
+    font-size: 16px;
+    border-bottom: 1px solid #50b5ff;
+    margin: 0;
+}
+
+.status input {
+    display: block;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #50b5ff;
+}

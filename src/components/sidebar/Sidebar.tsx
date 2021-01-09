@@ -1,25 +1,39 @@
-import React from 'react';
-import './Sidebar.css'
-import UserLabel from '../common/userLabel/UserLabel'
-import Preloader from "../common/preloader/Preloader";
-import {TUser} from "../../types/types";
+import React, {useEffect} from 'react'
+import style from './Sidebar.module.css'
+import {UserLabel} from '../common/userLabel/UserLabel'
+import {Preloader} from '../common/preloader/Preloader'
+import {selectFollowedUsers, selectIsAuth, selectNumberOfUsersAtSidebar, selectPageNumber} from '../../redux/selectors'
+import {useDispatch, useSelector} from 'react-redux'
+import {requestFollowedUsers} from '../../redux/sidebar-reducer'
 
-type TProps = {
-    users: Array<TUser>
-}
-const Sidebar = (props: TProps) => {
-    if (!props.users) {
+
+export const Sidebar: React.FC = React.memo(() => {
+// useSelector Hook
+    const users = useSelector(selectFollowedUsers)
+    const numberOfUsersAtSidebar = useSelector(selectNumberOfUsersAtSidebar)
+    const pageNumber = useSelector(selectPageNumber)
+    const isAuth = useSelector(selectIsAuth)
+
+// useDispatch Hook
+    const dispatch = useDispatch()
+
+// useEffect Hook
+
+    useEffect(() => {
+        dispatch(requestFollowedUsers(pageNumber, numberOfUsersAtSidebar))
+    }, [isAuth])
+
+    const userLabels = users && users.map(user => (<UserLabel key={user.id}
+                                                              userName={user.name}
+                                                              id={user.id}
+                                                              photo={user.photos.large}/>))
+    if (!users) {
         return <Preloader/>
     }
-    const users = props.users.map(user => (<UserLabel key={user.id}
-                                                      name={user.name}
-                                                      id={user.id}
-                                                      photo={user.photos.large}/>))
     return (
-        <aside className="sidebar">
-            {users}
+        <aside className={style.sidebar}>
+            {userLabels}
         </aside>
     )
-}
+})
 
-export default Sidebar;

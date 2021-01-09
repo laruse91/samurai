@@ -1,28 +1,35 @@
-import React from 'react';
+import React from 'react'
 import style from './UserLabel.module.css'
-import UserPhoto from "../userPhoto/UserPhoto";
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom'
+import {Avatar} from 'antd'
+import {styles} from '../../../styles/styles'
+
+//todo: find solution to solve TS errors while using antDesigned components
 
 type TProps = {
     id: number
     photo: string | null
-    name: string | null
+    userName: string
     info?: string | null
 }
 
-const UserLabel: React.FC<TProps> = (props) => {
+export const UserLabel: React.FC<TProps> = (props) => {
     const path = `/profile/${props.id}`
+
     return (
         <div className={style.userCard}>
             <NavLink to={path} className={style.userCard}>
-                <UserPhoto photo={props.photo}/>
-                <div className={style.userDesc}>
-                    <h4 className={style.userName}>{props.name}</h4>
-                    <span className={style.info}>{props.info != null ? props.info : 'information'}</span>
+                {props.photo
+                    // @ts-ignore
+                    ? <Avatar size={50} src={props.photo}/>
+                    // @ts-ignore
+                    : <Avatar size={50} style={styles.avatar}>{props.userName.charAt(0).toUpperCase()}</Avatar>
+                }
+                <div className={style.description}>
+                    <h3 className={style.userName}>{props.userName}</h3>
+                    <span className={style.info}>{props.info ? props.info : 'Front-end developer'}</span>
                 </div>
             </NavLink>
         </div>
     )
 }
-
-export default UserLabel;

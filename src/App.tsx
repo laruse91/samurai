@@ -1,75 +1,67 @@
-import React from 'react';
-import './App.css';
-import NavbarContainer from './components/navbar/NavbarContainer';
-import SidebarContainer from './components/sidebar/SidebarContainer';
-import Footer from './components/footer/Footer';
-import NewsFeedContainer from './components/newsFeed/NewsFeedContainer';
-import HeaderContainer from './components/header/HeaderContainer';
-import {Route, Redirect} from 'react-router-dom';
-import {connect} from "react-redux";
-import {initializeApp} from "./redux/app-reducer";
-import Preloader from "./components/common/preloader/Preloader";
-import {withReactSuspense} from "./components/hoc/withReactSuspense";
-import {TGlobalState} from "./redux/redux-store";
-import {People} from "./components/people/People";
+import React, {useEffect} from 'react'
+import './App.css'
+import 'antd/dist/antd.css'
+import {Sidebar} from './components/sidebar/Sidebar'
+import {Footer} from './components/footer/Footer'
+import NewsFeedContainer from './pages/newsFeedPage/NewsFeedContainer'
+import {Header} from './components/header/Header'
+import {Route} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {initializeApp} from './redux/app-reducer'
+import {Preloader} from './components/common/preloader/Preloader'
+import {withReactSuspense} from './hoc/withReactSuspense'
+import {PeoplePage} from './pages/peoplePage/PeoplePage'
+import {Navbar} from './components/navbar/Navbar'
+import {selectIsInitialized} from './redux/selectors'
+import  ProfileContainer  from './pages/profilePage/ProfileContainer'
 
 // React.lazy , Suspense
-const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContainer'));
+const DialogsPage = React.lazy(() => import('./pages/dialogsPage/DialogsPage'))
+const Login = React.lazy(() => import('./pages/loginPage/LoginPage'))
+const ErrorPage = React.lazy(() => import('./pages/errorPage/ErrorPage'))
+const ChatPage = React.lazy(() => import('./pages/chatPage/СhatPage'))
 
-const Login = React.lazy(() => import('./components/login/Login'));
+export const App: React.FC = React.memo(() => {
+//useSelector Hook
+    const isInitialized = useSelector(selectIsInitialized)
 
-const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
+//useDispatch Hook
+    const dispatch = useDispatch()
+    const initialize = () => dispatch(initializeApp())
 
+//useEffect Hooks
+    useEffect(() => {
+        initialize()
+    }, [])
 
-type TStateProps = {
-    initialized: boolean
-}
-type TDispatchProps = {
-    initializeApp: () => void
-}
-type TOwnProps = {}
-type TProps = TStateProps & TDispatchProps
+    const newsFeedPagePage = () => <NewsFeedContainer/>
+    const profilePage = () => <ProfileContainer/>
+    const dialogsPage = withReactSuspense(() => <DialogsPage/>)
+    const peoplePage = () => <PeoplePage/>
+    const loginPage = withReactSuspense(() => <Login/>)
+    const errorPage = withReactSuspense(() => <ErrorPage/>)
+    const chatPage = withReactSuspense(() => <ChatPage/>)
 
-class App extends React.Component<TProps> {
-    componentDidMount() {
-        this.props.initializeApp()
+    if (!isInitialized) {
+        return <Preloader/>
     }
+    return (
+        <div className='app'>
+            <Header/>
+            <Navbar/>
+            <main className='main'>
+                {/*<Route path='/' render={() => <Redirect to={"/profilePage"}/>}/>*/}
+                <Route path='/newsfeed' render={newsFeedPagePage}/>
+                <Route path='/profile/:userId?' render={profilePage}/>
+                <Route path='/dialogs' render={dialogsPage}/>
+                <Route path='/people' render={peoplePage}/>
+                <Route path='/login' render={loginPage}/>
+                <Route path='/chat' render={chatPage}/>
+                {/*<Route path='/*' render={errorPage}/>*/}
+            </main>
+            <Sidebar/>
+            {/*<Footer/>*/}
+        </div>
+    )
+})
 
-    render() {
-
-        const newsFeed = () => <NewsFeedContainer/>
-        const profile = withReactSuspense(() => <ProfileContainer/>)
-        const dialogs = withReactSuspense(() => <DialogsContainer/>)
-        const people = () => <People/>
-        const login = withReactSuspense(() => <Login/>)
-
-        if (!this.props.initialized) {
-            return <Preloader/>
-
-        }
-        return (
-            <div className='app'>
-                <HeaderContainer/>
-                <NavbarContainer/>
-                <main className='content'>
-                    {/*<Route path='/' render={() => <Redirect to={"/profile"}/>}/>*/}
-                    <Route path='/newsfeed' render={newsFeed}/>
-                    <Route path='/profile/:userId?' render={profile}/>
-                    <Route path='/dialogs' render={dialogs}/>
-                    <Route path='/people' render={people}/>
-                    <Route path='/login' render={login}/>
-                </main>
-                <SidebarContainer/>
-                <Footer/>
-            </div>
-        );
-    }
-}
-
-const mapStateToProps = (state: TGlobalState) => {
-    return {
-        initialized: state.app.initialized,
-    }
-}
-
-export default connect<TStateProps, TDispatchProps, TOwnProps, TGlobalState>(mapStateToProps, {initializeApp})(App);

@@ -1,24 +1,22 @@
 import React from 'react'
 import './Navbar.css'
-import NavItem from "./navItem/NavItem"
-import {TNavItem} from "../../types/types";
+import {NavItem} from './NavItem'
+import {selectNavItems} from '../../redux/selectors'
+import {useSelector} from 'react-redux'
 
-type TProps = {
-    navItems: Array<TNavItem>
-}
+export const Navbar: React.FC = () => {
+//useSelectorHook
+    const navItems = useSelector(selectNavItems)
 
-const Navbar = (props: TProps) => {
-
-    const navItems = props.navItems
-        .map(navItem => (<NavItem key ={navItem.id}
+    const navigation = navItems
+        .map(navItem => (<NavItem key={navItem.id}
                                   item={navItem.item}
                                   icon={navItem.icon}
                                   path={navItem.path}/>))
 
     return (
-        <nav className="nav">
-            {navItems}
+        <nav className='nav'>
+            {navigation}
         </nav>
     )
 }
-export default Navbar

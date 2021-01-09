@@ -1,12 +1,13 @@
-import React from 'react';
-import style from './Button.module.css';
+import React from 'react'
+import style from './Button.module.css'
 
 type TProps = {
     disabled?: boolean
     onClick?: ()=>void
+    type?:string
     button: string | null
 }
-const Button: React.FC<TProps> = (props) => {
+export const Button: React.FC<TProps> = (props) => {
 
     return (
         <div className={style.btnBlock}>
@@ -18,5 +19,3 @@ const Button: React.FC<TProps> = (props) => {
         </div>
     )
 }
-
-export default Button

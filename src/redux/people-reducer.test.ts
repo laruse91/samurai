@@ -1,22 +1,26 @@
-import peopleReducer, {actions, follow, InitialStateType, unfollow} from "./people-reducer";
-import {usersAPI} from "../api/usersApi";
-import {ResultCode, TResponse} from "../api/api";
+import peopleReducer, {actions, follow, InitialStateType, unfollow} from './people-reducer'
+import {usersAPI} from '../api/usersApi'
+import {ResultCode, TResponse} from '../api/api'
 
 let state: InitialStateType
 beforeEach(() => {
     state = {
-        users: [
-            {id: 1, name: "testName1", followed: false, status: 'testStatus', photos: {small: null, large: null}},
-            {id: 2, name: "testName2", followed: false, status: 'testStatus', photos: {small: null, large: null}},
-            {id: 3, name: "testName3", followed: true, status: 'testStatus', photos: {small: null, large: null}},
-            {id: 4, name: "testName4", followed: true, status: 'testStatus', photos: {small: null, large: null}}
+        peoplePage: [
+            {id: 1, name: 'testName1', followed: false, status: 'testStatus', photos: {small: null, large: null}},
+            {id: 2, name: 'testName2', followed: false, status: 'testStatus', photos: {small: null, large: null}},
+            {id: 3, name: 'testName3', followed: true, status: 'testStatus', photos: {small: null, large: null}},
+            {id: 4, name: 'testName4', followed: true, status: 'testStatus', photos: {small: null, large: null}}
         ],
         currentPage: 1,
         totalUsers: 0,
         numberOfUsersOnPage: 6,
+        numberOfUsersAtSidebar: 10,
         isFetching: true,
-        followingInProgress: []
-    }
+        followingInProgress: [],
+        filter: {
+            term: '',
+            friend: null
+        }}
 })
 
 //ActionCreators Tests
@@ -38,7 +42,7 @@ test('unfollowSuccess', () => {
 })
 
 // Thunks tests
-jest.mock("../api/usersApi")
+jest.mock('../api/usersApi')
 const usersAPIMock = usersAPI as jest.Mocked<typeof usersAPI>
 const response: TResponse = {
     resultCode: ResultCode.Success,

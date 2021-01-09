@@ -1,16 +1,17 @@
-import {TUser} from "../types/types";
-import {ThunkAction} from "redux-thunk";
-import {TCombineActions, TGlobalState} from "./redux-store";
-import {usersAPI} from "../api/usersApi";
+import {TUser} from '../types/types'
+import {ThunkAction} from 'redux-thunk'
+import {TCombineActions, TGlobalState} from './redux-store'
+import {usersAPI} from '../api/usersApi'
 
-const SET_USERS = 'sidebar/SET-USERS';
-const SET_TOTAL_USERS = 'sidebar/SET-TOTAL-USERS';
-const TOGGLE_IS_FETCHING = 'sidebar/TOGGLE-IS-FETCHING';
+const SET_USERS = 'sidebar/SET-USERS'
+const SET_TOTAL_USERS = 'sidebar/SET-TOTAL-USERS'
+const TOGGLE_IS_FETCHING = 'sidebar/TOGGLE-IS-FETCHING'
 
 let initialState = {
-    users: [] as Array<TUser>,
+    users: null as Array<TUser> | null,
     numberOfUsersAtSidebar: 10,
-    totalUsers: 10,
+    totalUsers: 0,
+    pageNumber: 1,
     isFetching: true,
 }
 export type TInitialState = typeof initialState
@@ -32,14 +33,14 @@ const sidebarReducer = (state = initialState, action: any): TInitialState => {
                 isFetching: action.isFetching,
             }
         default:
-            return state;
+            return state
     }
 }
 
 //ActionCreators
 type TActions =TCombineActions<typeof actions>
 
-const actions = {
+export const actions = {
      setTotalUsers : (totalUsers: number) => ({
         type: SET_TOTAL_USERS,
         totalUsers
@@ -57,14 +58,12 @@ const actions = {
 // thunk
 type TThunk = ThunkAction<void, TGlobalState, unknown, TActions>
 
-export const getUsers = (pageNumber: number, numberOfUsersAtSidebar: number): TThunk => async (dispatch) => {
-    dispatch(actions.toggleIsFetching(true));
-    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersAtSidebar)
-    dispatch(actions.setUsers(response.items));
-    dispatch(actions.setTotalUsers(response.totalCount));
-    dispatch(actions.toggleIsFetching(false));
-
-
+export const requestFollowedUsers = (pageNumber: number, numberOfUsersAtSidebar: number): TThunk => async (dispatch) => {
+    dispatch(actions.toggleIsFetching(true))
+    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersAtSidebar, '', true)
+    dispatch(actions.setUsers(response.items))
+    dispatch(actions.setTotalUsers(response.totalCount))
+    dispatch(actions.toggleIsFetching(false))
 }
 
-export default sidebarReducer;
+export default sidebarReducer

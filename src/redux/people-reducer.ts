@@ -1,30 +1,30 @@
-import {TUser} from "../types/types";
-import {TCombineActions, TGlobalState} from "./redux-store";
-import {ThunkAction} from "redux-thunk";
-import {usersAPI} from "../api/usersApi";
-import {ResultCode} from "../api/api";
+import {TUser} from '../types/types'
+import {TCombineActions, TGlobalState} from './redux-store'
+import {ThunkAction} from 'redux-thunk'
+import {usersAPI} from '../api/usersApi'
+import {ResultCode} from '../api/api'
 
-const FOLLOW = 'people/FOLLOW';
-const UNFOLLOW = 'people/UNFOLLOW';
-const SET_USERS = 'people/SET-USERS';
-const SET_CURRENT_PAGE = 'people/SET-CURRENT-PAGE';
-const TOGGLE_IS_FETCHING = 'people/TOGGLE-IS-FETCHING';
-const SET_TOTAL_USERS = 'people/SET-TOTAL-USERS';
-const TOGGLE_IS_FOLLOWING = 'people/TOGGLE-IS-FOLLOWING';
-const ADD_USERS = 'people/ADD-USERS';
-const SET_FILTER = 'people/SET-FILTER';
+const FOLLOW = 'peoplePage/FOLLOW'
+const UNFOLLOW = 'peoplePage/UNFOLLOW'
+const SET_USERS = 'peoplePage/SET-USERS'
+const SET_CURRENT_PAGE = 'peoplePage/SET-CURRENT-PAGE'
+const TOGGLE_IS_FETCHING = 'peoplePage/TOGGLE-IS-FETCHING'
+const SET_TOTAL_USERS = 'peoplePage/SET-TOTAL-USERS'
+const TOGGLE_IS_FOLLOWING = 'peoplePage/TOGGLE-IS-FOLLOWING'
+const ADD_USERS = 'peoplePage/ADD-USERS'
+const SET_FILTER = 'peoplePage/SET-FILTER'
 
 let initialState = {
     users: [] as Array<TUser>,
     currentPage: 1,
     totalUsers: 0,
-    numberOfUsersOnPage: 6,
+    numberOfUsersOnPage: 24,
     isFetching: true,
     followingInProgress: [] as Array<number>, // Array of User's Ids
     filter: {
         term: '',
         friend: null as boolean | null
-    }
+    },
 }
 export type InitialStateType = typeof initialState
 export type TFilter = typeof initialState.filter
@@ -38,9 +38,9 @@ const peopleReducer = (state = initialState, action: TActions): InitialStateType
                     if (user.id === action.userId) {
                         return {...user, followed: true}
                     }
-                    return user;
+                    return user
                 })
-            };
+            }
         case UNFOLLOW:
             return {
                 ...state,
@@ -48,9 +48,9 @@ const peopleReducer = (state = initialState, action: TActions): InitialStateType
                     if (user.id === action.userId) {
                         return {...user, followed: false}
                     }
-                    return user;
+                    return user
                 })
-            };
+            }
         case SET_USERS:
             return {
                 ...state,
@@ -88,14 +88,14 @@ const peopleReducer = (state = initialState, action: TActions): InitialStateType
                 ...state, filter: action.payload
             }
         default:
-            return state;
+            return state
     }
 }
 
 type TActions = TCombineActions<typeof actions>
 
 // ActionCreators
-const actions = {
+export const actions = {
     followSuccess: (userId: number) => ({type: FOLLOW, userId} as const),
     unfollowSuccess: (userId: number) => ({type: UNFOLLOW, userId} as const),
     setUsers: (users: Array<TUser>) => ({type: SET_USERS, users} as const),
@@ -115,30 +115,30 @@ const actions = {
 type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
 
 export const requestUsers = (pageNumber: number, numberOfUsersOnPage: number, requestType: string, filter: TFilter): TThunk => async (dispatch) => {
-    dispatch(actions.toggleIsFetching(true));
-    dispatch(actions.setCurrentPage(pageNumber));
-    dispatch(actions.setFilter(filter));
-    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersOnPage, filter.term, filter.friend);
-    dispatch(actions.setTotalUsers(response.totalCount));
-    requestType === "SET" && dispatch(actions.setUsers(response.items));
-    requestType === "ADD" && dispatch(actions.addUsers(response.items));
-    dispatch(actions.toggleIsFetching(false));
+    dispatch(actions.toggleIsFetching(true))
+    dispatch(actions.setCurrentPage(pageNumber))
+    dispatch(actions.setFilter(filter))
+    const response = await usersAPI.requestUsers(pageNumber, numberOfUsersOnPage, filter.term, filter.friend)
+    dispatch(actions.setTotalUsers(response.totalCount))
+    requestType === 'SET' && dispatch(actions.setUsers(response.items))
+    requestType === 'ADD' && dispatch(actions.addUsers(response.items))
+    dispatch(actions.toggleIsFetching(false))
 }
 export const follow = (userId: number): TThunk => async (dispatch) => {
-    dispatch(actions.toggleIsFollowing(true, userId));
-    const response = await usersAPI.follow(userId);
+    dispatch(actions.toggleIsFollowing(true, userId))
+    const response = await usersAPI.follow(userId)
     if (response.resultCode === ResultCode.Success) {
-        dispatch(actions.followSuccess(userId));
+        dispatch(actions.followSuccess(userId))
     }
-    dispatch(actions.toggleIsFollowing(false, userId));
+    dispatch(actions.toggleIsFollowing(false, userId))
 }
 export const unfollow = (userId: number): TThunk => async (dispatch) => {
-    dispatch(actions.toggleIsFollowing(true, userId));
-    const response = await usersAPI.unfollow(userId);
+    dispatch(actions.toggleIsFollowing(true, userId))
+    const response = await usersAPI.unfollow(userId)
     if (response.resultCode === ResultCode.Success) {
-        dispatch(actions.unfollowSuccess(userId));
+        dispatch(actions.unfollowSuccess(userId))
     }
-    dispatch(actions.toggleIsFollowing(false, userId));
+    dispatch(actions.toggleIsFollowing(false, userId))
 }
 
-export default peopleReducer;
+export default peopleReducer

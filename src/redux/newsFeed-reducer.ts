@@ -1,6 +1,6 @@
-import {TCombineActions} from "./redux-store";
+import {TCombineActions} from './redux-store'
 
-const PUBLIC_NEW_POST = 'PUBLIC-NEW-POST';
+const PUBLIC_NEW_POST = 'PUBLIC-NEW-POST'
 const DELETE_POST = 'DELETE-POST'
 
 const initialState = {
@@ -13,16 +13,16 @@ const initialState = {
                 photo: 'https://1.downloader.disk.yandex.ru/preview/bf4f83f40130cf368655b34f33653f6861b8622c245e9df017ce50c18cfcafb3/inf/YnQfhSEF1-F_NCFjrvvfQAolLid69i7r8hhjvKb3fPPxUJ77ls5NLGGPhdbcsdS03RzRa18sFj33-lri9jYFyQ%3D%3D?uid=81903395&filename=user-anna-stephani.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
             },
             time: '15:22',
-            content: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore" +
-                " minus sunt, nisi a officia sint impedit deserunt?",
-            contentMedia: "https://1.downloader.disk.yandex.ru/preview/09fd1c141117318e4ca4f493406772e425adb7eb753bb31525957a2c39a9d8df/inf/CY1FFKPhy-6B8XEIYFPWLnSB7vNpiLj_HqcdkhAWlgieFaEN_AXFt7agLJMi9PFdL5FauAxzBPcDFG-pgrlBXg%3D%3D?uid=81903395&filename=user-content-photo1.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625",
-            contentMedia1: "https://2.downloader.disk.yandex.ru/preview/e96d4c97644436165cd8e4ebe08bd5d88fd9b9c55b5c2c7d4b1f614aedf22182/inf/7oTJ3TgNqqKn71UDJH9zPQnmeWnx9do1ZU6v209lqLFg7NwuxMYBss08t3nnkoT5g5GW5I0QqstrNXNUIS8oqQ%3D%3D?uid=81903395&filename=user-content-photo2.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625",
-            contentMedia2: "https://2.downloader.disk.yandex.ru/preview/173672bbecb3522c3281c9200efcf987c41bf1c486f30b2be8ffe3f9ce9b0a44/inf/gXoyHb0-uGYIfLxwi-_V8wolLid69i7r8hhjvKb3fPPq16h6JLw_G14g9rQK3mJfMKzB6Zowtch0sB7_pWGqfA%3D%3D?uid=81903395&filename=user-content-photo3.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625",
+            content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore' +
+                ' minus sunt, nisi a officia sint impedit deserunt?',
+            contentMedia: 'https://1.downloader.disk.yandex.ru/preview/09fd1c141117318e4ca4f493406772e425adb7eb753bb31525957a2c39a9d8df/inf/CY1FFKPhy-6B8XEIYFPWLnSB7vNpiLj_HqcdkhAWlgieFaEN_AXFt7agLJMi9PFdL5FauAxzBPcDFG-pgrlBXg%3D%3D?uid=81903395&filename=user-content-photo1.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
+            contentMedia1: 'https://2.downloader.disk.yandex.ru/preview/e96d4c97644436165cd8e4ebe08bd5d88fd9b9c55b5c2c7d4b1f614aedf22182/inf/7oTJ3TgNqqKn71UDJH9zPQnmeWnx9do1ZU6v209lqLFg7NwuxMYBss08t3nnkoT5g5GW5I0QqstrNXNUIS8oqQ%3D%3D?uid=81903395&filename=user-content-photo2.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
+            contentMedia2: 'https://2.downloader.disk.yandex.ru/preview/173672bbecb3522c3281c9200efcf987c41bf1c486f30b2be8ffe3f9ce9b0a44/inf/gXoyHb0-uGYIfLxwi-_V8wolLid69i7r8hhjvKb3fPPq16h6JLw_G14g9rQK3mJfMKzB6Zowtch0sB7_pWGqfA%3D%3D?uid=81903395&filename=user-content-photo3.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
             likesCount: 0,
             shareCount: 0,
             commentsCount: 0,
         },
-    ] as Array<any> ,
+    ] as Array<any>,
     currentUser: {
         name: 'Helena',
         lastName: 'Jackly',
@@ -31,11 +31,12 @@ const initialState = {
     },
 }
 type TInitialState = typeof initialState
-
-const newsFeedReducer = (state = initialState, action: TActions): TInitialState  => {
+let newPost: any = {}
+const newsFeedReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
         case PUBLIC_NEW_POST:
-            const newPost = {
+
+             newPost = {
                 id: state.posts.length + 1,
                 user: {
                     name: state.currentUser.name,
@@ -50,33 +51,33 @@ const newsFeedReducer = (state = initialState, action: TActions): TInitialState 
                 likesCount: 0,
                 shareCount: 0,
                 commentsCount: 0,
-            };
+            }
             return {
                 ...state,
                 posts: [...state.posts, newPost]
-            };
+            }
         case DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => post.id !== action.postId)
             }
         default:
-            return state;
+            return state
     }
-};
+}
 
 // ActionCreators
 type TActions = TCombineActions<typeof actions>
 
 export const actions = {
-    publicNewPost : (newPostBody: string) => ({
+    publicNewPost: (newPostBody: string) => ({
         type: PUBLIC_NEW_POST,
         newPostBody
     } as const),
-    deletePost : (postId: number) => ({
+    deletePost: (postId: number) => ({
         type: DELETE_POST,
         postId
-    }as const)
+    } as const)
 }
 
-export default newsFeedReducer;
+export default newsFeedReducer

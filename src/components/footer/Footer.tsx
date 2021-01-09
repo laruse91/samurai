@@ -1,17 +1,17 @@
-import React from 'react';
-import './Footer.css';
+import React from 'react'
+import './Footer.css'
 
-const Footer = () => {
+export const Footer: React.FC = () => {
 
     return (
-        <footer className="footer">
+        <footer className='footer'>
 
-            <div className="footerBlock">
+            <div className='footerBlock'>
                 <span>Privacy Policy</span>
                 <span>Terms of Use</span>
             </div>
 
-            <div className="footerBlock">
+            <div className='footerBlock'>
                 <span> Copyright 2020</span>
                 <span>All Rights Reserved</span>
             </div>
@@ -19,5 +19,3 @@ const Footer = () => {
         </footer>
     )
 }
-
-export default Footer;

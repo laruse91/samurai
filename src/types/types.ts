@@ -1,4 +1,3 @@
-
 export type TPhotos = {
     large: string | null
     small: string | null
@@ -9,7 +8,7 @@ export type TUser = {
     status: string | null
     photos: TPhotos
     followed: boolean
-    location? : string
+    location?: string
 }
 export type TContacts = {
     github: string | null
@@ -27,17 +26,20 @@ export type TProfile = {
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string
-    contacts: TContacts
+    contacts: {[key: string]: string | null}
     photos: TPhotos
 }
 
 export type TInitialStateMessage = {
-    id: number
-    content: string
+    userId: number
+    photo: string | null
+    message: string
+    userName: string
 }
+
 export type TInitialStateUserType = {
-    name: string | null
-    lastName: string | null
+    name: string
+    lastName: string
     id: number
     photo: string | null
     info: string | null

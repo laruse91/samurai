@@ -1,16 +1,16 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-import newsFeedReducer from './newsFeed-reducer';
-import headerReducer from './header-reducer';
-import dialogsReducer from './dialogs-reducer';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
+import newsFeedReducer from './newsFeed-reducer'
+import headerReducer from './header-reducer'
+import dialogsReducer from './dialogs-reducer'
 import navbarReducer from './navbar-reducer'
 import sidebarReducer from './sidebar-reducer'
-import peopleReducer from './people-reducer';
-import profileReducer from './profile-reducer';
-import authReducer from './auth-reducer';
-import graphicsReducer from './graphics-reducer';
+import peopleReducer from './people-reducer'
+import profileReducer from './profile-reducer'
+import authReducer from './auth-reducer'
+import graphicsReducer from './graphics-reducer'
 import thunk from 'redux-thunk'
-import {reducer as formReducer} from 'redux-form';
-import appReducer from "./app-reducer";
+import {reducer as formReducer} from 'redux-form'
+import appReducer from './app-reducer'
 
 const rootReducer = combineReducers(
     {
@@ -26,7 +26,7 @@ const rootReducer = combineReducers(
         app: appReducer,
         graphics: graphicsReducer,
     }
-);
+)
 
 type TRootReducer = typeof rootReducer // (globalState: GlobalStateType)=> globalState
 export type TGlobalState = ReturnType<TRootReducer>
@@ -35,12 +35,12 @@ export type TGlobalState = ReturnType<TRootReducer>
 export type TCombineActions<T> = T extends { [key: string]: (...args: Array<any>) => infer U } ? U : never
 
 // @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
-));
+))
 
 // !! helper to see store in console
 // @ts-ignore
-window.__store__ = store;
+window.__store__ = store
 export default store
