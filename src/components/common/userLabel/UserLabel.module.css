@@ -5,20 +5,43 @@
     justify-items: center;
     height: 50px;
     cursor: pointer;
+    overflow: hidden;
+}
+.userPhoto {
+    height: 50px;
+    width: 50px;
 }
 
 .description {
     display: flex;
     flex-direction: column;
     padding: 0 10px;
+    overflow: hidden;
+
+}
+.description span {
+    font-size: 12px;
 }
 
 .userName {
     font-size: 14px;
     margin: 2px 0;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .info {
     color: #777d74;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive */
+
+/* 992px - 1200px */
+@media screen and (max-width: 1320px) {
+    .userPhoto {
+        margin-left: 5px;
+    }
 }

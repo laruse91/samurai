@@ -1,0 +1,61 @@
+.auth {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    text-decoration: none;
+    font-size: 16px;
+    align-items: center;
+}
+
+.userPhoto {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+}
+
+.userName {
+    align-self: flex-start;
+    border-bottom: 1px solid;
+    transition: all 0.2s ease;
+}
+
+.logOut {
+    position: absolute;
+    bottom: 12px;
+    right: 0;
+    font-size: 12px;
+    padding-left: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sign {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.signIn {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #2d2d2c;
+    transition: all 0.2s ease;
+}
+
+.line {
+    background-color: #2d2d2c;
+    height: 1px;
+}
+
+.icon {
+    font-size: 18px;
+    color: #2d2d2c;
+}
+
+.userName:hover, .logOut:hover, .signIn:hover {
+    color: #40a9ff;
+}

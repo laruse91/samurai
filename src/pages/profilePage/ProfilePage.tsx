@@ -1,22 +1,30 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import style from './ProfilePage.module.css'
 import {Preloader} from '../../components/common/preloader/Preloader'
-import ProfileStatus from './profileStatus/ProfileStatus'
+import {ProfileStatus} from './profileStatus/ProfileStatus'
 import {AboutMe} from './aboutMe/AboutMe'
 import AboutMeReduxForm from './aboutMe/AboutMeForm'
-import {TProfile} from '../../types/types'
 import {styles} from '../../styles/styles'
 import {Avatar, Image} from 'antd'
+import {OtherInfo} from './otherInfo/OtherInfo'
+import {NewPostForm} from '../../components/posts/NewPostForm'
+import {useSelector} from 'react-redux'
+import {
+    selectBackgrounds,
+    selectPosts,
+    selectProfile,
+    selectProfileContactsIcons,
+    selectProfileStatus
+} from '../../redux/selectors'
+import {PostBlock} from '../../components/posts/PostBlock'
+import {TPost} from '../../redux/posts-reducer'
 
 type TProps = {
-    profile: TProfile | null
-    status: string
     isOwner: boolean
-    background: string
     updateUserStatus: (status: string) => void
     saveUserPhoto: (file: File) => void
     saveMyProfile: (formData: TAboutMeFormData) => Promise<void>
-    profileContacts: { [key: string]: string }
+
 }
 export type TAboutMeFormData = {
     aboutMe: string
@@ -26,11 +34,22 @@ export type TAboutMeFormData = {
     contacts: { [key: string]: string | null }
 }
 
-export const ProfilePage: React.FC<TProps> = (props) => {
-
+export const ProfilePage: React.FC<TProps> = React.memo((props) => {
+    //useSelector Hook
+    const posts = useSelector(selectPosts)
+    const profile = useSelector(selectProfile)
+    const profileStatus = useSelector(selectProfileStatus)
+    const profileContactsIcons = useSelector(selectProfileContactsIcons)
+    const background = useSelector(selectBackgrounds)
 //useState Hook
     const [editMode, setEditMode] = useState(false)
     const activateEditMode = () => setEditMode(true)
+
+    const [myPosts, setMyPost] = useState([] as TPost[])
+    useEffect(() => {
+        profile &&
+        setMyPost(posts.filter(post => post.userId === profile.userId))
+    }, [profile, posts])
 
 //submit to redux-form
     const onSubmit = (formData: TAboutMeFormData) => {
@@ -41,15 +60,15 @@ export const ProfilePage: React.FC<TProps> = (props) => {
             }
         )
     }
-    //initialValues for redux-form
+//initialValues for redux-form
     const getInitialValues = () => {
         let initialValues = {}
         return initialValues = {
-            aboutMe: props.profile?.aboutMe,
-            lookingForAJob: props.profile?.lookingForAJob,
-            lookingForAJobDescription: props.profile?.lookingForAJobDescription,
-            fullName: props.profile?.fullName,
-            contacts: props.profile?.contacts
+            aboutMe: profile?.aboutMe,
+            lookingForAJob: profile?.lookingForAJob,
+            lookingForAJobDescription: profile?.lookingForAJobDescription,
+            fullName: profile?.fullName,
+            contacts: profile?.contacts
 
         }
     }
@@ -58,8 +77,17 @@ export const ProfilePage: React.FC<TProps> = (props) => {
         event.target.files?.length && props.saveUserPhoto(event.target.files[0])
     }
 
-    if (!props.profile) {
-        return <Preloader/>
+    const usersPosts = myPosts.length > 0 && myPosts.map(post => {
+        return (
+            profile && <PostBlock key={post.id} post={post}
+                                  userName={profile.fullName}
+                                  userPhoto={profile.photos.large}/>)
+
+    })
+
+
+    if (!profile) {
+        return <div className={style.profile}><Preloader/></div>
     }
 //todo: avatar TS
 
@@ -67,27 +95,27 @@ export const ProfilePage: React.FC<TProps> = (props) => {
         <div className={style.profile}>
             <section className={style.userInfo}>
                 <div className={style.topSection}>
-                    <img className={style.background} src={props.background} alt='ico'/>
+                    <img className={style.background} src={background} alt='ico'/>
 
                     <div className={style.userPhoto}>
-                        {props.profile.photos.large
+                        {profile.photos.large
                             // @ts-ignore
-                            ? <Avatar size={120} src={<Image src={props.profile.photos.large}/>}/>
+                            ? <Avatar size={120} src={<Image src={profile.photos.large}/>}/>
                             // @ts-ignore
                             : <Avatar size={120} style={styles.avatar}
-                                      className={style.userPhoto}>{props.profile.fullName.charAt(0).toUpperCase()}</Avatar>
+                                      className={style.userPhoto}>{profile.fullName ? profile.fullName.charAt(0).toUpperCase() : 'User'}</Avatar>
                         }
                     </div>
-                    <h1 className={style.userName}>{props.profile.fullName}</h1>
+                    <h1 className={style.userName}>{profile.fullName}</h1>
                 </div>
 
                 <div className={style.bottomSection}>
-                    <ProfileStatus status={props.status}
+                    <ProfileStatus status={profileStatus} isOwner={props.isOwner}
                                    updateUserStatus={props.updateUserStatus}/>
                     <div className={style.photoInput}>
                         {editMode &&
                         <input type='file' onChange={saveUserPhoto} className={style.input}
-                               placeholder={props.profile.photos.large
+                               placeholder={profile.photos.large
                                    ? 'Update photo'
                                    : 'Download photo'}/>
                         }
@@ -96,20 +124,29 @@ export const ProfilePage: React.FC<TProps> = (props) => {
             </section>
 
             {!editMode
-                ? <AboutMe profile={props.profile}
+                ? <AboutMe profile={profile}
                            activateEditMode={activateEditMode}
                            isOwner={props.isOwner}
-                           profileContacts={props.profileContacts}/>
+                           profileContactsIcons={profileContactsIcons}/>
 
                 : <AboutMeReduxForm
-                    profile={props.profile}
+                    profile={profile}
                     onSubmit={onSubmit}
                     initialValues={getInitialValues()}
                 />
             }
+
+            <section className={style.activity}>
+                <div><OtherInfo/></div>
+                <div className={style.posts}>
+                   {props.isOwner && <NewPostForm/>}
+                   {myPosts.length === 0 ? null : usersPosts}
+
+                </div>
+            </section>
         </div>
     )
-}
+})
 
 
 

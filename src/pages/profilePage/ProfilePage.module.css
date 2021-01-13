@@ -2,6 +2,7 @@
     grid-area: 1 / 2 / 1 / 3;
     margin: 20px auto;
     border-radius: 5px;
+    width: 100%;
 }
 
 .userInfo {
@@ -62,7 +63,17 @@
     width: 250px;
 }
 
-
+.activity {
+    margin: 20px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 20px;
+}
+.posts {
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-gap: 20px;
+}
 /* Responsive */
 
 /* 992px - 1200px */

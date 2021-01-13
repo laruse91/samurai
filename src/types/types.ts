@@ -30,20 +30,6 @@ export type TProfile = {
     photos: TPhotos
 }
 
-export type TInitialStateMessage = {
-    userId: number
-    photo: string | null
-    message: string
-    userName: string
-}
-
-export type TInitialStateUserType = {
-    name: string
-    lastName: string
-    id: number
-    photo: string | null
-    info: string | null
-}
 export type TNavItem = {
     id: number
     item: string
@@ -51,3 +37,16 @@ export type TNavItem = {
     icon: string
 }
 
+export type TInitialStateMessage = {
+    message: string,
+    photo:string | null,
+    userId: 2,
+    userName: string
+}
+export type TAuthorizedUser = {
+    userId: number | null
+    login: string | null
+    email: string | null
+    userPhoto: string | null
+    userName: string | null
+}

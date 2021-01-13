@@ -18,14 +18,8 @@ export const selectPageNumber = (state: TGlobalState) => {
 export const selectUsers = (state: TGlobalState) => {
     return state.peoplePage.users
 }
-export const selectCurrentPage = (state: TGlobalState) => {
-    return state.peoplePage.currentPage
-}
 export const selectTotalUsers = (state: TGlobalState) => {
     return state.peoplePage.totalUsers
-}
-export const selectNumberOfUsersOnPage = (state: TGlobalState) => {
-    return state.peoplePage.numberOfUsersOnPage
 }
 export const selectIsFetching = (state: TGlobalState) => {
     return state.peoplePage.isFetching
@@ -44,17 +38,8 @@ export const selectCaptchaURL = (state: TGlobalState) => {
 export const selectIsAuth = (state: TGlobalState) => {
     return state.auth.isAuth
 }
-export const selectLogin = (state: TGlobalState) => {
-    return state.auth.login
-}
-export const selectUserId = (state: TGlobalState) => {
-    return state.auth.userId
-}
-export const email = (state: TGlobalState) => {
-    return state.auth.email
-}
-export const selectUserPhoto = (state: TGlobalState) => {
-    return state.auth.userPhoto
+export const selectAuthorizedUser = (state: TGlobalState) => {
+    return state.auth.authorizedUser
 }
 
 // dialogsPage
@@ -63,6 +48,9 @@ export const selectMessages = (state: TGlobalState) => {
 }
 export const selectMessUsers = (state: TGlobalState) => {
     return state.dialogsPage.users
+}
+export const selectCompanions = (state: TGlobalState) => {
+    return state.dialogsPage.companions
 }
 
 //navBar
@@ -82,8 +70,22 @@ export const selectProfile = (state: TGlobalState) => {
 export const selectProfileStatus = (state: TGlobalState) => {
     return state.profilePage.status
 }
+export const selectOtherInfo = (state: TGlobalState) => {
+    return state.profilePage.otherInfo
+}
+
 
 //graphics
 export const selectBackgrounds = (state: TGlobalState) => {
-    return state.graphics.backgrounds
+    return state.graphics.background
+}
+export const selectProfileContactsIcons = (state: TGlobalState) => {
+    return state.graphics.profileContactsIcons
+}
+//posts
+export const selectPosts = (state: TGlobalState) => {
+    return state.posts.posts
+}
+export const selectPostOwners = (state: TGlobalState) => {
+    return state.posts.postOwners
 }

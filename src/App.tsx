@@ -2,8 +2,7 @@ import React, {useEffect} from 'react'
 import './App.css'
 import 'antd/dist/antd.css'
 import {Sidebar} from './components/sidebar/Sidebar'
-import {Footer} from './components/footer/Footer'
-import NewsFeedContainer from './pages/newsFeedPage/NewsFeedContainer'
+import {NewsFeedPage} from './pages/newsFeedPage/NewsFeedPage'
 import {Header} from './components/header/Header'
 import {Route} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
@@ -34,7 +33,7 @@ export const App: React.FC = React.memo(() => {
         initialize()
     }, [])
 
-    const newsFeedPagePage = () => <NewsFeedContainer/>
+    const newsFeedPage = () => <NewsFeedPage/>
     const profilePage = () => <ProfileContainer/>
     const dialogsPage = withReactSuspense(() => <DialogsPage/>)
     const peoplePage = () => <PeoplePage/>
@@ -51,7 +50,7 @@ export const App: React.FC = React.memo(() => {
             <Navbar/>
             <main className='main'>
                 {/*<Route path='/' render={() => <Redirect to={"/profilePage"}/>}/>*/}
-                <Route path='/newsfeed' render={newsFeedPagePage}/>
+                <Route path='/newsfeed' render={newsFeedPage}/>
                 <Route path='/profile/:userId?' render={profilePage}/>
                 <Route path='/dialogs' render={dialogsPage}/>
                 <Route path='/people' render={peoplePage}/>

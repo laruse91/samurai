@@ -30,7 +30,7 @@ const LoginForm: React.FC<InjectedFormProps<TLoginFormData, TFormOwnProps> & TFo
                 <Field component={FormControl}
                        name='email'
                        type='text'
-                       placeholder='email'
+                       placeholder='E-mail'
                        error={props.error}
                        validate={[required, maxLength50]}
                 />
@@ -70,7 +70,7 @@ const LoginForm: React.FC<InjectedFormProps<TLoginFormData, TFormOwnProps> & TFo
 
             }
             <div className={style.input}>
-                <Button button={'LoginPage'}/>
+                <Button button={'Sign in'}/>
             </div>
         </form>
     )
@@ -95,8 +95,7 @@ const LoginPage: React.FC = () => {
     return (
         <div className={style.loginPage}>
             <div className={style.login}>
-                <h2 className={style.title}>Authorization</h2>
-                <hr/>
+                <h2>Authorization</h2>
                 <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
             </div>
         </div>

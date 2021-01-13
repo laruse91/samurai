@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
-import newsFeedReducer from './newsFeed-reducer'
+import postsReducer from './posts-reducer'
 import headerReducer from './header-reducer'
 import dialogsReducer from './dialogs-reducer'
 import navbarReducer from './navbar-reducer'
@@ -17,7 +17,7 @@ const rootReducer = combineReducers(
         header: headerReducer,
         navbar: navbarReducer,
         sidebar: sidebarReducer,
-        newsFeedPage: newsFeedReducer,
+        posts: postsReducer,
         dialogsPage: dialogsReducer,
         peoplePage: peopleReducer,
         profilePage: profileReducer,

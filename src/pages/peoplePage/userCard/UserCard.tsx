@@ -29,7 +29,7 @@ export const UserCard: React.FC<TProps> = (props) => {
                         // @ts-ignore
                         ? <Avatar size={100} src={props.user.photos.large}/>
                         // @ts-ignore
-                        : <Avatar size={100} gap={2} style={styles.avatar}>{props.user.name.charAt(0).toUpperCase()}</Avatar>
+                        : <Avatar size={100} gap={2} style={styles.avatar}>{props.user.name ? props.user.name.charAt(0).toUpperCase() : 'User'}</Avatar>
                     }
                 </NavLink>
                 <div className={style.btnBlock}>
@@ -51,7 +51,7 @@ export const UserCard: React.FC<TProps> = (props) => {
                 <NavLink to={path}>
                     <h3 className={style.userName}>{props.user.name}</h3>
                 </NavLink>
-                <p className={style.location}>{!props.user.location ? 'Russia Moscow' : props.user.location}</p>
+                <p className={style.location}>{!props.user.location ? 'Russia, Moscow' : props.user.location}</p>
                 <p className={style.status}>{props.user.status? props.user.status : 'React developer'}</p>
             </div>
         </div>

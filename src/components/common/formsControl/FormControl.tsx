@@ -9,8 +9,7 @@ const FormControl: React.FC<WrappedFieldProps> = ({input, meta: {touched, error}
     return (
         <div className={style.formControl}>
             <input className={style.input + ' ' + (hasError ? style.wrong : '')} {...input} {...props}
-                   autoFocus={true} autoComplete='current-password'
-            value = {input.value}/>
+                    autoComplete='current-password' value = {input.value}/>
 
             {hasError &&
             <div className={style.attention}>

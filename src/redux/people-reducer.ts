@@ -7,19 +7,16 @@ import {ResultCode} from '../api/api'
 const FOLLOW = 'peoplePage/FOLLOW'
 const UNFOLLOW = 'peoplePage/UNFOLLOW'
 const SET_USERS = 'peoplePage/SET-USERS'
-const SET_CURRENT_PAGE = 'peoplePage/SET-CURRENT-PAGE'
 const TOGGLE_IS_FETCHING = 'peoplePage/TOGGLE-IS-FETCHING'
 const SET_TOTAL_USERS = 'peoplePage/SET-TOTAL-USERS'
 const TOGGLE_IS_FOLLOWING = 'peoplePage/TOGGLE-IS-FOLLOWING'
 const ADD_USERS = 'peoplePage/ADD-USERS'
 const SET_FILTER = 'peoplePage/SET-FILTER'
 
-let initialState = {
+const initialState = {
     users: [] as Array<TUser>,
-    currentPage: 1,
     totalUsers: 0,
-    numberOfUsersOnPage: 24,
-    isFetching: true,
+    isFetching: false,
     followingInProgress: [] as Array<number>, // Array of User's Ids
     filter: {
         term: '',
@@ -61,11 +58,6 @@ const peopleReducer = (state = initialState, action: TActions): InitialStateType
                 ...state,
                 users: [...state.users, ...action.users]
             }
-        case SET_CURRENT_PAGE:
-            return {
-                ...state,
-                currentPage: action.PageNumber,
-            }
         case TOGGLE_IS_FETCHING:
             return {
                 ...state,
@@ -100,7 +92,6 @@ export const actions = {
     unfollowSuccess: (userId: number) => ({type: UNFOLLOW, userId} as const),
     setUsers: (users: Array<TUser>) => ({type: SET_USERS, users} as const),
     addUsers: (users: Array<TUser>) => ({type: ADD_USERS, users} as const),
-    setCurrentPage: (PageNumber: number) => ({type: SET_CURRENT_PAGE, PageNumber} as const),
     toggleIsFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const),
     setTotalUsers: (totalUsersNum: number) => ({type: SET_TOTAL_USERS, totalUsersNum} as const),
     toggleIsFollowing: (inProgress: boolean, userId: number) => ({
@@ -114,9 +105,8 @@ export const actions = {
 // thunks
 type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
 
-export const requestUsers = (pageNumber: number, numberOfUsersOnPage: number, requestType: string, filter: TFilter): TThunk => async (dispatch) => {
+export const requestUsers = (pageNumber: number, numberOfUsersOnPage: number, requestType: 'ADD' | 'SET', filter: TFilter): TThunk => async (dispatch) => {
     dispatch(actions.toggleIsFetching(true))
-    dispatch(actions.setCurrentPage(pageNumber))
     dispatch(actions.setFilter(filter))
     const response = await usersAPI.requestUsers(pageNumber, numberOfUsersOnPage, filter.term, filter.friend)
     dispatch(actions.setTotalUsers(response.totalCount))

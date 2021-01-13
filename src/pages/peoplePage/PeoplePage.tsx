@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import style from './PeoplePage.module.css'
 import {UserCard} from './userCard/UserCard'
 import {Preloader} from '../../components/common/preloader/Preloader'
@@ -7,25 +7,25 @@ import {SearchForm} from '../../components/common/searchForm/SearchForm'
 import {follow, requestUsers, TFilter, unfollow} from '../../redux/people-reducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {
-    selectCurrentPage,
     selectFilter,
     selectFollowingInProgress,
     selectIsFetching,
-    selectNumberOfUsersOnPage,
     selectTotalUsers,
     selectUsers
 } from '../../redux/selectors'
 import {useHistory} from 'react-router-dom'
 import * as queryString from 'querystring'
+import {Pagination} from 'antd'
 
 type TQueryParams = { term?: string, friend?: string, page?: string }
 
 export const PeoplePage: React.FC = React.memo(() => {
+//useState Hook
+    const [currentPage, setCurrentPage] = useState(1)
+    const [pageSize, setPageSize] = useState(10)
 //useSelector Hook
     const users = useSelector(selectUsers)
-    const currentPage = useSelector(selectCurrentPage)
     const totalUsers = useSelector(selectTotalUsers)
-    const numberOfUsersOnPage = useSelector(selectNumberOfUsersOnPage)
     const isFetching = useSelector(selectIsFetching)
     const followingInProgress = useSelector(selectFollowingInProgress)
     const filter = useSelector(selectFilter)
@@ -33,7 +33,7 @@ export const PeoplePage: React.FC = React.memo(() => {
     const dispatch = useDispatch()
 //useHistoryHook
     const history = useHistory()
-//useEffect Hooks
+// useEffect Hooks
     useEffect(() => {
         const parsed = queryString.parse(history.location.search.substr(1)) as TQueryParams
 
@@ -42,7 +42,6 @@ export const PeoplePage: React.FC = React.memo(() => {
 
         if (parsed.page) actualPage = Number(parsed.page)
         if (parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
-
         switch (parsed.friend) {
             case 'null':
                 actualFilter = {...actualFilter, friend: null}
@@ -54,10 +53,8 @@ export const PeoplePage: React.FC = React.memo(() => {
                 actualFilter = {...actualFilter, friend: true}
                 break
         }
-
-        dispatch(requestUsers(actualPage, numberOfUsersOnPage, 'SET', actualFilter))
+        dispatch(requestUsers(actualPage, pageSize, 'SET', actualFilter))
     }, [])
-
     useEffect(() => {
         const query: TQueryParams = {}
 
@@ -77,39 +74,57 @@ export const PeoplePage: React.FC = React.memo(() => {
     const unfollowUser = (userId: number) => {
         dispatch(unfollow(userId))
     }
-    const getPeople = (pageNum: number, requestType: string) => {
-        dispatch(requestUsers(pageNum, numberOfUsersOnPage, requestType, filter))
+
+    const onPageChange = (pageNum: number, pageSize: number) => {
+        setCurrentPage(pageNum)
+        setPageSize(pageSize)
+        dispatch(requestUsers(pageNum, pageSize, 'SET', filter))
+    }
+    const getMorePeople = () => {
+        setCurrentPage(currentPage + 1)
+        dispatch(requestUsers(currentPage + 1, pageSize, 'ADD', filter))
     }
     const onFilterChange = (filter: TFilter) => {
-        dispatch(requestUsers(1, numberOfUsersOnPage, 'SET', filter))
+        dispatch(requestUsers(1, pageSize, 'SET', filter))
+        setCurrentPage(1)
     }
 
-    const people = users.map(user => <UserCard user={user} key={user.id}
-                                               follow={followUser}
-                                               unfollow={unfollowUser}
+    const people = users.map(user => <UserCard user={user} key={user.id} follow={followUser} unfollow={unfollowUser}
                                                followingInProgress={followingInProgress}/>)
 
     return (
-        <div className={style.people}>
-            <div className={style.titleBlock}>
-                <h2 className={style.title}>People</h2>
-            </div>
-            <Paginator totalItemsNum={totalUsers}
-                       numberOfUsersOnPage={numberOfUsersOnPage}
-                       currentPage={currentPage}
-                       getItems={getPeople}/>
-            <SearchForm onFilterChange={onFilterChange}/>
-            {isFetching ? <Preloader/> : null}
-            <div className={style.peoplePage}>
-                {people}
-            </div>
-            <div className={style.more}>
-                <button className={style.btn}
-                        onClick={() => {
-                            getPeople(currentPage + 1, 'ADD')
-                        }}>More people
-                </button>
-            </div>
-        </div>
+        <>
+            <section className={style.titleBlock}>
+
+                <div className={style.title}>
+                    <h2>People</h2>
+                </div>
+
+                <div className={style.pages}>
+                    <Pagination defaultCurrent={currentPage} total={totalUsers} onChange={onPageChange} onShowSizeChange={onPageChange} />
+                </div>
+            </section>
+
+            <section className={style.people}>
+
+                <SearchForm onFilterChange={onFilterChange} filter={filter}/>
+
+                {isFetching ? <Preloader/> : null}
+
+                <div className={style.users}>
+                    {people}
+                </div>
+
+                {currentPage < (Math.ceil(totalUsers / pageSize))
+                    ? <div className={style.more}>
+                        <button className={style.btn}
+                                onClick={getMorePeople}>
+                            More people
+                        </button>
+                    </div>
+                    : null}
+
+            </section>
+        </>
     )
 })

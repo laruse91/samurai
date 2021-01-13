@@ -9,10 +9,7 @@ type PropsType = {
     pageBlockSize?: number
 }
 
-export const Paginator: React.FC<PropsType> = React.memo(({
-                                                   totalItemsNum, numberOfUsersOnPage, getItems,
-                                                   currentPage, pageBlockSize = 10
-                                               }) => {
+export const Paginator: React.FC<PropsType> = React.memo(({totalItemsNum, numberOfUsersOnPage, getItems, currentPage, pageBlockSize = 10}) => {
     //useState hook
     const [pageBlockNum, setPageBlockNum] = useState(1)
 

@@ -2,13 +2,13 @@ import React from 'react'
 import {Button} from '../../../components/common/button/Button'
 import style from './AboutMe.module.css'
 import {TProfile} from '../../../types/types'
-import {ProfileContact} from '../ProfileContact'
+import {ProfileContact} from './ProfileContact'
 
 type TProps = {
     profile: TProfile
     activateEditMode: () => void
     isOwner: boolean
-    profileContacts: { [key: string]: string }
+    profileContactsIcons: { [key: string]: string }
 }
 
 export const AboutMe: React.FC<TProps> = (props) => {
@@ -38,7 +38,8 @@ export const AboutMe: React.FC<TProps> = (props) => {
                         .map((key) => {
                             return (
                                 <ProfileContact
-                                    icon={props.profileContacts[key]}
+                                    key={key}
+                                    icon={props.profileContactsIcons[key]}
                                     name={key}
                                     path={props.profile.contacts[key]}/>
                             )

@@ -4,6 +4,7 @@ import {TPhotos, TProfile} from '../types/types'
 import {ThunkAction} from 'redux-thunk'
 import {TCombineActions, TGlobalState} from './redux-store'
 import {profileAPI} from '../api/profileApi'
+import data from '../db.json'
 
 const SET_USER_PROFILE = 'profilePage/SET-USER-PROFILE'
 const SET_USER_STATUS = 'profilePage/GET-USER-STATUS'
@@ -12,6 +13,7 @@ const SET_USER_PHOTO = 'profilePage/SET-USER-PHOTO'
 const initialState = {
     profile: null as TProfile | null,
     status: '',
+    otherInfo: data.profileOtherInfo as Array<{[key: string]: string}>
 }
 export type InitialStateType = typeof initialState
 
@@ -80,7 +82,7 @@ export const saveUserPhoto = (photo: File): TThunk => async (dispatch) => {
     }
 }
 export const saveMyProfile = (profile: TProfile): TThunk => async (dispatch, getState) => {
-    const userId = getState().auth.userId
+    const userId = getState().auth.authorizedUser!.userId
     const response = await profileAPI.saveProfile(profile)
     if (response.resultCode === ResultCode.Success && userId !== null) {
         dispatch(getUserProfile(userId))

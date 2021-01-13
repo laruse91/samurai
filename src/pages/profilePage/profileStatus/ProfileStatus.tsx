@@ -1,20 +1,20 @@
-import React, {useState, useEffect, ChangeEvent} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import style from './ProfileStatus.module.css'
 
 type TProps = {
     status: string
+    isOwner: boolean
     updateUserStatus: (status: string) => void
 }
 
-const ProfileStatus: React.FC<TProps> = (props) => {
+export const ProfileStatus: React.FC<TProps> = (props) => {
 
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
     useEffect(() => {
             setStatus(props.status)
-        }, [props.status]
-    )
+        }, [props.status])
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -23,7 +23,6 @@ const ProfileStatus: React.FC<TProps> = (props) => {
         setEditMode(false)
         props.updateUserStatus(status)
     }
-
     const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         setStatus(event.currentTarget.value)
     }
@@ -33,9 +32,14 @@ const ProfileStatus: React.FC<TProps> = (props) => {
             <h5 className={style.title}>Status:</h5>
             {!editMode
                 ? <div className={style.status}>
-                    <p onDoubleClick={activateEditMode}>
-                        {props.status ? props.status : 'Type your status'}
-                    </p>
+                    {props.isOwner
+                        ? <p onDoubleClick={activateEditMode}>
+                            {props.status ? props.status : 'Type your status'}
+                        </p>
+                        : <p>
+                            {props.status ? props.status : 'Type your status'}
+                        </p>
+                    }
                 </div>
                 : <div className={style.status}>
                     <input autoFocus={true}
@@ -47,7 +51,4 @@ const ProfileStatus: React.FC<TProps> = (props) => {
             }
         </div>
     )
-
 }
-
-export default ProfileStatus

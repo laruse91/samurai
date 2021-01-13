@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+.link {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    height: 50px;
+    width: 50px;
+    border: 2px solid #40a9ff;
+    border-radius: 25px;
+    position: relative;
+}
+
+.logo span {
+    font-size: 20px;
+    color: #40a9ff;
+    margin: 5px 10px
+}
+
+.line {
+    position: absolute;
+    left: -15px;
+    background-color: #40a9ff;
+    top: 40px;
+    height: 2px;
+    width: 50px;
+    transform: rotate(-45grad);
+}
+
+.circle {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    position: absolute;
+    left: 35px;
+    top: 15px;
+    background-color: #13c285;
+}
+
+.title {
+    margin: 5px 0 5px 10px;
+    padding: 0 0 0 10px;
+    border-left: 1px solid #40a9ff;
+}
+
+.title h1 {
+    text-align: center;
+    margin: 0;
+}
+
+.title p {
+    text-align: center;
+    margin: 0;
+}

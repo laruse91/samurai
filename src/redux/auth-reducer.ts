@@ -4,15 +4,20 @@ import {TCombineActions, TGlobalState} from './redux-store'
 import {ThunkAction} from 'redux-thunk'
 import {authAPI} from '../api/authApi'
 import {securityAPI} from '../api/securityApi'
+import {profileAPI} from '../api/profileApi'
+import {TAuthorizedUser} from '../types/types'
 
 const SET_AUTH_USER_DATA = 'auth/SET-AUTH-USER-DATA'
 const SET_CAPTCHA_URL = 'auth/SET-CAPTCHA-URL'
 
-let initialState = {
-    userId: null as number | null,
-    login: null as string | null,
-    email: null as string | null,
-    userPhoto: null as string | null,
+const initialState = {
+    authorizedUser: {
+        userId: null,
+        login: null,
+        email: null,
+        userPhoto: null,
+        userName: null
+    } as TAuthorizedUser,
     isAuth: false,
     captchaURL: null as string | null
 }
@@ -36,9 +41,9 @@ const authReducer = (state = initialState, action: TActions): TInitialState => {
 type TActions = TCombineActions<typeof actions>
 
 const actions = {
-    setAuthUserData: (userId: number | null, login: string | null, email: string | null, isAuth: boolean) => ({
+    setAuthUserData: (isAuth: boolean, authorizedUser: TAuthorizedUser) => ({
         type: SET_AUTH_USER_DATA,
-        payload: {userId, login, email, isAuth}
+        payload: {isAuth, authorizedUser}
     } as const),
 
     setCaptchaURL: (captchaURL: string | null) => ({
@@ -54,8 +59,15 @@ type TThunk = ThunkAction<Promise<void>, () => TGlobalState, unknown, TActions |
 export const authMe = (): TThunk => async (dispatch) => {
     const response = await authAPI.me()
     if (response.resultCode === ResultCode.Success) {
-        const {id, login, email} = response.data
-        dispatch(actions.setAuthUserData(id, login, email, true))
+        const data = await profileAPI.getProfile(response.data.id)
+        const authorizedUser: TAuthorizedUser = {
+            userId: response.data.id,
+            login: response.data.login,
+            email: response.data.email,
+            userPhoto: data.photos.large,
+            userName: data.fullName
+        }
+        dispatch(actions.setAuthUserData(true, authorizedUser))
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): TThunk => async (dispatch) => {
@@ -75,7 +87,13 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 export const logout = (): TThunk => async (dispatch) => {
     const response = await authAPI.logout()
     if (response.resultCode === ResultCode.Success) {
-        dispatch(actions.setAuthUserData(null, null, null, false))
+        dispatch(actions.setAuthUserData(false, {
+            userId: null,
+            login: null,
+            email: null,
+            userPhoto: null,
+            userName: null,
+        }))
     }
 }
 export const getCaptcha = (): TThunk => async (dispatch) => {

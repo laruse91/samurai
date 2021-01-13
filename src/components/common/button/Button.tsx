@@ -13,7 +13,8 @@ export const Button: React.FC<TProps> = (props) => {
         <div className={style.btnBlock}>
             <button className={style.button}
                     disabled={props.disabled}
-                    onClick={props.onClick}>
+                    onClick={props.onClick}
+            type={'submit'}>
                 {props.button}
             </button>
         </div>

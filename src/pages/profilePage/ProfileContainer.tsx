@@ -1,5 +1,5 @@
 import React from 'react'
-import {TAboutMeFormData, ProfilePage} from './ProfilePage'
+import {ProfilePage, TAboutMeFormData} from './ProfilePage'
 import {connect} from 'react-redux'
 import {
     getUserProfile,
@@ -10,16 +10,10 @@ import {
 } from '../../redux/profile-reducer'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
-import {TProfile} from '../../types/types'
 import {TGlobalState} from '../../redux/redux-store'
 
 type TStateProps = {
-    profile: TProfile | null
-    status: string
-    profileBackground: string
     authorizedUserId: number | null
-    isAuth: boolean
-    profileContacts: {[key: string]: string }
 }
 type TDispatchProps = {
     getUserProfile: (userId: number) => void
@@ -42,7 +36,7 @@ class ProfileContainer extends React.Component<TProps> {
         if (!userId) {
             userId = authorizedUserId
             if (!userId) {
-                this.props.history.push('/loginPage')
+                this.props.history.push('/login')
             }
         }
         getUserStatus(userId as number)
@@ -61,27 +55,17 @@ class ProfileContainer extends React.Component<TProps> {
 
     render() {
         return (
-            <ProfilePage profile={this.props.profile}
-                         status={this.props.status}
-                         background={this.props.profileBackground}
-                         updateUserStatus={this.props.updateUserStatus}
-                         isOwner={!this.props.match.params.userId}
+            <ProfilePage updateUserStatus={this.props.updateUserStatus}
+                         isOwner={+this.props.match.params.userId === this.props.authorizedUserId || !this.props.match.params.userId}
                          saveUserPhoto={this.props.saveUserPhoto}
                          saveMyProfile={this.props.saveMyProfile}
-                         profileContacts = {this.props.profileContacts}
             />
         )
     }
 }
 
 const mapStateToProps = (state: TGlobalState): TStateProps => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    profileBackground: state.graphics.background,
-    authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth,
-    profileContacts: state.graphics.profileContacts
-
+    authorizedUserId: state.auth.authorizedUser.userId
 })
 
 export default compose<React.ComponentType>(connect(mapStateToProps, {

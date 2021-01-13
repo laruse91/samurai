@@ -1,4 +1,4 @@
-import newsFeedReducer from './newsFeed-reducer'
+import postsReducer from './posts-reducer'
 import dialogsReducer from './dialogs-reducer'
 
 let store = {
@@ -223,7 +223,7 @@ let store = {
     },
 
     dispatch(action) {
-        this._state.newsFeedPage = newsFeedReducer(this._state.newsFeedPage, action)
+        this._state.newsFeedPage = postsReducer(this._state.newsFeedPage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber(this._state)
     },

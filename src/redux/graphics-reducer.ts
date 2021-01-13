@@ -10,7 +10,7 @@ const profileContacts: { [key: string]: string } = data.profileContacts
 
 const initialState = {
     background: backgrounds[random] as string,
-    profileContacts: profileContacts
+    profileContactsIcons: profileContacts
 }
 export type TInitialState = typeof initialState
 

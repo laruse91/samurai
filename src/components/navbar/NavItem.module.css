@@ -1,15 +1,13 @@
-a {
-    text-decoration: none;
-}
-
 .navItem {
     padding: 15px;
     cursor: pointer;
     display: flex;
+    align-items: center;
 }
 
 .navItem img {
     height: 16px;
+    width: 16px;
 }
 
 .title {
@@ -33,7 +31,14 @@ a {
 /* Responsive */
 
 /* 992px - 1200px */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1320px) {
+    .navItem {
+        justify-content: center;
+    }
+    .navItem img {
+        height: 20px;
+        width: 20px;
+    }
     .navItem span {
         display: none;
     }

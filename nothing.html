@@ -30,5 +30,19 @@ console.log(array.filter(post => post.id !== 2))
     //     obj[fieldName] = "Invalid URL format"
     // }
     // console.log(obj)
+let arr=[1,2,3]
+let b = arr.filter(num=>(num < 0))
+console.log(b)
+
+
+const a3 = [2, "hello", 3, "hi", 4, "Mazai"]
+
+t3=(array) => {
+    let arr =[]
+    array.forEach(item => {typeof(item) === 'number' && arr.push(item)})
+    return arr
+}
+
+console.log(t3(a3))
 </script>
 </html>

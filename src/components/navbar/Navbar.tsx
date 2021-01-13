@@ -1,5 +1,5 @@
 import React from 'react'
-import './Navbar.css'
+import '../../App.css'
 import {NavItem} from './NavItem'
 import {selectNavItems} from '../../redux/selectors'
 import {useSelector} from 'react-redux'
