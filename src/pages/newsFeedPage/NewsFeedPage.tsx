@@ -8,7 +8,7 @@ import {getPostOwners} from '../../redux/posts-reducer'
 import {OtherInfo} from '../profilePage/otherInfo/OtherInfo'
 
 export const NewsFeedPage = () => {
-    //useSelector Hook
+//useSelector Hook
     const isAuth = useSelector(selectIsAuth)
     const posts = useSelector(selectPosts)
     const postOwners = useSelector(selectPostOwners)

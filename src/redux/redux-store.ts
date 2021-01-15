@@ -7,10 +7,11 @@ import sidebarReducer from './sidebar-reducer'
 import peopleReducer from './people-reducer'
 import profileReducer from './profile-reducer'
 import authReducer from './auth-reducer'
-import graphicsReducer from './graphics-reducer'
+import appReducer from './app-reducer'
+import firebaseReducer from './firebase-reducer'
 import thunk from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'
-import appReducer from './app-reducer'
+
 
 const rootReducer = combineReducers(
     {
@@ -24,7 +25,7 @@ const rootReducer = combineReducers(
         auth: authReducer,
         form: formReducer,
         app: appReducer,
-        graphics: graphicsReducer,
+        firebaseStorage: firebaseReducer,
     }
 )
 

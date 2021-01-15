@@ -3,9 +3,9 @@ import style from './Logo.module.css'
 import {Link} from 'react-router-dom'
 
 export const Logo: React.FC = () => {
-const path = '/newsfeed'
+    const path = '/newsfeed'
     return (
-        <div className={style.container} >
+        <div className={style.container}>
             <Link to={path} className={style.link}>
                 <div className={style.logo}>
                     <span>S</span>

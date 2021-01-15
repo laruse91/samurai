@@ -8,16 +8,17 @@ import {styles} from '../../styles/styles'
 import {Avatar, Image} from 'antd'
 import {OtherInfo} from './otherInfo/OtherInfo'
 import {NewPostForm} from '../../components/posts/NewPostForm'
-import {useSelector} from 'react-redux'
+import { useSelector} from 'react-redux'
 import {
-    selectBackgrounds,
     selectPosts,
     selectProfile,
     selectProfileContactsIcons,
-    selectProfileStatus
+    selectProfileStatus,
+    selectRandomBackground
 } from '../../redux/selectors'
 import {PostBlock} from '../../components/posts/PostBlock'
 import {TPost} from '../../redux/posts-reducer'
+
 
 type TProps = {
     isOwner: boolean
@@ -40,7 +41,8 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
     const profile = useSelector(selectProfile)
     const profileStatus = useSelector(selectProfileStatus)
     const profileContactsIcons = useSelector(selectProfileContactsIcons)
-    const background = useSelector(selectBackgrounds)
+    const background = useSelector(selectRandomBackground)
+
 //useState Hook
     const [editMode, setEditMode] = useState(false)
     const activateEditMode = () => setEditMode(true)
@@ -84,7 +86,6 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
                                   userPhoto={profile.photos.large}/>)
 
     })
-
 
     if (!profile) {
         return <div className={style.profile}><Preloader/></div>
@@ -139,8 +140,8 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
             <section className={style.activity}>
                 <div><OtherInfo/></div>
                 <div className={style.posts}>
-                   {props.isOwner && <NewPostForm/>}
-                   {myPosts.length === 0 ? null : usersPosts}
+                    {props.isOwner && <NewPostForm/>}
+                    {myPosts.length === 0 ? null : usersPosts}
 
                 </div>
             </section>

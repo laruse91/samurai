@@ -16,6 +16,17 @@
       "userId": 13182
     }
   ],
+  "backgrounds": [
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground2.jpg?alt=media&token=6773f1d0-6583-41f9-aff0-246f10245325",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground3.jpg?alt=media&token=de7946c8-c691-4439-9b28-ae4efb5a34c3",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground8.jpg?alt=media&token=a7a4292e-d8cb-42a0-95f4-19fd7b60d919",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground1.jpg?alt=media&token=d1c2dced-19f0-4a1f-977d-306b7ab215b5",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground4.jpg?alt=media&token=77197574-7532-4bc6-a0f4-2fe4aaca3f8f",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground6.jpg?alt=media&token=1abe2e07-a0b1-4dea-bf3d-7b590a37a3d9",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground5.jpg?alt=media&token=d3a3129a-8592-4243-a106-118a386230e5",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground7.jpg?alt=media&token=adc05ea0-cd67-443d-affe-c519adf04c8c",
+    "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/backgrounds%2Fbackground9.jpg?alt=media&token=14f6d4ae-f09a-4aa6-80a0-b64481840325"
+  ],
   "navItems": [
     {
       "id": 1,
@@ -664,13 +675,14 @@
     }
   ],
   "profileContacts": {
-    "facebook": "https://1.downloader.disk.yandex.ru/preview/227b15d65b141ec72ed174bfb51d654caa2c93c4fe0b479b0e46aaa31c148dc2/inf/XzM7aO8XcUeMkH0ufW-WQF9ywsZV24-nPK7B4fxWKnC35VDPMo_0jNtdWD12Xoqln-9FMNURCLbSi__wsc6luw%3D%3D?uid=81903395&filename=facebook.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "github": "https://2.downloader.disk.yandex.ru/preview/8ff32b9fa2d7ae22da9bb8c2fd12a06697dc6e113191dfcc5adfd117bd8a11ee/inf/xQS2PJr-BarEkpMhHQdck7rr1S_laeQpvC2xHyDhFrfvD9m5Tnxqzd7U94GeAaQSY5Z38M6r73tlPOV9aRZsKQ%3D%3D?uid=81903395&filename=github.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978",
-    "instagram": "https://3.downloader.disk.yandex.ru/preview/ffbfe2a217dda9d4f5953a49f6f541e5a2b5054541b171bcc2a410d1e3713dc2/inf/XzM7aO8XcUeMkH0ufW-WQK5tMhmaTAM0MQx7bw0gUxULnFRxeJuSbBtCT8csYOaI6avb3wqJLThD3kd9yVHdqw%3D%3D?uid=81903395&filename=instagram.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "vk": "https://3.downloader.disk.yandex.ru/preview/f7bf645ac25b5c264c1904ef2bd2978a9e3c7c96ef57d0bd1cd2616c775e21dd/inf/XzM7aO8XcUeMkH0ufW-WQNfHA0hZPbybPIlYP8Mem-JyOyOlIaGmN7ZZD15XPDP5kPSoDfd8IThVZGMkDV8mJQ%3D%3D?uid=81903395&filename=vk.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "youtube": "https://1.downloader.disk.yandex.ru/preview/3cac5106921ecc8d27906a2e728d45c072e6e1e872747a848c946ba96ded4af7/inf/FYOK0BDbfEpIow67tQbnp0ds_4U_r2E6V83Hx6kaFaPqrJ8uGlzCjyxn5TCaErpFFcm_Hv-_5LSKzmWF_8A9Mg%3D%3D?uid=81903395&filename=youtube.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "website": "https://4.downloader.disk.yandex.ru/preview/c4f145726e40dde2d4111314d8a65d72b5b57a1de88010dfe01e3400cfb28518/inf/yoqqSExFzECP3tjteURNK_3Ep-1BTE4lk588mzAB-VxyJRoFDqetmaJxKIJbSv8YkKpI-ggx9BV8x1663M6JwA%3D%3D?uid=81903395&filename=global.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "mainLink": "https://3.downloader.disk.yandex.ru/preview/9291416905e13a21e9778541ae6bc3b17f3acaae704fa14757cf0b3269c3987a/inf/_N2mlniuOjj_0Hm7EB6m4uykTcaDAxq1MqvfkEE5SXOIPn-V8VnuNPDHVygbq9D7vHtT_T4lPuMb7_qcilzTMQ%3D%3D?uid=81903395&filename=link.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977",
-    "twitter": "https://1.downloader.disk.yandex.ru/preview/be01fe4bec6599dcbf3312d8580a3fab86b002315b0765e02b7099462d3ec8e1/inf/knUK4E4C4240csIVxR0xr3QG2m9uUmcc4a0vRmb08veiIJXp6Lp9RZPfp4C_26Gq0_App4Xjf1Yaru5ZZByYlg%3D%3D?uid=81903395&filename=twitter.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1048x977"
+    "facebook": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Ffacebook.png?alt=media&token=234c6117-071c-48c4-825e-24b21c493592",
+    "website": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Fwebsite.png?alt=media&token=250627a4-0847-4690-87c6-81efd404c629",
+    "vk": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Fvk.png?alt=media&token=814b3ab5-f19f-4753-a4cd-2d11477a2725",
+    "twitter": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Ftwitter.png?alt=media&token=7be34eb8-6e06-4ec5-9dee-27f2aeb9d3e3",
+    "instagram": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Finstagram.png?alt=media&token=ffa1c5d2-6567-4d01-9e4f-850f488dad8c",
+    "youtube": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Fyoutube.png?alt=media&token=766f4258-41ff-4c71-9224-33358a1e2f7e",
+    "github": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2Fgithub.png?alt=media&token=d7883a81-bc87-4e05-8b72-6945395d3f84",
+    "mainLink": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/profileContacts%2FmainLink.png?alt=media&token=288877f1-d66e-4e31-8ad6-0da1d204c6af"
   }
 }
+

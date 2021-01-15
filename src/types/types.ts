@@ -50,3 +50,4 @@ export type TAuthorizedUser = {
     userPhoto: string | null
     userName: string | null
 }
+export type TFirebaseDataFolder = 'images' | 'users' | 'backgrounds' | 'icons' | 'profileContacts'

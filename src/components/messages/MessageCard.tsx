@@ -10,7 +10,7 @@ type TProps = {
     photo: string | null
     message: string
     userName: string
-    withName?: boolean
+    withUserName?: boolean
 }
 
 export const MessageCard: React.FC<TProps> = (props) => {
@@ -31,7 +31,7 @@ export const MessageCard: React.FC<TProps> = (props) => {
 
             <div className={props.userId === authorizedUser.userId
                 ? style.myMessage : style.message}>
-                {props.withName
+                {props.withUserName
                     ? <h5 className={style.userName}>{props.userName}</h5>
                     : null
                 }

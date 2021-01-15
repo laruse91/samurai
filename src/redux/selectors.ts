@@ -74,13 +74,15 @@ export const selectOtherInfo = (state: TGlobalState) => {
     return state.profilePage.otherInfo
 }
 
-
-//graphics
+//firebase
 export const selectBackgrounds = (state: TGlobalState) => {
-    return state.graphics.background
+    return state.firebaseStorage.backgrounds
+}
+export const selectRandomBackground = (state: TGlobalState) => {
+    return state.firebaseStorage.randomBackground
 }
 export const selectProfileContactsIcons = (state: TGlobalState) => {
-    return state.graphics.profileContactsIcons
+    return state.firebaseStorage.profileContactsIcons
 }
 //posts
 export const selectPosts = (state: TGlobalState) => {
@@ -89,3 +91,4 @@ export const selectPosts = (state: TGlobalState) => {
 export const selectPostOwners = (state: TGlobalState) => {
     return state.posts.postOwners
 }
+
