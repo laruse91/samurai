@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import style from './PeoplePage.module.css'
 import {UserCard} from './userCard/UserCard'
 import {Preloader} from '../../components/common/preloader/Preloader'
-import {Paginator} from '../../components/common/paginator/Paginator'
 import {SearchForm} from '../../components/common/searchForm/SearchForm'
 import {follow, requestUsers, TFilter, unfollow} from '../../redux/people-reducer'
 import {useDispatch, useSelector} from 'react-redux'
@@ -75,10 +74,10 @@ export const PeoplePage: React.FC = React.memo(() => {
         dispatch(unfollow(userId))
     }
 
-    const onPageChange = (pageNum: number, pageSize: number) => {
+    const onPageChange = (pageNum: number, pSize?: number) => {
         setCurrentPage(pageNum)
-        setPageSize(pageSize)
-        dispatch(requestUsers(pageNum, pageSize, 'SET', filter))
+        pSize && setPageSize(pSize)
+        dispatch(requestUsers(pageNum, !pSize ? pageSize : pSize, 'SET', filter))
     }
     const getMorePeople = () => {
         setCurrentPage(currentPage + 1)
@@ -101,7 +100,8 @@ export const PeoplePage: React.FC = React.memo(() => {
                 </div>
 
                 <div className={style.pages}>
-                    <Pagination defaultCurrent={currentPage} total={totalUsers} onChange={onPageChange} onShowSizeChange={onPageChange} />
+                    <Pagination defaultCurrent={currentPage} total={totalUsers} onChange={onPageChange}
+                                onShowSizeChange={onPageChange}/>
                 </div>
             </section>
 

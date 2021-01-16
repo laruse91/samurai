@@ -22,7 +22,9 @@ const DialogsPage: React.FC = React.memo(() => {
         dispatch(getCompanions(ids))
     }, [messages])
 
-    const dialogs = users.map(user => (<UserLabel key={user.userName} userName={user.userName} userId={user.userId} photo={user.userPhoto} info={'React developer'}/>))
+    const dialogs = users.map(user => (
+        <UserLabel key={user.userName} userName={user.userName} userId={user.userId} photo={user.userPhoto}
+                   info={'React developer'}/>))
 
     const sendMessage = (newMessageBody: string) => {
         const message = {
@@ -34,10 +36,11 @@ const DialogsPage: React.FC = React.memo(() => {
     }
 
     const messageCards = messages.map(m => {
-            const c = companions.find(c => c.userId === m.userId)
-            if (c)
-                return <MessageCard key={m.id} userName={c.userName} userId={m.userId} photo={c.userPhoto} message={m.body}/>
-        })
+        const c = companions.find(c => c.userId === m.userId)
+        if (c)
+            return <MessageCard key={m.id} userName={c.userName} userId={m.userId} photo={c.userPhoto}
+                                message={m.body}/>
+    })
 
     return (
         <div className={style.dialogs}>
@@ -57,7 +60,7 @@ const DialogsPage: React.FC = React.memo(() => {
                 <div className={style.messages}>
                     {messageCards}
                 </div>
-                <NewMessageForm sendNewMessage={sendMessage}/>
+                <NewMessageForm sendNewMessage={sendMessage} channelStatus={true}/>
             </div>
         </div>
     )

@@ -32,49 +32,43 @@
       "id": 1,
       "item": "NewsFeed",
       "path": "/newsfeed",
-      "icon": "https://3.downloader.disk.yandex.ru/preview/cbef931b6bba585309516f043098d73a29ce6bdc1d853effb6c3ab263ce483c4/inf/-Z8m4L95CcRZeqDc99Pc9eDzuThAwzXSyVs7QcS9F2_MtEt1vhfI_rn4l9HNISCdo56nktPiWumy1q4UrTVsEw%3D%3D?uid=81903395&filename=newsfeed.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978"
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fnewsfeed.png?alt=media&token=b165efeb-9157-4962-816a-5def6d29510d"
     },
     {
       "id": 2,
       "item": "Profile",
       "path": "/profile",
-      "icon": "https://1.downloader.disk.yandex.ru/preview/4ad6c195b4b97fbaf16c6c5009dc29ebb1fef190ea82dc4ab13bb959b847d072/inf/_nIwz3yDgHVd9X-fAm-3pPRsxmgkPSPAc2pIRXeJEf-QcjhB3EWso4a34QzrXm-Bx_Ot4VNQM2NoRrcNedpFrg%3D%3D?uid=81903395&filename=user.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fprofile.png?alt=media&token=eb091880-19d9-47d0-8017-9dec40db91df"
     },
     {
       "id": 3,
       "item": "Dialogs",
       "path": "/dialogs",
-      "icon": "https://4.downloader.disk.yandex.ru/preview/9d4e781c7b0345036188f99777ddaf1ce313ec5288b7d0fb10a0e4f35657b4dd/inf/J6E2MIpjJA9VAJG06kHr9oFWAzbfp-fLy05bmuodEst1Mi4z1fWlcWvByzoS3A18KpwfixYQcesDnAgYEH-29Q%3D%3D?uid=81903395&filename=dialogs.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978"
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fdialogs.png?alt=media&token=bf0c6aa3-d8f5-493f-bdff-2602f9ecf67c"
     },
     {
       "id": 4,
-      "item": "Friends",
-      "path": "/friends",
-      "icon": "https://1.downloader.disk.yandex.ru/preview/56b50528b48a4b07aa2385490bc2cac8992201a8968afb22e4a44405849a0c11/inf/K0Z_SNlpA-MIM8vfXKbKDdn1SzINLE-g0TiNP5ei00gP8oU2jNAJX2r9r8Xmkv1vLoq9OfBCdoTTGAI6ltxF0w%3D%3D?uid=81903395&filename=followers.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=1324x756"
+      "item": "Chat",
+      "path": "/chat",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fchat.png?alt=media&token=193fb0c4-6887-414b-b7b3-50a3ddda15c9"
     },
     {
       "id": 5,
-      "item": "Chat",
-      "path": "/chat",
-      "icon": "https://2.downloader.disk.yandex.ru/preview/6300c5b6b869ab9d38d0a74ab1af7110562e857e4dda4b1c8ebcb4ad2fff85c4/inf/obj1IrzZJD-1g7EtqDVc8gZLxdblz4btrOR2ESTAFDW5vIDwAkzmYnFStcD_BFYf4y7JumtRXOVL4O2E1tQlog%3D%3D?uid=81903395&filename=chat.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978"
+      "item": "People",
+      "path": "/people",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fpeople.png?alt=media&token=8df3852a-4465-4d12-a8b8-0c9848a723d4"
     },
     {
       "id": 6,
-      "item": "People",
-      "path": "/people",
-      "icon": "https://3.downloader.disk.yandex.ru/preview/2a644dae72209417e955453800aca87613c68f4a6fd2045afa8948090e1e48a7/inf/GJJZycv9mnnjhb7WDUbx-5-MW2hrCrZu2muvennxKZc_5-4Lb8UCc7afcDFQr3L2JxjqV9Segq5l5m-XC9c--A%3D%3D?uid=81903395&filename=group.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978"
+      "item": "Info",
+      "path": "/about",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Finfo.png?alt=media&token=049b605d-a04b-460f-bf87-a9b88739ab8b"
     },
     {
       "id": 7,
-      "item": "About project",
-      "path": "/about",
-      "icon": "https://4.downloader.disk.yandex.ru/preview/80462f6436e6427d30751d165a3ee4145d834f63341f926f9cf462b8aa26e134/inf/RWDL8ngwSlmZFMSjM3iN1gZLxdblz4btrOR2ESTAFDV69iWo1K6-AGxMKV_kRk3GcXyWHOM3tk59qEP1S6vshg%3D%3D?uid=81903395&filename=info.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=2114x978"
-    },
-    {
-      "id": 8,
       "item": "Coronavirus",
       "path": "/coronavirus",
-      "icon": "https://2.downloader.disk.yandex.ru/preview/562997694f10438c040f5270b6d744b69b5082d13f16cc05c398478dc24e74fd/inf/qy8k069zKvO4PXtGCuMnoWJ4Imw0DFeONjYMxkfQ_5w0xv-rHHfM7wFp6LkDtsvNCk01QW8juDNVpPOY78iuYQ%3D%3D?uid=81903395&filename=virus.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=81903395&tknv=v2&size=621x510"
+      "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fcoronavirus.png?alt=media&token=0c3f7157-ae64-45bc-ab49-48ddfb2fddb1"
     }
   ],
   "posts": [

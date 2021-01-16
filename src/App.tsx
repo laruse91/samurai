@@ -14,6 +14,7 @@ import {Navbar} from './components/navbar/Navbar'
 import {selectIsInitialized} from './redux/selectors'
 import ProfileContainer from './pages/profilePage/ProfileContainer'
 import firebase from 'firebase'
+import CoronaPage from './pages/CoronaPage'
 
 // React.lazy , Suspense
 const DialogsPage = React.lazy(() => import('./pages/dialogsPage/DialogsPage'))
@@ -47,6 +48,7 @@ const App: React.FC = React.memo(() => {
 
     const newsFeedPage = () => <NewsFeedPage/>
     const profilePage = () => <ProfileContainer/>
+    const coronaPage = withReactSuspense( () => <CoronaPage/>)
     const dialogsPage = withReactSuspense(() => <DialogsPage/>)
     const peoplePage = () => <PeoplePage/>
     const loginPage = withReactSuspense(() => <Login/>)
@@ -68,6 +70,7 @@ const App: React.FC = React.memo(() => {
                 <Route path='/people' render={peoplePage}/>
                 <Route path='/login' render={loginPage}/>
                 <Route path='/chat' render={chatPage}/>
+                <Route path='/coronavirus' render={coronaPage}/>
                 {/*<Route path='/*' render={errorPage}/>*/}
             </main>
             <Sidebar/>

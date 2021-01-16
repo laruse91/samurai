@@ -1,15 +1,15 @@
-import {TCombineActions} from './redux-store'
+import {TCombineActions, TGlobalState} from './redux-store'
 import data from '../db.json'
+import {ThunkAction} from 'redux-thunk'
 
 const SET_BACKGROUND = 'firebase/SET_BACKGROUND'
-
 
 const randomBackground = data.backgrounds[Math.round(1 + Math.random() * (data.backgrounds.length - 1))]
 
 const initialState = {
     profileContactsIcons: data.profileContacts as { [key: string]: string },
     backgrounds: data.backgrounds as Array<string>,
-    randomBackground: randomBackground as string
+    randomBackground: randomBackground as string,
 }
 
 export type TInitialState = typeof initialState
@@ -31,7 +31,7 @@ const actions = {
 
 }
 
-// type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
+type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
 // //todo: remove any
 // export const getBackgrounds = (): TThunk => async (dispatch) => {
 //     const storage = firebase.storage().ref('backgrounds')
@@ -54,4 +54,6 @@ const actions = {
 //     dispatch(actions.setProfileContacts(profileContacts))
 // }
 
+
 export default firebaseReducer
+

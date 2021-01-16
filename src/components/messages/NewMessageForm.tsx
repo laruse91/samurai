@@ -9,23 +9,12 @@ type TForm = {
 }
 type TProps = {
     sendNewMessage: (newMessageBody: string) => void
-    ws?: WebSocket | null
+    channelStatus: boolean
 }
 
 const {TextArea} = Input
 
 export const NewMessageForm: React.FC<TProps> = (props) => {
-    const [statusReady, setStatusReady] = useState<'pending' | 'ready'>('pending')
-    useEffect(() => {
-        const openHandler = ()=>{setStatusReady('ready')
-        console.log('ready')}
-        props.ws?.addEventListener('open', openHandler)
-
-        return ()=>{
-            props.ws?.removeEventListener('open', openHandler)
-        }
-
-    }, [props.ws])
 
     const submit = (values: TForm, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         values.newMessage &&
@@ -33,8 +22,6 @@ export const NewMessageForm: React.FC<TProps> = (props) => {
         values.newMessage = ''
         setSubmitting(false)
     }
-
-    const ChannelNotReady = (props.ws === null || statusReady === 'pending')
 
     return (
         <div className={style.newMessageForm}>
@@ -44,7 +31,7 @@ export const NewMessageForm: React.FC<TProps> = (props) => {
                     <Form className={style.form}>
                         <TextArea name='newMessage' placeholder='Type your message' className={style.input}
                                   autoSize={{minRows: 1, maxRows: 3}}/>
-                        <Button button={'Send'} type='submit' disabled={ChannelNotReady}/>
+                        <Button button={'Send'} type='submit' disabled={!props.channelStatus || isSubmitting}/>
                     </Form>
                 )}
             </Formik>
