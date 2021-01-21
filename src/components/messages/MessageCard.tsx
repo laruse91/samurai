@@ -3,7 +3,7 @@ import style from './MessageCard.module.css'
 import {styles} from '../../styles/styles'
 import {Avatar} from 'antd'
 import {useSelector} from 'react-redux'
-import {selectAuthorizedUser} from '../../redux/selectors'
+import {selectAuthorizedUser} from '../../selectors/selectors'
 
 type TProps = {
     userId: number

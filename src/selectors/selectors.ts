@@ -1,4 +1,4 @@
-import {TGlobalState} from './redux-store'
+import {TGlobalState} from '../redux/redux-store'
 
 //sidebar
 export const selectFollowedUsers = (state: TGlobalState) => {
@@ -91,4 +91,11 @@ export const selectPosts = (state: TGlobalState) => {
 export const selectPostOwners = (state: TGlobalState) => {
     return state.posts.postOwners
 }
-
+//corona
+export const selectStatistic = (state: TGlobalState) => {
+    return state.corona.statistic
+}
+//chat
+export const selectChatMessages = (state: TGlobalState) => {
+    return state.chat.messages
+}

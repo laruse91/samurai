@@ -15,7 +15,7 @@ import {
     selectProfileContactsIcons,
     selectProfileStatus,
     selectRandomBackground
-} from '../../redux/selectors'
+} from '../../selectors/selectors'
 import {PostBlock} from '../../components/posts/PostBlock'
 import {TPost} from '../../redux/posts-reducer'
 

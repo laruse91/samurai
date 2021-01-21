@@ -26,7 +26,7 @@ export type TProfile = {
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string
-    contacts: {[key: string]: string | null}
+    contacts: { [key: string]: string | null }
     photos: TPhotos
 }
 
@@ -37,9 +37,9 @@ export type TNavItem = {
     icon: string
 }
 
-export type TInitialStateMessage = {
+export type TChatMessage = {
     message: string,
-    photo:string | null,
+    photo: string | null,
     userId: 2,
     userName: string
 }
@@ -51,3 +51,16 @@ export type TAuthorizedUser = {
     userName: string | null
 }
 export type TFirebaseDataFolder = 'images' | 'users' | 'backgrounds' | 'icons' | 'profileContacts'
+
+export type TStatistic = {
+    [key: string]: number
+}
+export type TStatisticWithId = {
+    ID?: string
+    NewConfirmed: number
+    TotalConfirmed: number
+    NewDeaths: number
+    TotalDeaths: number
+    NewRecovered: number
+    TotalRecovered: number
+}

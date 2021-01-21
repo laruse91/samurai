@@ -6,7 +6,7 @@
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 0 20px -10px #c6c6c6;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 .block {
     padding: 0 20px;
@@ -14,6 +14,7 @@
 }
 .mesBlock {
     padding: 0 20px;
+    max-height: 80vh;
 }
 .title {
     display: flex;

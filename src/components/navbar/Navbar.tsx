@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../App.css'
 import {NavItem} from './NavItem'
-import {selectNavItems} from '../../redux/selectors'
+import {selectNavItems} from '../../selectors/selectors'
 import {useSelector} from 'react-redux'
 
 export const Navbar: React.FC = () => {

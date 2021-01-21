@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './OtherInfo.module.css'
 import {useSelector} from 'react-redux'
-import {selectOtherInfo} from '../../../redux/selectors'
+import {selectOtherInfo} from '../../../selectors/selectors'
 
 export const OtherInfo: React.FC = () => {
 

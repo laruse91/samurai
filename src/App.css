@@ -109,9 +109,6 @@ body {
 }
 @media screen and (max-width: 1320px) {
     .app {
-        grid-template-areas:
-    "header header header"
-    "nav main sidebar";
         grid-template-columns: 90px 1fr 90px;
     }
 }
@@ -120,6 +117,11 @@ body {
 
 }
 
+@media screen and (max-width: 1000px) {
+    .main{
+        grid-template-columns: 1fr 600px 1fr;
+    }
+}
 
 /* 768x - 992px */
 @media screen and (max-width: 992px) {

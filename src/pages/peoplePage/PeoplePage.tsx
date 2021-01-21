@@ -11,7 +11,7 @@ import {
     selectIsFetching,
     selectTotalUsers,
     selectUsers
-} from '../../redux/selectors'
+} from '../../selectors/selectors'
 import {useHistory} from 'react-router-dom'
 import * as queryString from 'querystring'
 import {Pagination} from 'antd'

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import '../../App.css'
 import {UserLabel} from '../common/userLabel/UserLabel'
 import {Preloader} from '../common/preloader/Preloader'
-import {selectFollowedUsers, selectIsAuth, selectNumberOfUsersAtSidebar, selectPageNumber} from '../../redux/selectors'
+import {selectFollowedUsers, selectIsAuth, selectNumberOfUsersAtSidebar, selectPageNumber} from '../../selectors/selectors'
 import {useDispatch, useSelector} from 'react-redux'
 import {requestFollowedUsers} from '../../redux/sidebar-reducer'
 

@@ -11,7 +11,8 @@ import appReducer from './app-reducer'
 import firebaseReducer from './firebase-reducer'
 import thunk from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'
-
+import coronaReducer from './corona-reducer'
+import chatReducer from './chat-reducer'
 
 const rootReducer = combineReducers(
     {
@@ -26,6 +27,8 @@ const rootReducer = combineReducers(
         form: formReducer,
         app: appReducer,
         firebaseStorage: firebaseReducer,
+        corona: coronaReducer,
+        chat: chatReducer
     }
 )
 

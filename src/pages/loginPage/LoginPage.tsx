@@ -6,7 +6,7 @@ import {maxLength, required} from '../../utilites/validators'
 import {Button} from '../../components/common/button/Button'
 import {Redirect} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {selectCaptchaURL, selectIsAuth} from '../../redux/selectors'
+import {selectCaptchaURL, selectIsAuth} from '../../selectors/selectors'
 import {login} from '../../redux/auth-reducer'
 
 //types
