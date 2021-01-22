@@ -28,9 +28,7 @@ export const Auth: React.FC = () => {
                     <Link to={profilePath} className={style.login}>
                         <div className={style.userPhoto}>
                             {authorizedUser.userPhoto
-                                // @ts-ignore
                                 ? <Avatar size={60} src={authorizedUser.userPhoto}/>
-                                // @ts-ignore
                                 : <Avatar size={60}
                                           style={styles.avatar}>{authorizedUser.userName ? authorizedUser.userName.charAt(0).toUpperCase() : 'User'}</Avatar>
                             }
@@ -44,7 +42,7 @@ export const Auth: React.FC = () => {
                     <div>
                         <span className={style.signIn}>Sign in</span>
                         <UserOutlined className={style.icon}/>
-                        <div className={style.line}></div>
+                        <div className={style.line}/>
                     </div>
                 </Link>
             }

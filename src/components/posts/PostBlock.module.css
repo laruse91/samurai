@@ -5,25 +5,33 @@
     box-shadow: 0 0 20px -10px #c6c6c6;
     width: 100%;
 }
+
 .title {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #40a9ff;
     padding-bottom: 10px;
 }
+
 .post {
     padding: 10px 0 0;
+}
+
+.post p {
+    word-break: break-word;
 }
 
 .action {
     margin-top: 3px;
 }
+
 .layer {
     width: 100%;
     background-color: #bcd0da4f;
     border-radius: 5px;
     padding: 10px 0;
 }
+
 .carousel {
     max-width: 400px;
     max-height: 400px;

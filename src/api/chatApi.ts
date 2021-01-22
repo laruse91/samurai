@@ -24,10 +24,10 @@ function createChannel() {
 }
 
 export const chatAPI = {
-    start () {
+    start() {
         createChannel()
     },
-    stop(){
+    stop() {
         subscribers = []
         ws.removeEventListener('close', closeHandler)
         ws.removeEventListener('message', messageHandler)

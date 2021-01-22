@@ -3,20 +3,25 @@ You can see and test site by the link below:
 [Samurai.org](https://samurai-socialnetwork.web.app)
 
 ## Samurai Social Network
-This is learning project on React JS and TypeScript. The site has its own server, interaction with which is implemented 
+
+This is learning project on React JS and TypeScript. The site has its own server, interaction with which is implemented
 through the REST API and websocket.  
 Briefly about the libraries used on the project:
+
 * `Redux` to implement the FLUX architecture
 * `axios` library is used for `GET` `POST` `PUT` `DELETE` requests
 * `Redux-form` and `Formik` libraries used for processing forms
 * `ant-design` library used for the design of some components
 * `jest` library used for testing some components and reducers
 
-###Other info
+### Other info
+
 The project is still under development. Many more features will be implemented in the near future
 
-### Labels
-![TypeScript](https://img.shields.io/badge/-TypeScript-%233178c6?style=flat-square&logo=typescript&logoColor=white 'TypeScript')
+### Languages and Tools
+
+![TypeScript](https://img.shields.io/badge/-TypeScript-%233178c6?style=flat-square&logo=typescript&logoColor=white 
+'TypeScript')
 ![JavaScript](https://img.shields.io/badge/-JavaScript-%23DAF7A6?style=flat-square&logo=javaScript&logoColor=%23607d8b 'JavaScript')
 ![ReactJS](https://img.shields.io/badge/-React_JS-%2361dafb?style=flat-square&logo=react&logoColor=%23000000 'React JS')
 ![Redux](https://img.shields.io/badge/-Redux-%23764abc?style=flat-square&logo=redux 'Redux')

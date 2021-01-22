@@ -8,7 +8,7 @@ import {styles} from '../../styles/styles'
 import {Avatar, Image} from 'antd'
 import {OtherInfo} from './otherInfo/OtherInfo'
 import {NewPostForm} from '../../components/posts/NewPostForm'
-import { useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {
     selectPosts,
     selectProfile,
@@ -90,7 +90,6 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
     if (!profile) {
         return <div className={style.profile}><Preloader/></div>
     }
-//todo: avatar TS
 
     return (
         <div className={style.profile}>
@@ -100,9 +99,7 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
 
                     <div className={style.userPhoto}>
                         {profile.photos.large
-                            // @ts-ignore
                             ? <Avatar size={120} src={<Image src={profile.photos.large}/>}/>
-                            // @ts-ignore
                             : <Avatar size={120} style={styles.avatar}
                                       className={style.userPhoto}>{profile.fullName ? profile.fullName.charAt(0).toUpperCase() : 'User'}</Avatar>
                         }

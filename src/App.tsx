@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import {Sidebar} from './components/sidebar/Sidebar'
 import {NewsFeedPage} from './pages/newsFeedPage/NewsFeedPage'
 import {Header} from './components/header/Header'
-import {Redirect, Route} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {initializeApp} from './redux/app-reducer'
 import {Preloader} from './components/common/preloader/Preloader'
@@ -13,8 +13,9 @@ import {PeoplePage} from './pages/peoplePage/PeoplePage'
 import {Navbar} from './components/navbar/Navbar'
 import {selectIsInitialized} from './selectors/selectors'
 import ProfileContainer from './pages/profilePage/ProfileContainer'
-import firebase from 'firebase'
-import CoronaPage from './pages/CoronaPage'
+import firebase from 'firebase/app'
+import CoronaPage from './pages/coronaPage/CoronaPage'
+
 
 // React.lazy , Suspense
 const DialogsPage = React.lazy(() => import('./pages/dialogsPage/DialogsPage'))
@@ -63,15 +64,17 @@ const App: React.FC = React.memo(() => {
             <Header/>
             <Navbar/>
             <main className='main'>
-                <Route path='/' render={() => <Redirect to={'/newsfeed'}/>}/>
-                <Route path='/newsfeed' render={newsFeedPage}/>
-                <Route path='/profile/:userId?' render={profilePage}/>
-                <Route path='/dialogs' render={dialogsPage}/>
-                <Route path='/people' render={peoplePage}/>
-                <Route path='/login' render={loginPage}/>
-                <Route path='/chat' render={chatPage}/>
-                <Route path='/coronavirus' render={coronaPage}/>
-                <Route path='/404' render={errorPage}/>
+                <Switch>
+                    <Route exact path='/' render={() => <Redirect to={'/newsfeed'}/>}/>
+                    <Route path='/newsfeed' render={newsFeedPage}/>
+                    <Route path='/profile/:userId?' render={profilePage}/>
+                    <Route path='/dialogs' render={dialogsPage}/>
+                    <Route path='/people' render={peoplePage}/>
+                    <Route path='/login' render={loginPage}/>
+                    <Route path='/chat' render={chatPage}/>
+                    <Route path='/coronavirus' render={coronaPage}/>
+                    <Route path='/*' render={errorPage}/>
+                </Switch>
             </main>
             <Sidebar/>
         </div>

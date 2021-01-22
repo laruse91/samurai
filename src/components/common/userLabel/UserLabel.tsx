@@ -4,8 +4,6 @@ import {Link} from 'react-router-dom'
 import {Avatar} from 'antd'
 import {styles} from '../../../styles/styles'
 
-//todo: find solution to solve TS errors while using antDesigned components
-
 type TProps = {
     userId: number
     photo: string | null
@@ -21,9 +19,7 @@ export const UserLabel: React.FC<TProps> = (props) => {
         <Link to={path} className={style.userCard}>
             <div className={style.userPhoto}>
                 {props.photo
-                    // @ts-ignore
                     ? <Avatar size={50} src={props.photo}/>
-                    // @ts-ignore
                     : <Avatar size={50}
                               style={styles.avatar}>{props.userName ? props.userName.charAt(0).toUpperCase() : 'User'}</Avatar>
                 }

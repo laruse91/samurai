@@ -1,6 +1,5 @@
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions} from './redux-store'
 import data from '../db.json'
-import {ThunkAction} from 'redux-thunk'
 
 const SET_BACKGROUND = 'firebase/SET_BACKGROUND'
 
@@ -31,8 +30,7 @@ const actions = {
 
 }
 
-type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
-// //todo: remove any
+// type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
 // export const getBackgrounds = (): TThunk => async (dispatch) => {
 //     const storage = firebase.storage().ref('backgrounds')
 //     const response: any = await storage.listAll()

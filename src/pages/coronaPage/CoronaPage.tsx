@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import style from './CoronaPage.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {getStatistic} from '../redux/corona-reducer'
-import {selectStatistic} from '../selectors/selectors'
-import {Preloader} from '../components/common/preloader/Preloader'
+import {getStatistic} from '../../redux/corona-reducer'
+import {selectStatistic} from '../../selectors/selectors'
+import {Preloader} from '../../components/common/preloader/Preloader'
 
 type TProps = {
     title: string
@@ -51,7 +51,7 @@ const CoronaPage: React.FC = () => {
                 ? <Preloader/>
                 : statistic && Object.keys(statistic).map(key => {
                 return (
-                <StatisticString title={key} value={statistic[key]}/>)
+                <StatisticString key={key} title={key} value={statistic[key]}/>)
             })
             }
             </div>

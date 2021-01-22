@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import {MessageCard} from '../../components/messages/MessageCard'
 import {NewMessageForm} from '../../components/messages/NewMessageForm'
 import style from './ChatPage.module.css'
@@ -19,13 +19,21 @@ const ChatPage: React.FC = React.memo(() => {
         }
     }, [])
 
-    const sendNewMessage = (newMessageBody: string) => dispatch(sendMessage(newMessageBody))
+    const sendNewMessage = (newMessageBody: string) => {
+        dispatch(sendMessage(newMessageBody))
+    }
 
     const messageCards = messages.length === 0
         ? <Preloader/>
         : messages.map((message, i) => (
             <MessageCard key={i + 1} userName={message.userName} userId={message.userId} photo={message.photo}
                          message={message.message} withUserName={true}/>))
+
+    const messagesEndRef = useRef<HTMLDivElement>(null)
+    const scrollToBottom = () => {
+        messagesEndRef?.current?.scrollIntoView({behavior: 'smooth'})
+    }
+    React.useEffect(scrollToBottom, [messages])
 
     return (
         <div className={style.chatPage}>
@@ -34,6 +42,7 @@ const ChatPage: React.FC = React.memo(() => {
             </div>
             <div className={style.messages}>
                 {messageCards}
+                <div ref={messagesEndRef}/>
             </div>
             <NewMessageForm sendNewMessage={sendNewMessage} channelStatus={true}/>
         </div>

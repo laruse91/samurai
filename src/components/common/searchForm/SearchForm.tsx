@@ -31,10 +31,9 @@ export const SearchForm: React.FC<TProps> = React.memo((props) => {
     }
     const initValues: TForm = {
         term: props.filter.term,
-        friend: (props.filter.friend === null ? 'null' : props.filter.friend === true ? 'true' : 'false' )
+        friend: (props.filter.friend === null ? 'null' : props.filter.friend === true ? 'true' : 'false')
     }
 
-// todo: Ant Input
     return (
         <div className={style.search}>
             <Formik<TForm> initialValues={initValues} validate={searchFormValidate} onSubmit={submit}>
@@ -43,11 +42,10 @@ export const SearchForm: React.FC<TProps> = React.memo((props) => {
                         <div className={style.searchInput}>
                             <AntInput.Group compact>
                                 <Select name='friend' style={{width: '40%'}}>
-                                    <option value='null'>All people</option>
-                                    <option value='true'>Followed</option>
-                                    <option value='false'>Not followed</option>
+                                    <Select.Option value='null'>All people</Select.Option>
+                                    <Select.Option value='true'>Followed</Select.Option>
+                                    <Select.Option value='false'>Not followed</Select.Option>
                                 </Select>
-                                {/*@ts-ignore*/}
                                 <Input type='text' name='term' placeholder='Search' style={{width: '60%'}} allowClear/>
                             </AntInput.Group>
                             <Button button='Search' type='submit' disabled={isSubmitting}/>
