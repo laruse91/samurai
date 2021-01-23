@@ -3,12 +3,15 @@
     align-items: center;
     min-width: 200px;
     justify-self: start;
+    padding-right: 50px;
 }
 .myMessageCard {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
     justify-self: end;
+    padding-left: 50px;
+
 }
 .userPhoto {
     height: 50px;

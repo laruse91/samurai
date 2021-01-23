@@ -30,3 +30,28 @@
     border: none;
     border-bottom: 1px solid #50b5ff;
 }
+
+/* Responsive */
+
+
+@media screen and (max-width: 1000px) {
+    .userStatus {
+        display: block;
+        padding: 0 80px 0 20px;
+    }
+}
+
+/* 768x - 992px */
+@media screen and (max-width: 992px) {
+
+}
+
+/* 576px - 768px */
+@media screen and (max-width: 768px) {
+
+}
+
+/* 0px - 576px */
+@media screen and (max-width: 576px) {
+
+}

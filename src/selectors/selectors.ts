@@ -43,14 +43,11 @@ export const selectAuthorizedUser = (state: TGlobalState) => {
 }
 
 // dialogsPage
-export const selectMessages = (state: TGlobalState) => {
-    return state.dialogsPage.messages
-}
-export const selectMessUsers = (state: TGlobalState) => {
-    return state.dialogsPage.users
-}
 export const selectCompanions = (state: TGlobalState) => {
     return state.dialogsPage.companions
+}
+export const selectCompanionsData = (state: TGlobalState) => {
+    return state.dialogsPage.companionsData
 }
 
 //navBar

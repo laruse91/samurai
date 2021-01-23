@@ -27,7 +27,6 @@ type TActions = TCombineActions<typeof actions>
 
 const actions = {
     setBackground: (backgrounds: string[]) => ({type: SET_BACKGROUND, payload: {backgrounds}} as const),
-
 }
 
 // type TThunk = ThunkAction<Promise<void>, TGlobalState, unknown, TActions>
@@ -50,6 +49,18 @@ const actions = {
 //         profileContacts[contact] = url
 //     }
 //     dispatch(actions.setProfileContacts(profileContacts))
+// }
+
+// export const getTest = (): TThunk => async (dispatch) => {
+//     const storage = firebase.storage().ref('posts')
+//     const response: any = await storage.listAll()
+//     let posts = [] as Array<string>
+//     const setUrls = async (item: any) => {
+//        const url = await item.getDownloadURL()
+//         posts.push(url)
+//     }
+//     response.items.forEach((item: any) => setUrls(item))
+//     dispatch(actions.setTest(posts))
 // }
 
 

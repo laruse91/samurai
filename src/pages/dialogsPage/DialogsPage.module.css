@@ -47,7 +47,10 @@
     background-size: cover;
     background-position: center;
 }
-
+.startDialog {
+    color: whitesmoke;
+    margin: 100px auto;
+}
 /* Responsive */
 
 /* 992px - 1200px */

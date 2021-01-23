@@ -9,7 +9,7 @@ const TOGGLE_IS_FETCHING = 'sidebar/TOGGLE-IS-FETCHING'
 
 let initialState = {
     users: null as Array<TUser> | null,
-    numberOfUsersAtSidebar: 10,
+    numberOfUsersAtSidebar: 50,
     totalUsers: 0,
     pageNumber: 1,
     isFetching: true,

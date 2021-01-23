@@ -28,7 +28,7 @@ const ChatPage: React.FC = React.memo(() => {
         : messages.map((message, i) => (
             <MessageCard key={i + 1} userName={message.userName} userId={message.userId} photo={message.photo}
                          message={message.message} withUserName={true}/>))
-
+//messages autoscroll
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const scrollToBottom = () => {
         messagesEndRef?.current?.scrollIntoView({behavior: 'smooth'})

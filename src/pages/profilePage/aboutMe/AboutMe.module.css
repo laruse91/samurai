@@ -83,3 +83,30 @@
 h4, p {
     margin: 0;
 }
+
+/* Responsive */
+
+/* 992px - 1200px */
+@media screen and (max-width: 1000px) {
+    .button {
+        grid-area: 2/ 2/ 2/ 3;
+    }
+    .input input {
+        width: auto;
+    }
+}
+
+/* 768x - 992px */
+@media screen and (max-width: 992px) {
+
+}
+
+/* 576px - 768px */
+@media screen and (max-width: 768px) {
+
+}
+
+/* 0px - 576px */
+@media screen and (max-width: 576px) {
+
+}

@@ -17,9 +17,11 @@
 
 /* Responsive */
 
-/* 992px - 1200px */
-@media screen and (max-width: 1200px) {
 
+@media screen and (max-width: 1000px) {
+  .newsFeed {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* 768x - 992px */

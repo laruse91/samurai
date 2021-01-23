@@ -9,13 +9,17 @@ type TProps = {
     photo: string | null
     userName: string
     info?: string | null
+    path?: string
 }
 
 export const UserLabel: React.FC<TProps> = (props) => {
 
-    const path = `/profile/${props.userId}`
+    const path = props.path
+        ? `/${props.path}/${props.userId}`
+        : `/profile/${props.userId}`
 
-    return (
+
+return (
         <Link to={path} className={style.userCard}>
             <div className={style.userPhoto}>
                 {props.photo

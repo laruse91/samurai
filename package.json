@@ -2,7 +2,6 @@
   "name": "samurai",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://laruse91.github.io/002.social-network/",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@firebase/storage": "^0.4.2",
@@ -60,10 +59,6 @@
       "last 1 safari version"
     ]
   },
-  "main": "index.js",
-  "repository": "https://github.com/laruse91/002.social-network.git",
-  "author": "laruse91 <71646031+laruse91@users.noreply.github.com>",
-  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/typescript-estree": "^4.10.0",
     "react-test-renderer": "^17.0.1"

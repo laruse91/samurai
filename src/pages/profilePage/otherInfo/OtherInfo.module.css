@@ -48,3 +48,33 @@
 .btn:hover {
     color: #082d48;
 }
+
+
+/* Responsive */
+
+@media screen and (max-width: 1520px) {
+    .event img {
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .block {
+       display: none;
+    }
+}
+
+/* 768x - 992px */
+@media screen and (max-width: 992px) {
+
+}
+
+/* 576px - 768px */
+@media screen and (max-width: 768px) {
+
+}
+
+/* 0px - 576px */
+@media screen and (max-width: 576px) {
+
+}

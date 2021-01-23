@@ -16,7 +16,6 @@ import ProfileContainer from './pages/profilePage/ProfileContainer'
 import firebase from 'firebase/app'
 import CoronaPage from './pages/coronaPage/CoronaPage'
 
-
 // React.lazy , Suspense
 const DialogsPage = React.lazy(() => import('./pages/dialogsPage/DialogsPage'))
 const Login = React.lazy(() => import('./pages/loginPage/LoginPage'))
@@ -68,7 +67,7 @@ const App: React.FC = React.memo(() => {
                     <Route exact path='/' render={() => <Redirect to={'/newsfeed'}/>}/>
                     <Route path='/newsfeed' render={newsFeedPage}/>
                     <Route path='/profile/:userId?' render={profilePage}/>
-                    <Route path='/dialogs' render={dialogsPage}/>
+                    <Route path='/dialogs/:userId?' render={dialogsPage}/>
                     <Route path='/people' render={peoplePage}/>
                     <Route path='/login' render={loginPage}/>
                     <Route path='/chat' render={chatPage}/>

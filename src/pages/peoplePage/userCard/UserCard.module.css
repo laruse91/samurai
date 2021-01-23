@@ -48,6 +48,7 @@
 .userName {
     font-size: 20px;
     cursor: pointer;
+    word-break: break-word;
 }
 
 .location {
@@ -58,6 +59,4 @@
 .status {
     font-size: 14px;
 }
-
-
 
