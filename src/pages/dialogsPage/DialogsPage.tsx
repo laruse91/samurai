@@ -71,31 +71,34 @@ const DialogsPage: React.FC = React.memo(() => {
 
     return (
         <div className={style.dialogs}>
-            <div className={style.block}>
-                <div className={style.title}>
-                    <h2>Dialogs</h2>
+            <div className={style.messenger}>
+                <div className={style.companionsBlock}>
+                    <div className={style.title}>
+                        <h2>Dialogs</h2>
+                    </div>
+                    <div className={style.users}>
+                        {dialogs}
+                    </div>
                 </div>
-                <div className={style.users}>
-                    {dialogs}
+
+                <div className={style.mesBlock}>
+                    <div className={style.title}>
+                        <h2>
+                            {!currentCompanionUserId
+                                ? 'Messages'
+                                : companionsData.find(user => user.userId === currentCompanionUserId)?.userName}
+                        </h2>
+                    </div>
+                    <div className={style.messages}>
+                        {!currentCompanionUserId
+                            ? <p className={style.startDialog}> Select companion to start dialog</p>
+                            : messageCards}
+                        <div ref={messagesEndRef}/>
+                    </div>
+                    <NewMessageForm sendNewMessage={sendMessage} channelStatus={Boolean(currentCompanionUserId)}/>
                 </div>
             </div>
 
-            <div className={style.mesBlock}>
-                <div className={style.title}>
-                    <h2>
-                        {!currentCompanionUserId
-                            ? 'Messages'
-                            : companionsData.find(user => user.userId === currentCompanionUserId)?.userName}
-                    </h2>
-                </div>
-                <div className={style.messages}>
-                    {!currentCompanionUserId
-                        ? <p className={style.startDialog}> Select companion to start dialog</p>
-                        : messageCards}
-                    <div ref={messagesEndRef}/>
-                </div>
-                <NewMessageForm sendNewMessage={sendMessage} channelStatus={Boolean(currentCompanionUserId)}/>
-            </div>
         </div>
     )
 })

@@ -8,6 +8,8 @@ import {Redirect} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectCaptchaURL, selectIsAuth} from '../../selectors/selectors'
 import {login} from '../../redux/auth-reducer'
+import {InfoCircleOutlined} from '@ant-design/icons'
+import {Popover} from 'antd'
 
 //types
 type TLoginFormData = {
@@ -88,6 +90,13 @@ const LoginPage: React.FC = () => {
     const onSubmit = (formData: TLoginFormData) => {
         dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
+
+    const content = (
+        <div>
+            <p>login: laruse91@gmail.com</p>
+            <p>password: laruse91</p>
+        </div>
+    )
     if (isAuth) {
         return <Redirect to='/profile'/>
     }
@@ -97,6 +106,9 @@ const LoginPage: React.FC = () => {
             <div className={style.login}>
                 <h2>Authorization</h2>
                 <LoginReduxForm onSubmit={onSubmit} captchaURL={captchaURL}/>
+                <Popover content={content} title='For testing site you can use my account'>
+                    <InfoCircleOutlined className={style.inform}/>
+                </Popover>
             </div>
         </div>
     )

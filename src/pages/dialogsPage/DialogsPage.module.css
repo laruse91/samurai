@@ -1,20 +1,22 @@
 .dialogs {
     grid-area: 1 / 2 / 1 / 3;
     margin: 20px auto;
+}
+.messenger {
     display: grid;
     grid-template-columns: 1fr 3fr;
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 0 20px -10px #c6c6c6;
     padding: 20px 0;
+    height: 75vh;
 }
-.block {
+.companionsBlock {
     padding: 0 20px;
     border-right: 1px solid gray;
 }
 .mesBlock {
     padding: 0 20px;
-    max-height: 80vh;
 }
 .title {
     display: flex;
@@ -31,14 +33,13 @@
     margin-top: 15px;
     row-gap: 15px;
     overflow-y: auto;
-    height: 100%;
+    height: calc(75vh - 100px);
 }
 .messages {
     margin: 5px 0 10px;
     padding: 5px 10px;
     overflow-y: auto;
     border-radius: 5px;
-    height: 500px;
     display: grid;
     grid-gap: 10px;
     grid-auto-rows: min-content;
@@ -46,6 +47,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: calc(75vh - 150px);
 }
 .startDialog {
     color: whitesmoke;

@@ -23,7 +23,7 @@ const ChatPage: React.FC = React.memo(() => {
         dispatch(sendMessage(newMessageBody))
     }
 
-    const messageCards = messages.length === 0
+    const messageCards = !messages
         ? <Preloader/>
         : messages.map((message, i) => (
             <MessageCard key={i + 1} userName={message.userName} userId={message.userId} photo={message.photo}
@@ -37,14 +37,16 @@ const ChatPage: React.FC = React.memo(() => {
 
     return (
         <div className={style.chatPage}>
-            <div className={style.title}>
-                <h2>Samurai's chat</h2>
+            <div className={style.messenger}>
+                <div className={style.title}>
+                    <h2>Samurai's chat</h2>
+                </div>
+                <div className={style.messages}>
+                    {messageCards}
+                    <div ref={messagesEndRef}/>
+                </div>
+                <NewMessageForm sendNewMessage={sendNewMessage} channelStatus={true}/>
             </div>
-            <div className={style.messages}>
-                {messageCards}
-                <div ref={messagesEndRef}/>
-            </div>
-            <NewMessageForm sendNewMessage={sendNewMessage} channelStatus={true}/>
         </div>
     )
 })

@@ -8,7 +8,7 @@ const SET_CHAT_MESSAGES = 'chat/SET_CHAT_MESSAGES'
 const DELETE_CHAT_MESSAGES = 'chat/DELETE_CHAT_MESSAGES'
 
 const initialState = {
-    messages: [] as TChatMessage[]
+    messages: null as TChatMessage[] | null
 }
 
 export type TInitialState = typeof initialState
@@ -16,10 +16,17 @@ export type TInitialState = typeof initialState
 const chatReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
         case SET_CHAT_MESSAGES:
+            if (state.messages === null) {
+                return {
+                    ...state,
+                    messages: action.messages
+                }
+            }
             return {
                 ...state,
                 messages: [...state.messages, ...action.messages]
             }
+
         case DELETE_CHAT_MESSAGES:
             return {
                 ...state,

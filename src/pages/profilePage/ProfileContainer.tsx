@@ -11,6 +11,7 @@ import {
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 import {TGlobalState} from '../../redux/redux-store'
+import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 
 type TStateProps = {
     authorizedUserId: number | null
@@ -71,4 +72,4 @@ const mapStateToProps = (state: TGlobalState): TStateProps => ({
 export default compose<React.ComponentType>(connect(mapStateToProps, {
         updateUserStatus, getUserStatus, saveUserPhoto, saveMyProfile, getUserProfile
     }),
-    withRouter)(ProfileContainer)
+    withRouter, withAuthRedirect)(ProfileContainer)

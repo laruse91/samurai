@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import style from './NewMessageForm.module.css'
 import {Form, Formik} from 'formik'
 import {Input} from 'formik-antd'
@@ -27,10 +27,10 @@ export const NewMessageForm: React.FC<TProps> = (props) => {
         <div className={style.newMessageForm}>
             <Formik initialValues={{newMessage: ''}}
                     onSubmit={submit}>
-                {({ isSubmitting}) => (
+                {({isSubmitting}) => (
                     <Form className={style.form}>
                         <TextArea name='newMessage' placeholder='Type your message' className={style.input}
-                                  autoSize={{minRows: 1, maxRows: 3}}/>
+                                  autoSize={{minRows: 2, maxRows: 2}}/>
                         <Button button={'Send'} type='submit' disabled={!props.channelStatus || isSubmitting}/>
                     </Form>
                 )}

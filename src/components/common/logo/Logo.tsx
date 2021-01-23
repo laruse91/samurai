@@ -9,8 +9,8 @@ export const Logo: React.FC = () => {
             <Link to={path} className={style.link}>
                 <div className={style.logo}>
                     <span>S</span>
-                    <div className={style.line}></div>
-                    <div className={style.circle}></div>
+                    <div className={style.line}/>
+                    <div className={style.circle}/>
                 </div>
                 <div className={style.title}>
                     <h1>Samurai</h1>

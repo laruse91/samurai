@@ -36,23 +36,20 @@ export type TAboutMeFormData = {
 }
 
 export const ProfilePage: React.FC<TProps> = React.memo((props) => {
-    //useSelector Hook
+//useSelector Hook
     const posts = useSelector(selectPosts)
     const profile = useSelector(selectProfile)
     const profileStatus = useSelector(selectProfileStatus)
     const profileContactsIcons = useSelector(selectProfileContactsIcons)
     const background = useSelector(selectRandomBackground)
-
 //useState Hook
     const [editMode, setEditMode] = useState(false)
     const activateEditMode = () => setEditMode(true)
-
     const [myPosts, setMyPost] = useState([] as TPost[])
     useEffect(() => {
         profile &&
         setMyPost(posts.filter(post => post.userId === profile.userId))
     }, [profile, posts])
-
 //submit to redux-form
     const onSubmit = (formData: TAboutMeFormData) => {
         //todo: remove then
@@ -78,7 +75,6 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
     const saveUserPhoto = (event: ChangeEvent<HTMLInputElement>) => {
         event.target.files?.length && props.saveUserPhoto(event.target.files[0])
     }
-
     const usersPosts = myPosts.length > 0 && myPosts.map(post => {
         return (
             profile && <PostBlock key={post.id} post={post}
