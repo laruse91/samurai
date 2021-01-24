@@ -3,53 +3,45 @@ import postsReducer, {actions} from './posts-reducer'
 const state = {
     posts: [
         {
-            id: 1,
-            user: {
-                name: 'Anna',
-                lastName: 'Stephany',
-                photo: 'https://1.downloader.disk.yandex.ru/preview/bf4f83f40130cf368655b34f33653f6861b8622c245e9df017ce50c18cfcafb3/inf/YnQfhSEF1-F_NCFjrvvfQAolLid69i7r8hhjvKb3fPPxUJ77ls5NLGGPhdbcsdS03RzRa18sFj33-lri9jYFyQ%3D%3D?uid=81903395&filename=user-anna-stephani.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            },
-            time: '15:22',
-            content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore' +
-                ' minus sunt, nisi a officia sint impedit deserunt?',
-            contentMedia: 'https://1.downloader.disk.yandex.ru/preview/09fd1c141117318e4ca4f493406772e425adb7eb753bb31525957a2c39a9d8df/inf/CY1FFKPhy-6B8XEIYFPWLnSB7vNpiLj_HqcdkhAWlgieFaEN_AXFt7agLJMi9PFdL5FauAxzBPcDFG-pgrlBXg%3D%3D?uid=81903395&filename=user-content-photo1.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            contentMedia1: 'https://2.downloader.disk.yandex.ru/preview/e96d4c97644436165cd8e4ebe08bd5d88fd9b9c55b5c2c7d4b1f614aedf22182/inf/7oTJ3TgNqqKn71UDJH9zPQnmeWnx9do1ZU6v209lqLFg7NwuxMYBss08t3nnkoT5g5GW5I0QqstrNXNUIS8oqQ%3D%3D?uid=81903395&filename=user-content-photo2.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            contentMedia2: 'https://2.downloader.disk.yandex.ru/preview/173672bbecb3522c3281c9200efcf987c41bf1c486f30b2be8ffe3f9ce9b0a44/inf/gXoyHb0-uGYIfLxwi-_V8wolLid69i7r8hhjvKb3fPPq16h6JLw_G14g9rQK3mJfMKzB6Zowtch0sB7_pWGqfA%3D%3D?uid=81903395&filename=user-content-photo3.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            likesCount: 0,
-            shareCount: 0,
-            commentsCount: 0,
+            id: 2,
+            userId: 1456,
+            postBody: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?'
         },
         {
-            id: 2,
-            user: {
-                name: 'Anna',
-                lastName: 'Stephany',
-                photo: 'https://1.downloader.disk.yandex.ru/preview/bf4f83f40130cf368655b34f33653f6861b8622c245e9df017ce50c18cfcafb3/inf/YnQfhSEF1-F_NCFjrvvfQAolLid69i7r8hhjvKb3fPPxUJ77ls5NLGGPhdbcsdS03RzRa18sFj33-lri9jYFyQ%3D%3D?uid=81903395&filename=user-anna-stephani.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            },
-            time: '15:22',
-            content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore' +
-                ' minus sunt, nisi a officia sint impedit deserunt?',
-            contentMedia: 'https://1.downloader.disk.yandex.ru/preview/09fd1c141117318e4ca4f493406772e425adb7eb753bb31525957a2c39a9d8df/inf/CY1FFKPhy-6B8XEIYFPWLnSB7vNpiLj_HqcdkhAWlgieFaEN_AXFt7agLJMi9PFdL5FauAxzBPcDFG-pgrlBXg%3D%3D?uid=81903395&filename=user-content-photo1.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            contentMedia1: 'https://2.downloader.disk.yandex.ru/preview/e96d4c97644436165cd8e4ebe08bd5d88fd9b9c55b5c2c7d4b1f614aedf22182/inf/7oTJ3TgNqqKn71UDJH9zPQnmeWnx9do1ZU6v209lqLFg7NwuxMYBss08t3nnkoT5g5GW5I0QqstrNXNUIS8oqQ%3D%3D?uid=81903395&filename=user-content-photo2.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            contentMedia2: 'https://2.downloader.disk.yandex.ru/preview/173672bbecb3522c3281c9200efcf987c41bf1c486f30b2be8ffe3f9ce9b0a44/inf/gXoyHb0-uGYIfLxwi-_V8wolLid69i7r8hhjvKb3fPPq16h6JLw_G14g9rQK3mJfMKzB6Zowtch0sB7_pWGqfA%3D%3D?uid=81903395&filename=user-content-photo3.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625',
-            likesCount: 0,
-            shareCount: 0,
-            commentsCount: 0,
-        },
+            id: 1,
+            userId: 13182,
+            postBody: 'My child is the wonderfull one',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp3.jpg?alt=media&token=be1ffd3a-6b79-439a-96af-875d1014a2c4',
+                'https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp2.jpg?alt=media&token=59f82e82-7965-4b07-8d34-2652d1d57cc1',
+                'https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp1.jpg?alt=media&token=0aa35d0c-f89f-4f29-89c6-e053798c889c'
+            ]
+        }
     ],
-    currentUser: {
-        name: 'Helena',
-        lastName: 'Jackly',
-        id: 1,
-        photo: 'https://4.downloader.disk.yandex.ru/preview/094ccd40c9e4557a4a914ce119e1ee0aa3aa143f71ad52057be44a6583e9c0ed/inf/vCI1taciqDdxl-O7FW4UcoFhjPhj2ysFi_ybQPJ7XLLJ2r-S6PkGbMrRHnOvczSZn-XsSTp_AtE_aQtoO5lctA%3D%3D?uid=81903395&filename=user-profile.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=81903395&tknv=v2&size=1349x625'
-    },
+    postOwners: [
+        {
+            userId: 1456,
+            name: 'testName',
+            photo: null
+        },
+        {
+            userId: 13182,
+            name: 'testName2',
+            photo: null
+        }
+    ]
 }
 
 test('after adding new post, posts length should be increment', () => {
     // start data
 
     // action
-    const action = actions.publicNewPost('Hello gays')
+    const newPost = {
+        id: 3,
+        userId: 12740,
+        postBody: 'Hello'
+    }
+    const action = actions.publicNewPost(newPost)
     const newState = postsReducer(state, action)
     // expectations
     expect(newState.posts.length).toBe(newState.posts.length = state.posts.length + 1)
