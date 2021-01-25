@@ -50,7 +50,6 @@ const actions = {
 //     }
 //     dispatch(actions.setProfileContacts(profileContacts))
 // }
-
 // export const getTest = (): TThunk => async (dispatch) => {
 //     const storage = firebase.storage().ref('posts')
 //     const response: any = await storage.listAll()

@@ -3,7 +3,7 @@ import style from './CoronaPage.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {getStatistic} from '../../redux/corona-reducer'
 import {selectStatistic} from '../../selectors/selectors'
-import {Preloader} from '../../components/common/preloader/Preloader'
+import {Skeleton} from 'antd'
 
 type TProps = {
     title: string
@@ -48,12 +48,12 @@ const CoronaPage: React.FC = () => {
                     World Statistic today
                 </h2>
                 {!statistic
-                ? <Preloader/>
-                : statistic && Object.keys(statistic).map(key => {
-                return (
-                <StatisticString key={key} title={key} value={statistic[key]}/>)
-            })
-            }
+                    ? <Skeleton active paragraph={{rows: 4}}/>
+                    : statistic && Object.keys(statistic).map(key => {
+                    return (
+                        <StatisticString key={key} title={key} value={statistic[key]}/>)
+                })
+                }
             </div>
         </div>
     )

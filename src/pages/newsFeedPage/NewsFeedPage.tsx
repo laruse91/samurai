@@ -6,8 +6,10 @@ import {selectIsAuth, selectPostOwners, selectPosts} from '../../selectors/selec
 import {PostBlock} from '../../components/posts/PostBlock'
 import {getPostOwners} from '../../redux/posts-reducer'
 import {OtherInfo} from '../profilePage/otherInfo/OtherInfo'
+import {Skeleton} from 'antd'
 
 export const NewsFeedPage = () => {
+
 //useSelector Hook
     const isAuth = useSelector(selectIsAuth)
     const posts = useSelector(selectPosts)
@@ -21,9 +23,13 @@ export const NewsFeedPage = () => {
     }, [])
 
     const usersPosts = posts.map(post => {
-        const owner = postOwners.find(owner => owner.userId === post.userId)
-        return (
-            owner && <PostBlock key={post.id} post={post} userName={owner.name} userPhoto={owner.photo}/>)
+        if (postOwners.length === 0) {
+            return <Skeleton key={post.id} active avatar paragraph={{rows: 2}}/>
+        } else {
+            const owner = postOwners.find(owner => owner.userId === post.userId)
+            return (
+                owner && <PostBlock key={post.id} post={post} userName={owner.name} userPhoto={owner.photo}/>)
+        }
     })
 
     return (

@@ -88,7 +88,7 @@ const LoginPage: React.FC = () => {
     const dispatch = useDispatch()
 
     const onSubmit = (formData: TLoginFormData) => {
-        dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
+        dispatch(login(formData.email.trim(), formData.password, formData.rememberMe, formData.captcha))
     }
 
     const content = (
