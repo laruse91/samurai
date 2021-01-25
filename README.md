@@ -1,4 +1,4 @@
-[![header](https://github.com/laruse91/002.social-network/blob/main/src/assets/title.png?raw=true)](https://samurai-socialnetwork.web.app)
+[![header](https://github.com/laruse91/samurai/blob/main/public/title.png?raw=true)](https://samurai-socialnetwork.web.app)
 You can see and test site by the link below:  
 [samurai-socialnetwork](https://samurai-socialnetwork.web.app)  
 You can use my account to test and look the site:  
