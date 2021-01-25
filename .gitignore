@@ -1,5 +1,4 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-.idea
 
 # dependencies
 /node_modules
@@ -23,11 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .firebase/
-.github/
-.firebase/hosting.YnVpbGQ.cache
-.github/workflows/
-.github/workflows/firebase-hosting-merge.yml
-.github/workflows/firebase-hosting-pull-request.yml
+/.github/
+/.firebase/
 .firebaserc
 *.log
 firebase.json
