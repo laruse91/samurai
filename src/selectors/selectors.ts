@@ -1,4 +1,4 @@
-import {TGlobalState} from '../redux/redux-store'
+import {TGlobalState} from '../redux/store'
 
 //sidebar
 export const selectFollowedUsers = (state: TGlobalState) => {
@@ -96,3 +96,7 @@ export const selectStatistic = (state: TGlobalState) => {
 export const selectChatMessages = (state: TGlobalState) => {
     return state.chat.messages
 }
+export const selectChatStatus = (state: TGlobalState) => {
+    return state.chat.status
+}
+

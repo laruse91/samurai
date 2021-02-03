@@ -4,6 +4,7 @@ import {WrappedFieldProps} from 'redux-form'
 
 const FormControl: React.FC<WrappedFieldProps> = ({input, meta: {touched, error}, ...props}) => {
 
+//todo: remove ts-ignore
     // @ts-ignore
     const hasError = (touched && error) || props.error
     return (

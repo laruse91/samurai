@@ -13,7 +13,8 @@ type TProps = {
     withUserName?: boolean
 }
 
-export const MessageCard: React.FC<TProps> = (props) => {
+export const MessageCard: React.FC<TProps> = React.memo((props) => {
+
     const authorizedUser = useSelector(selectAuthorizedUser)
 
     return (
@@ -22,10 +23,9 @@ export const MessageCard: React.FC<TProps> = (props) => {
 
             <div className={style.userPhoto}>
                 {props.photo
-                    // @ts-ignore
                     ? <Avatar size={50} src={props.photo}/>
-                    // @ts-ignore
-                    : <Avatar size={50} style={styles.avatar}>{props.userName ? props.userName.charAt(0).toUpperCase() : 'User'}</Avatar>
+                    : <Avatar size={50}
+                              style={styles.avatar}>{props.userName ? props.userName.charAt(0).toUpperCase() : 'User'}</Avatar>
                 }
             </div>
 
@@ -39,5 +39,5 @@ export const MessageCard: React.FC<TProps> = (props) => {
             </div>
         </div>
     )
-}
+})
 

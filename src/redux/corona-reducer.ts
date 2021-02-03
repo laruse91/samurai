@@ -1,5 +1,5 @@
 import {ThunkAction} from 'redux-thunk'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {coronaAPI} from '../api/coronaApi'
 import {TStatistic} from '../types/types'
 

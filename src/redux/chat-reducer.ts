@@ -1,14 +1,18 @@
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {ThunkAction} from 'redux-thunk'
-import {TChatMessage} from '../types/types'
+import {TChatMessage, TChatMessageAPI, TWebSocketStatus} from '../types/types'
 import {chatAPI} from '../api/chatApi'
 import {Dispatch} from 'redux'
+import {v1} from 'uuid'
 
 const SET_CHAT_MESSAGES = 'chat/SET_CHAT_MESSAGES'
 const DELETE_CHAT_MESSAGES = 'chat/DELETE_CHAT_MESSAGES'
+const CHANGE_STATUS = 'chat/CHANGE_STATUS'
+
 
 const initialState = {
-    messages: null as TChatMessage[] | null
+    messages: null as TChatMessage[] | null,
+    status: 'pending' as  TWebSocketStatus
 }
 
 export type TInitialState = typeof initialState
@@ -19,14 +23,19 @@ const chatReducer = (state = initialState, action: TActions): TInitialState => {
             if (state.messages === null) {
                 return {
                     ...state,
-                    messages: action.messages
+                    messages: action.messages.map(m=>({ ...m, id: v1()}))
                 }
             }
             return {
                 ...state,
-                messages: [...state.messages, ...action.messages]
+                messages: [...state.messages, ...action.messages.map(m=>({ ...m, id: v1()}))]
             }
+            case CHANGE_STATUS:
 
+                return {
+                    ...state,
+                    status: action.payload.status
+                }
         case DELETE_CHAT_MESSAGES:
             return {
                 ...state,
@@ -40,19 +49,23 @@ const chatReducer = (state = initialState, action: TActions): TInitialState => {
 type TActions = TCombineActions<typeof actions>
 
 const actions = {
-    setChatMessages: (messages: TChatMessage[]) => ({
+    setChatMessages: (messages: TChatMessageAPI[]) => ({
         type: SET_CHAT_MESSAGES,
         messages
     } as const),
     deleteChatMessages: () => ({
         type: DELETE_CHAT_MESSAGES
+    } as const),
+    changeStatus: (status: TWebSocketStatus) => ({
+        type: CHANGE_STATUS,
+        payload: {status}
     } as const)
 }
 
 // Thunks
 type TThunk = ThunkAction<Promise<void>, () => TGlobalState, unknown, TActions>
 
-let _messageHandler: ((messages: TChatMessage[]) => void) | null = null
+let _messageHandler: ((messages: TChatMessageAPI[]) => void) | null = null
 const messagesHandlerCreator = (dispatch: Dispatch) => {
     if (_messageHandler === null) {
         _messageHandler = (messages) => {
@@ -61,14 +74,25 @@ const messagesHandlerCreator = (dispatch: Dispatch) => {
     }
     return _messageHandler
 }
+let _statusHandler: ((status: TWebSocketStatus) => void) | null = null
+const statusHandlerCreator = (dispatch: Dispatch) => {
+    if (_statusHandler === null) {
+        _statusHandler = (status) => {
+            dispatch(actions.changeStatus(status))
+        }
+    }
+    return _statusHandler
+}
 
 export const startMessagesListening = (): TThunk => async (dispatch) => {
     chatAPI.start()
-    chatAPI.subscribe(messagesHandlerCreator(dispatch))
+    chatAPI.subscribe('messages-received', messagesHandlerCreator(dispatch))
+    chatAPI.subscribe('status-changed', statusHandlerCreator(dispatch))
 }
 
 export const stopMessagesListening = (): TThunk => async (dispatch) => {
-    chatAPI.unsubscribe(messagesHandlerCreator(dispatch))
+    chatAPI.unsubscribe('messages-received', messagesHandlerCreator(dispatch))
+    chatAPI.unsubscribe('status-changed', statusHandlerCreator(dispatch))
     chatAPI.stop()
     dispatch(actions.deleteChatMessages())
 

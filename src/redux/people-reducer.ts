@@ -1,5 +1,5 @@
 import {TUser} from '../types/types'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {ThunkAction} from 'redux-thunk'
 import {usersAPI} from '../api/usersApi'
 import {ResultCode} from '../api/api'

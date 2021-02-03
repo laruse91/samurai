@@ -1,7 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {TGlobalState} from '../redux/redux-store'
+import {TGlobalState} from '../redux/store'
 
 const mapStateToProps = (state: TGlobalState) => ({
     isAuth: state.auth.isAuth,

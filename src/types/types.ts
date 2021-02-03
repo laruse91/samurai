@@ -37,12 +37,14 @@ export type TNavItem = {
     icon: string
 }
 
-export type TChatMessage = {
+export type TChatMessageAPI = {
     message: string,
     photo: string | null,
     userId: 2,
     userName: string
 }
+export type TChatMessage = TChatMessageAPI & {id: string}
+
 export type TAuthorizedUser = {
     userId: number | null
     login: string | null
@@ -64,3 +66,4 @@ export type TStatisticWithId = {
     NewRecovered: number
     TotalRecovered: number
 }
+export type TWebSocketStatus = 'ready' | 'pending' | 'error'

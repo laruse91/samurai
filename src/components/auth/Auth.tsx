@@ -9,7 +9,6 @@ import {Avatar} from 'antd'
 import {UserOutlined} from '@ant-design/icons'
 
 export const Auth: React.FC = () => {
-
 //useSelectorHooks
     const isAuth = useSelector(selectIsAuth)
     let authorizedUser = useSelector(selectAuthorizedUser)

@@ -10,7 +10,7 @@ import {
 } from '../../redux/profile-reducer'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
-import {TGlobalState} from '../../redux/redux-store'
+import {TGlobalState} from '../../redux/store'
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 
 type TStateProps = {

@@ -1,7 +1,7 @@
 import postsReducer from './posts-reducer'
 import dialogsReducer from './dialogs-reducer'
 
-let store = {
+let zz__store = {
 
 
     _state: {
@@ -229,5 +229,5 @@ let store = {
     },
 }
 
-export default store
-window.store = store
+export default zz__store
+window.store = zz__store

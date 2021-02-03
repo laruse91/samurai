@@ -1,6 +1,6 @@
 import {TUser} from '../types/types'
 import {ThunkAction} from 'redux-thunk'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {usersAPI} from '../api/usersApi'
 
 const SET_USERS = 'sidebar/SET-USERS'

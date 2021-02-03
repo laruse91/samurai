@@ -1,6 +1,6 @@
 import {CaptchaResCode, ResultCode} from '../api/api'
 import {FormAction, stopSubmit} from 'redux-form'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {ThunkAction} from 'redux-thunk'
 import {authAPI} from '../api/authApi'
 import {securityAPI} from '../api/securityApi'

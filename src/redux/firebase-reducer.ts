@@ -1,4 +1,4 @@
-import {TCombineActions} from './redux-store'
+import {TCombineActions} from './store'
 import data from '../db.json'
 
 const SET_BACKGROUND = 'firebase/SET_BACKGROUND'

@@ -1,9 +1,9 @@
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import data from '../db.json'
 import {profileAPI} from '../api/profileApi'
 import {ThunkAction} from 'redux-thunk'
 
-const PUBLIC_NEW_POST = 'posts/PUBLIC-NEW-POST'
+export const PUBLIC_NEW_POST = 'posts/PUBLIC-NEW-POST'
 const DELETE_POST = 'posts/DELETE-POST'
 const SET_POST_OWNER = 'posts/SET-POST-OWNER'
 

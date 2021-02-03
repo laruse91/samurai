@@ -1,9 +1,9 @@
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import data from '../db.json'
 import {ThunkAction} from 'redux-thunk'
 import {profileAPI} from '../api/profileApi'
 
-const SEND_NEW_MESSAGE = 'dialogsPage/SEND-NEW-MESSAGE'
+export const SEND_NEW_MESSAGE = 'dialogsPage/SEND-MESSAGE'
 const SET_COMPANION = 'dialogsPage/SET-COMPANION'
 const SET_COMPANIONS_DATA = 'dialogsPage/SET_COMPANIONS_DATA'
 
@@ -32,6 +32,12 @@ export type TInitialState = typeof initialState
 
 const dialogsReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
+        // case SEND_NEW_MESSAGE:
+        //     return {
+        //         ...state,
+        //         companions[action.message.userId]
+        //     }
+
         case SET_COMPANION:
             return {
                 ...state,

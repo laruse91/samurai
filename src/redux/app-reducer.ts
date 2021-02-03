@@ -1,13 +1,13 @@
 import {authMe} from './auth-reducer'
 import {ThunkAction} from 'redux-thunk'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 
 const INITIALIZED_SUCCESS = 'app/INITIALIZED-SUCCESS'
 
-export type TInitialState = { isInitialized: boolean }
-let initialState: TInitialState = {
-    isInitialized: false,
+const initialState = {
+    isInitialized: false
 }
+export type TInitialState = typeof initialState
 
 const appReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
@@ -16,7 +16,6 @@ const appReducer = (state = initialState, action: TActions): TInitialState => {
                 ...state,
                 isInitialized: true
             }
-
         default:
             return state
     }
@@ -26,7 +25,7 @@ const appReducer = (state = initialState, action: TActions): TInitialState => {
 type TActions = TCombineActions<typeof actions>
 
 export const actions = {
-    initializedSuccess: () => ({type: INITIALIZED_SUCCESS} as const)
+    initializedSuccess: () => ({type: INITIALIZED_SUCCESS} as const),
 }
 
 // Thunks

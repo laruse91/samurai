@@ -2,7 +2,7 @@ import {ResultCode} from '../api/api'
 import {FormAction, stopSubmit} from 'redux-form'
 import {TPhotos, TProfile} from '../types/types'
 import {ThunkAction} from 'redux-thunk'
-import {TCombineActions, TGlobalState} from './redux-store'
+import {TCombineActions, TGlobalState} from './store'
 import {profileAPI} from '../api/profileApi'
 import data from '../db.json'
 

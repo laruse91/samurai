@@ -3,6 +3,7 @@ import style from './NewMessageForm.module.css'
 import {Form, Formik} from 'formik'
 import {Input} from 'formik-antd'
 import {Button} from '../common/button/Button'
+import {antiSpamChecked} from '../../utilites/validators'
 
 type TForm = {
     newMessage: string
@@ -17,9 +18,15 @@ const {TextArea} = Input
 export const NewMessageForm: React.FC<TProps> = (props) => {
 
     const submit = (values: TForm, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        values.newMessage &&
-        props.sendNewMessage(values.newMessage)
-        values.newMessage = ''
+        if (values.newMessage === '') {
+            setSubmitting(false)
+        }
+        if (values.newMessage !== '') {
+            if (antiSpamChecked(values.newMessage) === 'yes') {
+                props.sendNewMessage(values.newMessage)
+                values.newMessage = ''
+            }
+        }
         setSubmitting(false)
     }
 
