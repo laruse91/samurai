@@ -4,7 +4,7 @@ import {NewPostForm} from '../../components/posts/NewPostForm'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectIsAuth, selectPostOwners, selectPosts} from '../../selectors/selectors'
 import {PostBlock} from '../../components/posts/PostBlock'
-import {getPostOwners} from '../../redux/posts-reducer'
+import {requestPosts} from '../../redux/posts-reducer'
 import {OtherInfo} from '../profilePage/otherInfo/OtherInfo'
 import {Skeleton} from 'antd'
 
@@ -16,20 +16,18 @@ export const NewsFeedPage = () => {
     const postOwners = useSelector(selectPostOwners)
 
     const dispatch = useDispatch()
-
     useEffect(() => {
-        let ids = Array.from(new Set(posts.map(post => post.userId)))
-        dispatch(getPostOwners(ids))
+        dispatch(requestPosts())
     }, [])
 
-    const usersPosts = posts.map(post => {
-        if (postOwners.length === 0) {
-            return <Skeleton key={post.id} active avatar paragraph={{rows: 2}}/>
-        } else {
-            const owner = postOwners.find(owner => owner.userId === post.userId)
-            return (
-                owner && <PostBlock key={post.id} post={post} userName={owner.name} userPhoto={owner.photo}/>)
+    const usersPosts = posts.map(p => {
+        if (!postOwners) {
+            return <Skeleton key={p.id} active avatar paragraph={{rows: 2}}/>
         }
+            return (
+                <PostBlock key={p.id} post={p} userName={postOwners[p.userId].name}
+                           userPhoto={postOwners[p.userId].photo}/>)
+
     })
 
     return (

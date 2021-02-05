@@ -1,12 +1,12 @@
 {
   "companions": {
-      "12740": {
-        "13182" : 13182,
-        "12606": 12606,
-        "12706": 12706,
-        "10": 10
-      }
-    },
+    "12740": {
+      "13182": 13182,
+      "12606": 12606,
+      "12706": 12706,
+      "10": 10
+    }
+  },
   "messages": {
     "13182": {
       "1": {
@@ -163,29 +163,19 @@
       "icon": "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/icons%2Fcoronavirus.png?alt=media&token=0c3f7157-ae64-45bc-ab49-48ddfb2fddb1"
     }
   ],
-  "posts": [
-    {
-      "id": 6,
-      "userId": 1456,
+  "posts": {
+    "1": {
+      "id": "1",
+      "userId": 12740,
       "postBody": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?"
     },
-    {
-      "id": 5,
-      "userId": 13182,
-      "postBody": "My child is the wonderfull one",
-      "images": [
-        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp3.jpg?alt=media&token=be1ffd3a-6b79-439a-96af-875d1014a2c4",
-        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp2.jpg?alt=media&token=59f82e82-7965-4b07-8d34-2652d1d57cc1",
-        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp1.jpg?alt=media&token=0aa35d0c-f89f-4f29-89c6-e053798c889c"
-      ]
-    },
-    {
-      "id": 4,
-      "userId": 12606,
+    "2": {
+      "id": "2",
+      "userId": 13684,
       "postBody": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?"
     },
-    {
-      "id": 3,
+    "3": {
+      "id": "3",
       "userId": 12612,
       "postBody": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?",
       "images": [
@@ -194,17 +184,27 @@
         "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fuser-content-photo1.jpg?alt=media&token=6a37679e-3491-402b-80e4-fb9bc1b28f36"
       ]
     },
-    {
-      "id": 2,
-      "userId": 13684,
+    "4": {
+      "id": "4",
+      "userId": 12606,
       "postBody": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?"
     },
-    {
-      "id": 1,
-      "userId": 12740,
+    "5": {
+      "id": "5",
+      "userId": 13182,
+      "postBody": "My child is the wonderfull one",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp3.jpg?alt=media&token=be1ffd3a-6b79-439a-96af-875d1014a2c4",
+        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp2.jpg?alt=media&token=59f82e82-7965-4b07-8d34-2652d1d57cc1",
+        "https://firebasestorage.googleapis.com/v0/b/samurai-socialnetwork.appspot.com/o/posts%2Fp1.jpg?alt=media&token=0aa35d0c-f89f-4f29-89c6-e053798c889c"
+      ]
+    },
+    "6": {
+      "id": "6",
+      "userId": 1456,
       "postBody": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur ut blanditiis labore minus sunt, nisi a officia sint impedit deserunt?"
     }
-  ],
+  },
   "profileOtherInfo": [
     {
       "title": "Starting a new job in Apple",

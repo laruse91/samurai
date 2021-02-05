@@ -5,8 +5,8 @@ import App from './App'
 import {BrowserRouter} from 'react-router-dom'
 import store from './redux/store'
 import {Provider} from 'react-redux'
-import firebaseApp from 'firebase/app'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAu2tf8KisN-CYVnFVqSZpWANlAeVvkjHw',
@@ -17,7 +17,7 @@ const firebaseConfig = {
     appId: '1:486897340547:web:298c03a27d638d62ffcbb6'
 }
 // Initialize Firebase
-firebaseApp.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig)
 export const db = firebase.database()
 
 ReactDOM.render(

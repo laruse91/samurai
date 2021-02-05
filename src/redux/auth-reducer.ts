@@ -76,7 +76,7 @@ export const authMe = (): TThunk => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): TThunk => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
     if (response.resultCode === ResultCode.Success) {
-        await firebase.auth().signInWithEmailAndPassword(email, password)
+        // await firebase.auth().signInWithEmailAndPassword(email, password)
         dispatch(authMe())
         dispatch(actions.setCaptchaURL(null))
 

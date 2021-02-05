@@ -3,12 +3,13 @@ import style from './NewPostForm.module.css'
 import {Input} from 'formik-antd'
 import {Form, Formik} from 'formik'
 import {useDispatch, useSelector} from 'react-redux'
-import {selectAuthorizedUser, selectPosts} from '../../selectors/selectors'
-import {actions, TPost} from '../../redux/posts-reducer'
+import {publicPost, TPost} from '../../redux/posts-reducer'
 import {Avatar} from 'antd'
 import {styles} from '../../styles/styles'
 import {Button} from '../common/button/Button'
 import {antiSpamChecked} from '../../utilites/validators'
+import {v1} from 'uuid'
+import {selectAuthorizedUser} from '../../selectors/selectors'
 
 type TForm = {
     postBody: string
@@ -17,9 +18,8 @@ type TForm = {
 const {TextArea} = Input
 
 export const NewPostForm: React.FC = () => {
-// useSelector Hooks
+//useStateHook
     const authorizedUser = useSelector(selectAuthorizedUser)
-    const posts = useSelector(selectPosts)
 // useDispatch Hooks
     const dispatch = useDispatch()
     const submit = (values: TForm, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
@@ -29,14 +29,12 @@ export const NewPostForm: React.FC = () => {
         if (values.postBody !== '') {
             if (antiSpamChecked(values.postBody) === 'yes') {
                 const newPost: TPost = {
-                    id: (posts.length + 1),
+                    id: v1(),
                     userId: authorizedUser.userId!,
                     postBody: values.postBody
                 }
-
-                dispatch(actions.publicNewPost(newPost))
+                dispatch(publicPost(newPost))
                 values.postBody = ''
-
             }
             setSubmitting(false)
         }

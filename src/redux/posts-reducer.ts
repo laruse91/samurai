@@ -1,27 +1,26 @@
 import {TCombineActions, TGlobalState} from './store'
-import data from '../db.json'
 import {profileAPI} from '../api/profileApi'
 import {ThunkAction} from 'redux-thunk'
+import {db} from '../index'
 
 export const PUBLIC_NEW_POST = 'posts/PUBLIC-NEW-POST'
 const DELETE_POST = 'posts/DELETE-POST'
 const SET_POST_OWNER = 'posts/SET-POST-OWNER'
+const SET_POSTS = 'posts/SET_POSTS'
 
 export type TPost = {
-    id: number
+    id: string
     userId: number
     postBody: string
     images?: string[]
 }
-export type TOwner = {
-    userId: number
-    name: string
-    photo: string | null
+export type TOwners = {
+    [userId: number]: { name: string, photo: string | null }
 }
 
 const initialState = {
-    posts: data.posts as Array<TPost>,
-    postOwners: [] as TOwner[]
+    posts: [] as Array<TPost>,
+    postOwners: null as TOwners | null
 }
 
 type TInitialState = typeof initialState
@@ -36,12 +35,12 @@ const postsReducer = (state = initialState, action: TActions): TInitialState => 
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(post => post.id !== action.postId)
+                posts: state.posts.filter(post => +post.id !== action.postId)
             }
         case SET_POST_OWNER:
+        case SET_POSTS:
             return {
-                ...state,
-                postOwners: [...state.postOwners, ...action.owners]
+                ...state, ...action.payload
             }
         default:
             return state
@@ -60,25 +59,38 @@ export const actions = {
         type: DELETE_POST,
         postId
     } as const),
-    setPostOwners: (owners: TOwner[]) => ({
+    setPostOwners: (postOwners: TOwners) => ({
         type: SET_POST_OWNER,
-        owners
+        payload: {postOwners}
+    } as const),
+    setPosts: (posts: TPost[]) => ({
+        type: SET_POSTS,
+        payload: {posts}
     } as const)
 }
 //thunk
 type TThunk = ThunkAction<void, TGlobalState, unknown, TActions>
 
-export const getPostOwners = (ids: number[], owners: TOwner[] = []): TThunk => async (dispatch) => {
-    for (let userId of ids) {
+export const requestPosts = (): TThunk => async (dispatch) => {
+    const database = db.ref('posts')
+    let posts: TPost[] = []
+    await database.once('value', (el) => {
+        posts = Object.values(el.val())
+    })
+    dispatch(actions.setPosts(posts.reverse()))
+
+    const users = Array.from(new Set(posts.map(post => post.userId)))
+    let owners: TOwners = {}
+    for (let userId of users) {
         const response = await profileAPI.getProfile(userId)
-        let owner = {
-            userId: userId,
-            name: response.fullName,
-            photo: response.photos.large
-        }
-        owners.push(owner)
+        owners[userId] = {name: response.fullName, photo: response.photos.large}
+
     }
     dispatch(actions.setPostOwners(owners))
+}
+export const publicPost = (post: TPost): TThunk => async (dispatch) => {
+    db.ref('posts').push(post)
+    dispatch(actions.publicNewPost(post))
 }
 
 export default postsReducer

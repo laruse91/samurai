@@ -5,10 +5,10 @@ import {ProfileStatus} from './profileStatus/ProfileStatus'
 import {AboutMe} from './aboutMe/AboutMe'
 import AboutMeReduxForm from './aboutMe/AboutMeForm'
 import {styles} from '../../styles/styles'
-import {Avatar, Image} from 'antd'
+import {Avatar, Image, Skeleton} from 'antd'
 import {OtherInfo} from './otherInfo/OtherInfo'
 import {NewPostForm} from '../../components/posts/NewPostForm'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {
     selectPosts,
     selectProfile,
@@ -17,7 +17,7 @@ import {
     selectRandomBackground
 } from '../../selectors/selectors'
 import {PostBlock} from '../../components/posts/PostBlock'
-import {TPost} from '../../redux/posts-reducer'
+import {requestPosts, TPost} from '../../redux/posts-reducer'
 
 type TProps = {
     isOwner: boolean
@@ -35,19 +35,19 @@ export type TAboutMeFormData = {
 }
 
 export const ProfilePage: React.FC<TProps> = React.memo((props) => {
+//useState Hook
+    const [editMode, setEditMode] = useState(false)
+    const activateEditMode = () => setEditMode(true)
+    const [myPosts, setMyPost] = useState([] as TPost[])
 //useSelector Hook
     const posts = useSelector(selectPosts)
     const profile = useSelector(selectProfile)
     const profileStatus = useSelector(selectProfileStatus)
     const profileContactsIcons = useSelector(selectProfileContactsIcons)
     const background = useSelector(selectRandomBackground)
-//useState Hook
-    const [editMode, setEditMode] = useState(false)
-    const activateEditMode = () => setEditMode(true)
-    const [myPosts, setMyPost] = useState([] as TPost[])
+
     useEffect(() => {
-        profile &&
-        setMyPost(posts.filter(post => post.userId === profile.userId))
+        profile && setMyPost(posts.filter(post => post.userId === profile.userId))
     }, [profile, posts])
 //submit to redux-form
     const onSubmit = (formData: TAboutMeFormData) => {
@@ -60,7 +60,7 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
     }
 //initialValues for redux-form
     const getInitialValues = () => {
-        let initialValues = {}
+        let initialValues: {}
         return initialValues = {
             aboutMe: profile?.aboutMe,
             lookingForAJob: profile?.lookingForAJob,
@@ -74,12 +74,8 @@ export const ProfilePage: React.FC<TProps> = React.memo((props) => {
     const saveUserPhoto = (event: ChangeEvent<HTMLInputElement>) => {
         event.target.files?.length && props.saveUserPhoto(event.target.files[0])
     }
-    const usersPosts = myPosts.length > 0 && myPosts.map(post => {
-        return (
-            profile && <PostBlock key={post.id} post={post}
-                                  userName={profile.fullName}
-                                  userPhoto={profile.photos.large}/>)
-
+    const usersPosts = (myPosts.length > 0 && profile) && myPosts.map(p => {
+        return <PostBlock key={p.id} post={p} userName={profile.fullName} userPhoto={profile.photos.large}/>
     })
 
     if (!profile) {

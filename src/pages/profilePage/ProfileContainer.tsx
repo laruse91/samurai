@@ -12,6 +12,7 @@ import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 import {TGlobalState} from '../../redux/store'
 import {withAuthRedirect} from '../../hoc/withAuthRedirect'
+import {requestPosts} from '../../redux/posts-reducer'
 
 type TStateProps = {
     authorizedUserId: number | null
@@ -22,6 +23,7 @@ type TDispatchProps = {
     updateUserStatus: (status: string) => void
     saveUserPhoto: (file: File) => void
     saveMyProfile: (formData: TAboutMeFormData) => Promise<void>
+    requestPosts: ()=>void
 }
 // Type whatever you expect in 'this.props.match.params.*'
 type PathParamsType = {
@@ -32,7 +34,7 @@ type TProps = TStateProps & TDispatchProps & RouteComponentProps<PathParamsType>
 class ProfileContainer extends React.Component<TProps> {
 
     refreshProfile = () => {
-        const {authorizedUserId, getUserStatus, getUserProfile} = this.props
+        const {authorizedUserId, getUserStatus, getUserProfile, requestPosts} = this.props
         let userId: number | null = +this.props.match.params.userId
         if (!userId) {
             userId = authorizedUserId
@@ -42,10 +44,12 @@ class ProfileContainer extends React.Component<TProps> {
         }
         getUserStatus(userId as number)
         getUserProfile(userId as number)
+        requestPosts()
     }
 
     componentDidMount() {
         this.refreshProfile()
+        requestPosts()
     }
 
     componentDidUpdate(prevProps: TProps) {
@@ -70,6 +74,6 @@ const mapStateToProps = (state: TGlobalState): TStateProps => ({
 })
 
 export default compose<React.ComponentType>(connect(mapStateToProps, {
-        updateUserStatus, getUserStatus, saveUserPhoto, saveMyProfile, getUserProfile
+        updateUserStatus, getUserStatus, saveUserPhoto, saveMyProfile, getUserProfile, requestPosts
     }),
     withRouter, withAuthRedirect)(ProfileContainer)
