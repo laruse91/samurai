@@ -6,6 +6,9 @@ import {authAPI} from '../api/authApi'
 import {securityAPI} from '../api/securityApi'
 import {profileAPI} from '../api/profileApi'
 import {TAuthorizedUser} from '../types/types'
+// import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const SET_AUTH_USER_DATA = 'auth/SET-AUTH-USER-DATA'
 const SET_CAPTCHA_URL = 'auth/SET-CAPTCHA-URL'
@@ -73,6 +76,7 @@ export const authMe = (): TThunk => async (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): TThunk => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
     if (response.resultCode === ResultCode.Success) {
+        await firebase.auth().signInWithEmailAndPassword(email, password)
         dispatch(authMe())
         dispatch(actions.setCaptchaURL(null))
 

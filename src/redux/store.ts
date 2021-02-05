@@ -14,8 +14,7 @@ import {reducer as formReducer} from 'redux-form'
 import coronaReducer from './corona-reducer'
 import chatReducer from './chat-reducer'
 
-const rootReducer = combineReducers(
-    {
+const rootReducer = combineReducers({
         header: headerReducer,
         navbar: navbarReducer,
         sidebar: sidebarReducer,

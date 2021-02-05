@@ -19,7 +19,6 @@ import {
 import {PostBlock} from '../../components/posts/PostBlock'
 import {TPost} from '../../redux/posts-reducer'
 
-
 type TProps = {
     isOwner: boolean
     updateUserStatus: (status: string) => void

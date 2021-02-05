@@ -1,52 +1,49 @@
 import {TCombineActions, TGlobalState} from './store'
-import data from '../db.json'
 import {ThunkAction} from 'redux-thunk'
 import {profileAPI} from '../api/profileApi'
+import {TProfile} from '../types/types'
+import {db} from '../index'
 
 export const SEND_NEW_MESSAGE = 'dialogsPage/SEND-MESSAGE'
 const SET_COMPANION = 'dialogsPage/SET-COMPANION'
-const SET_COMPANIONS_DATA = 'dialogsPage/SET_COMPANIONS_DATA'
+const SET_COMPANIONS = 'dialogsPage/SET_COMPANIONS'
+const SET_MESSAGES = 'dialogsPage/SET_MESSAGES'
+const SET_TOTAL_COUNT = 'dialogsPage/SET_TOTAL_COUNT'
 
-export type TMessages = {
-    id: number
-    body: string
-    userId: number
-}
-export type TDialogsUser = {
-    userId: number
-    messages: [] | TMessages[]
-}
-type TCompanionData = {
-    userId: number
-    userName: string
-    userPhoto: string | null
-    info?: string
+export type TMessage = { id: string, body: string, userId: number }
+export type TCompanions = {
+    [userId: string]: { userName: string, userPhoto: string | null, info?: string }
 }
 
 const initialState = {
-    companions: data.companions as TDialogsUser[],
-    companionsData: [] as TCompanionData[]
+    messages: [] as TMessage[],
+    companions: null as TCompanions | null,
+    companionsCount: null as number[] | null
 }
 
 export type TInitialState = typeof initialState
 
 const dialogsReducer = (state = initialState, action: TActions): TInitialState => {
     switch (action.type) {
-        // case SEND_NEW_MESSAGE:
-        //     return {
-        //         ...state,
-        //         companions[action.message.userId]
-        //     }
-
-        case SET_COMPANION:
+        case SEND_NEW_MESSAGE:
             return {
                 ...state,
-                companions: [...state.companions, action.companion]
+                messages: [...state.messages, action.payload.message]
             }
-        case SET_COMPANIONS_DATA:
+        case SET_COMPANIONS:
             return {
                 ...state,
-                companionsData: [...state.companionsData, action.data]
+                companions: action.payload.companions
+            }
+        case SET_TOTAL_COUNT:
+            return {
+                ...state,
+                companionsCount: action.payload.total
+            }
+        case SET_MESSAGES:
+            return {
+                ...state,
+                messages: action.payload.messages
             }
         default:
             return state
@@ -57,31 +54,57 @@ const dialogsReducer = (state = initialState, action: TActions): TInitialState =
 type TActions = TCombineActions<typeof actions>
 
 export const actions = {
-    sendNewMessage: (message: TMessages) => ({
+    sendNewMessage: (message: TMessage) => ({
         type: SEND_NEW_MESSAGE,
-        message
+        payload: {message}
     } as const),
-    setCompanions: (companion: TDialogsUser) => ({
-        type: SET_COMPANION,
-        companion
+    setCompanions: (companions: TCompanions) => ({
+        type: SET_COMPANIONS,
+        payload: {companions}
     } as const),
-    setCompanionsData: (data: TCompanionData) => ({
-        type: SET_COMPANIONS_DATA,
-        data
+    setMessages: (messages: TMessage[]) => ({
+        type: SET_MESSAGES,
+        payload: {messages}
+    } as const),
+    setTotalCount: (total: number[]) => ({
+        type: SET_TOTAL_COUNT,
+        payload: {total}
     } as const)
 }
 
 //thunks
 type TThunk = ThunkAction<void, TGlobalState, unknown, TActions>
 
-export const getCompanionsData = (userId: number): TThunk => async (dispatch) => {
-    const response = await profileAPI.getProfile(userId)
-    const data = {
-        userId: userId,
-        userName: response.fullName,
-        userPhoto: response.photos.large
+export const requestCompanions = (myUserId: number): TThunk => async (dispatch) => {
+    const database = db.ref('companions')
+    let companions: number[] = []
+    await database.once('value', (el) => {
+        companions = Object.values(el.val()[myUserId])
+    })
+    dispatch(actions.setTotalCount(companions))
+
+    let data: TCompanions = {}
+    for (let userId of companions) {
+        const response: TProfile = await profileAPI.getProfile(userId)
+        data[String(userId)] = {userName: response.fullName, userPhoto: response.photos.large}
     }
-    dispatch(actions.setCompanionsData(data))
+    dispatch(actions.setCompanions(data))
+}
+
+export const requestMessages = (userId: number): TThunk => async (dispatch) => {
+    dispatch(actions.setMessages([]))
+    const database = db.ref(`messages/${userId}`)
+    let messages: TMessage[] = []
+    await database.once('value', (el) => {
+        const items = el.val()
+        items ? messages = Object.values(items) : null
+    })
+    dispatch(actions.setMessages(messages))
+}
+
+export const sendMessage = (userId: number, message: TMessage): TThunk => (dispatch) => {
+    db.ref(`messages/${userId}`).push(message)
+    dispatch(actions.sendNewMessage(message))
 }
 
 export default dialogsReducer

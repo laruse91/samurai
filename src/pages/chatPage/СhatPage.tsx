@@ -9,7 +9,7 @@ import {sendMessage, startMessagesListening, stopMessagesListening} from '../../
 import {selectChatMessages, selectChatStatus} from '../../selectors/selectors'
 
 const ChatPage: React.FC = React.memo(() => {
-    console.log('messages')
+
     const [isScrolling, setIsScrolling] = useState(true)
     const messages = useSelector(selectChatMessages)
     const status = useSelector(selectChatStatus)
@@ -36,10 +36,8 @@ const ChatPage: React.FC = React.memo(() => {
         const el = e.currentTarget
         if (Math.abs((el.scrollHeight - el.scrollTop) - el.clientHeight) < 30) {
             !isScrolling && setIsScrolling(true)
-            console.log('scrollON')
         } else {
             isScrolling && setIsScrolling(false)
-            console.log('scrollOFF')
         }
     }
     React.useEffect(() => {

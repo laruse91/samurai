@@ -13,7 +13,6 @@ import {PeoplePage} from './pages/peoplePage/PeoplePage'
 import {Navbar} from './components/navbar/Navbar'
 import {selectIsInitialized} from './selectors/selectors'
 import ProfileContainer from './pages/profilePage/ProfileContainer'
-import firebase from 'firebase/app'
 import CoronaPage from './pages/coronaPage/CoronaPage'
 
 // React.lazy , Suspense
@@ -21,17 +20,6 @@ const DialogsPage = React.lazy(() => import('./pages/dialogsPage/DialogsPage'))
 const Login = React.lazy(() => import('./pages/loginPage/LoginPage'))
 const ErrorPage = React.lazy(() => import('./pages/errorPage/ErrorPage'))
 const ChatPage = React.lazy(() => import('./pages/chatPage/СhatPage'))
-
-const firebaseConfig = {
-    apiKey: 'AIzaSyAu2tf8KisN-CYVnFVqSZpWANlAeVvkjHw',
-    authDomain: 'samurai-socialnetwork.firebaseapp.com',
-    projectId: 'samurai-socialnetwork',
-    storageBucket: 'samurai-socialnetwork.appspot.com',
-    messagingSenderId: '486897340547',
-    appId: '1:486897340547:web:298c03a27d638d62ffcbb6'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
 
 const App: React.FC = React.memo(() => {
 //useSelector Hook

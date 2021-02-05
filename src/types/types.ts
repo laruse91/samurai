@@ -1,3 +1,4 @@
+
 export type TPhotos = {
     large: string | null
     small: string | null
